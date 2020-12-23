@@ -1,0 +1,190 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Map.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 30.7538, 32.0578 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 117.459, 163.439 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 32.3136, 32.3754 )
+
+[node name="Maps" type="Node2D"]
+position = Vector2( 1.68176, 0 )
+scale = Vector2( 3, 3 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+spawn_1 = NodePath("SpawnLocation1")
+spawn_2 = NodePath("SpawnLocation2")
+
+[node name="Left" type="Sprite" parent="."]
+position = Vector2( -255.921, -1.12247 )
+scale = Vector2( 1, 4.96369 )
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Wall" type="StaticBody2D" parent="Left"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left/Wall"]
+shape = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Right" type="Sprite" parent="."]
+position = Vector2( 261.354, -3.57165 )
+scale = Vector2( 1, 5.0009 )
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Wall" type="StaticBody2D" parent="Right"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right/Wall"]
+shape = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Top" type="Sprite" parent="."]
+position = Vector2( -3.50836, -175.665 )
+scale = Vector2( 8.68772, 0.526461 )
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Wall" type="StaticBody2D" parent="Top"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Top/Wall"]
+shape = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Bottom" type="Sprite" parent="."]
+position = Vector2( -0.662359, 167.808 )
+scale = Vector2( 8.81174, 0.526461 )
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Wall" type="StaticBody2D" parent="Bottom"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bottom/Wall"]
+shape = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Gap" type="Sprite" parent="."]
+position = Vector2( 0.529724, -1.77134 )
+scale = Vector2( 0.486822, 5.04377 )
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Gap" type="StaticBody2D" parent="Gap"]
+collision_layer = 2
+collision_mask = 0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gap/Gap"]
+shape = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="area1" type="Area2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="area1"]
+position = Vector2( -131.183, -2.3311 )
+shape = SubResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="area2" type="Area2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="area2"]
+position = Vector2( 132.326, -3.1248 )
+shape = SubResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="obstical" type="Sprite" parent="."]
+position = Vector2( -84.5588, 74.8308 )
+rotation = 0.590755
+scale = Vector2( 0.13236, 1.18842 )
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="obstical"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="obstical/StaticBody2D"]
+shape = SubResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="obstical2" type="Sprite" parent="."]
+position = Vector2( 90.3726, 72.9431 )
+rotation = -0.721073
+scale = Vector2( 0.13236, 1.18842 )
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="obstical2"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="obstical2/StaticBody2D"]
+shape = SubResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="SpawnLocation1" type="Position2D" parent="."]
+position = Vector2( -130, 0 )
+
+[node name="SpawnLocation2" type="Position2D" parent="."]
+position = Vector2( 130, 0 )
