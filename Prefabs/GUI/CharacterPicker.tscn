@@ -1,0 +1,98 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scripts/CharacterPicker.gd" type="Script" id=4]
+[ext_resource path="res://Art/GUI/Demon.png" type="Texture" id=7]
+[ext_resource path="res://Art/GUI/CharacterBox.png" type="Texture" id=8]
+[ext_resource path="res://Art/Text/demon.png" type="Texture" id=9]
+
+[node name="CharacterPicker" type="VBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_scale = Vector2( 2, 2 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+text_path = NodePath("Character/MarginContainer/TextureRect/VBoxContainer/BottomPadding/Name")
+character_path = NodePath("Character/MarginContainer/TextureRect/VBoxContainer/HBoxContainer/Character")
+box_path = NodePath("Character/MarginContainer/TextureRect")
+
+[node name="Character" type="HBoxContainer" parent="."]
+margin_right = 1024.0
+margin_bottom = 98.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LeftPadding" type="MarginContainer" parent="Character"]
+margin_right = 470.0
+margin_bottom = 98.0
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="Character"]
+margin_left = 474.0
+margin_right = 550.0
+margin_bottom = 98.0
+
+[node name="TextureRect" type="TextureRect" parent="Character/MarginContainer"]
+margin_right = 76.0
+margin_bottom = 98.0
+texture = ExtResource( 8 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Character/MarginContainer/TextureRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TopPadding" type="MarginContainer" parent="Character/MarginContainer/TextureRect/VBoxContainer"]
+margin_right = 76.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 0, 20 )
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Character/MarginContainer/TextureRect/VBoxContainer"]
+margin_top = 24.0
+margin_right = 76.0
+margin_bottom = 70.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LeftPadding" type="MarginContainer" parent="Character/MarginContainer/TextureRect/VBoxContainer/HBoxContainer"]
+margin_right = 12.0
+margin_bottom = 46.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Character" type="TextureRect" parent="Character/MarginContainer/TextureRect/VBoxContainer/HBoxContainer"]
+margin_left = 16.0
+margin_right = 60.0
+margin_bottom = 46.0
+texture = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Right Padding" type="MarginContainer" parent="Character/MarginContainer/TextureRect/VBoxContainer/HBoxContainer"]
+margin_left = 64.0
+margin_right = 76.0
+margin_bottom = 46.0
+size_flags_horizontal = 3
+
+[node name="BottomPadding" type="MarginContainer" parent="Character/MarginContainer/TextureRect/VBoxContainer"]
+margin_top = 74.0
+margin_right = 76.0
+margin_bottom = 102.0
+
+[node name="Name" type="TextureRect" parent="Character/MarginContainer/TextureRect/VBoxContainer/BottomPadding"]
+margin_right = 76.0
+margin_bottom = 28.0
+texture = ExtResource( 9 )
+
+[node name="RightPadding" type="MarginContainer" parent="Character"]
+margin_left = 554.0
+margin_right = 1024.0
+margin_bottom = 98.0
+size_flags_horizontal = 3
