@@ -7,6 +7,12 @@ const gui = {
 		'Human': preload('res://Art/GUI/Human.png'),
 		'Robot': preload('res://Art/GUI/Robot.png'),
 	},
+	'taken_characters':{
+		'Demon': preload('res://Art/GUI/Taken-Demon.png'),
+		'Goblin': preload('res://Art/GUI/Taken-Goblin.png'),
+		'Human': preload('res://Art/GUI/Taken-Human.png'),
+		'Robot': preload('res://Art/GUI/Taken-Robot.png'),
+	},
 	'text':{
 		'Demon': preload('res://Art/Text/demon.png'),
 		'Goblin': preload('res://Art/Text/goblin.png'),
@@ -58,6 +64,9 @@ func get_white_character(character_id):
 
 func get_gui_character(character_id):
 	return gui['characters'][character_from_id[int(character_id)]]
+	
+func get_gui_taken_character(character_id):
+	return gui['taken_characters'][character_from_id[int(character_id)]]
 	
 func get_text(character_id):
 	return gui['text'][character_from_id[int(character_id)]]

@@ -40,6 +40,14 @@ func start():
 	for i in range(len(activePlayers)):
 		Global.add_new_player(i + 1, activePlayers[i])
 	Global.start()
+	
+func selected_characters():
+	var characters = []
+	for player in players:
+		if player and player['selected']:
+			characters.append(player.character_id)
+	
+	return characters
 
 func join(keyboard, input_id):
 	if find_player(keyboard, input_id) != null or len(players) >= max_players:
@@ -74,10 +82,12 @@ func find_player(keyboard, input_id):
 
 func update_selecter_data():
 	for i in range(len(selecters)):
+		var selecter = selecters[i]
 		if i > len(players) - 1:
-			selecters[i].player = {}
+			selecter.player = {}
 		else:
-			selecters[i].player = players[i]
+			selecter.player = players[i]
+		selecter.taken_characters = selected_characters()
 	
 func _unhandled_input(event):
 	if !event:

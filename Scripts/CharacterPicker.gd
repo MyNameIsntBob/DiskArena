@@ -14,6 +14,7 @@ signal start()
 
 var moveDelay := 0.1
 var delayTimer := 0.0
+var taken_characters : Array
 
 func _ready():
 	text = get_node(text_path)
@@ -27,7 +28,10 @@ func _process(delta):
 	
 	if text and character:
 		if player:
-			character.texture = Icons.get_gui_character(player['character_id'])
+			if taken():
+				character.texture = Icons.get_gui_taken_character(player['character_id'])
+			else:
+				character.texture = Icons.get_gui_character(player['character_id'])
 			character.show()
 			text.texture = Icons.get_text(player['character_id'])
 			text.show()
@@ -43,14 +47,18 @@ func _process(delta):
 		else:
 			box.texture = Icons.get_box(2)
 	
+func taken():
+	return player and player.character_id in taken_characters and !player['selected']
 
 func pickPlayer():
-	if player:
-		if player['selected']:
-			emit_signal('start')
-		else:
-			player['selected'] = true
-			emit_signal('pick_character', player)
+	if !player or taken():
+		return
+		
+	if player['selected']:
+		emit_signal('start')
+	else:
+		player['selected'] = true
+		emit_signal('pick_character', player)
 		
 func unpickPlayer():
 	if player:
