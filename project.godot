@@ -21,8 +21,8 @@ config/icon="res://Art/GUI/Human.png"
 
 [autoload]
 
-Global="*res://Scripts/Global.gd"
-Icons="*res://Scripts/Icons.gd"
+Global="*res://Scripts/Global/Global.gd"
+Icons="*res://Scripts/Global/Icons.gd"
 
 [display]
 

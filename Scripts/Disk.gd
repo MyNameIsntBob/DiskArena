@@ -29,6 +29,8 @@ func _physics_process(delta):
 		velocity = velocity.bounce(collision_info.normal)
 		
 	
+	$Sprite.texture = Icons.get_bullet(character_id)
+	
 	var direction = -int(velocity.normalized().angle() * (4 / PI)) + 2
 	
 	if direction > 7:

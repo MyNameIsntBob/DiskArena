@@ -43,10 +43,10 @@ const white_characters = {
 }
 
 const bullets = {
-	'Demon': preload('res://Art/Bullets/FireBallMerged-Sheet.png'),
-	'Goblin': '',
-	'Human': '',
-	'Robot': preload('res://Art/Bullets/Gear.png')
+	'Demon': preload('res://Art/Bullets/fireBall-Sheet.png'),
+	'Goblin': preload('res://Art/Bullets/greenFireBall-Sheet.png'),
+	'Human': preload('res://Art/Bullets/blueFireBall-Sheet.png'),
+	'Robot': preload('res://Art/Bullets/grayFireBall-Sheet.png')
 }
 
 const character_from_id = {
@@ -73,3 +73,6 @@ func get_text(character_id):
 	
 func get_box(box_id):
 	return gui['box'][int(box_id)]
+	
+func get_bullet(character_id):
+	return bullets[character_from_id[int(character_id)]]

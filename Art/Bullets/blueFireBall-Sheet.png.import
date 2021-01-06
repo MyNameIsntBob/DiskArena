@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Gear.png-710bc5707110abcd4e7744b455cf48bf.stex"
+path="res://.import/blueFireBall-Sheet.png-39b7ae381204debc35c60ce17a45387e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Bullets/Gear.png"
-dest_files=[ "res://.import/Gear.png-710bc5707110abcd4e7744b455cf48bf.stex" ]
+source_file="res://Art/Bullets/blueFireBall-Sheet.png"
+dest_files=[ "res://.import/blueFireBall-Sheet.png-39b7ae381204debc35c60ce17a45387e.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

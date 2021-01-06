@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Scripts/CharacterPicker.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/GUI/CharacterPicker.gd" type="Script" id=4]
 [ext_resource path="res://Art/GUI/Demon.png" type="Texture" id=7]
 [ext_resource path="res://Art/GUI/CharacterBox.png" type="Texture" id=8]
 [ext_resource path="res://Art/Text/demon.png" type="Texture" id=9]

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/fireBallMerged-Sheet.png-74d8670856b4bb271b68f693f7ce43cb.stex"
+path="res://.import/grayFireBall-Sheet.png-225e1c5999eae15a7256721fe33bfee0.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Bullets/fireBallMerged-Sheet.png"
-dest_files=[ "res://.import/fireBallMerged-Sheet.png-74d8670856b4bb271b68f693f7ce43cb.stex" ]
+source_file="res://Art/Bullets/grayFireBall-Sheet.png"
+dest_files=[ "res://.import/grayFireBall-Sheet.png-225e1c5999eae15a7256721fe33bfee0.stex" ]
 
 [params]
 
