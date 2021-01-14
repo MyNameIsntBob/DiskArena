@@ -27,6 +27,7 @@ func _physics_process(delta):
 #			collision_info.kill
 #		else:
 		velocity = velocity.bounce(collision_info.normal)
+		sendBack = false
 		
 	
 	$Sprite.texture = Icons.get_bullet(character_id)
@@ -53,6 +54,7 @@ func _on_ObjectChecker_body_entered(body):
 #	if body is KinematicBody2D and body.get("player_id"):
 	if body.get_collision_layer_bit(3):
 		body.kill()
+		Global.add_kill(sender.player_id)
 
 
 func _on_ObjectChecker_area_entered(area):
