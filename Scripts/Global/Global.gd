@@ -4,11 +4,12 @@ var number_of_players := 0
 #var map
 
 var player_stats : Dictionary 
+var who_paused : int
 
 var scenes = {
 	'2': 'res://Scenes/lava_map/2player.tscn',
 	'CharacterSelect': 'res://Scenes/ConnectScreen.tscn',
-	'EndScreen': 'res://Scenes/EndScreen.tscn'
+	'EndScreen': 'res://Scenes/EndScreen.tscn',
 }
 
 var players_to_respawn : Array
@@ -35,6 +36,8 @@ func start():
 	number_of_players = player_stats.size()
 	get_tree().change_scene(scenes[str(number_of_players)])
 	
+	print(get_tree().get_current_scene().find_node('Master'))
+	
 #	Set everyone's hp to the max hp
 	for player_id in player_stats:
 		var player = player_stats[player_id]
@@ -43,7 +46,12 @@ func start():
 		player['deaths'] = 0
 		player['kills'] = 0
 	
-#	grab_map()
+func pause_game(player_id):
+	get_tree().paused = true
+	who_paused = player_id
+	
+func continue_game():
+	get_tree().paused = false
 
 func character_select_screen():
 	player_stats = {}

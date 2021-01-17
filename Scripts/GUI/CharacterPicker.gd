@@ -101,14 +101,15 @@ func _unhandled_input(event):
 	(event is InputEventJoypadButton or event is InputEventJoypadMotion) and player["keyboard"]):
 		return
 		
-	if event.is_action_pressed("ui_accept"):
+		
+	if event.is_action_pressed("accept"):
 		pickPlayer()
 		
 	if event.is_action_pressed('ui_cancel'):
 		unpickPlayer()
 		
-	if event.is_action_pressed("ui_left") and event.get_action_strength('ui_left') >= 1:
+	if event.is_action_pressed("left") and event.get_action_strength('left') >= 1:
 		moveLeft()
 		
-	if event.is_action_pressed("ui_right") and event.get_action_strength('ui_right') >= 1:
+	if event.is_action_pressed("right") and event.get_action_strength('right') >= 1:
 		moveRight()

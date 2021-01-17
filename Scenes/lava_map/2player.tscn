@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Prefabs/GUI/Interface.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Prefabs/Map.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Prefabs/GUI/PauseMenu.tscn" type="PackedScene" id=3]
 
 [node name="Master" type="Node2D"]
 
@@ -13,3 +14,5 @@ zoom = Vector2( 0.5, 0.5 )
 position = Vector2( 1, 1 )
 
 [node name="Interface" parent="." instance=ExtResource( 1 )]
+
+[node name="Pause" parent="." instance=ExtResource( 3 )]

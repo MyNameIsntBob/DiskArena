@@ -93,7 +93,7 @@ func _unhandled_input(event):
 	if !event:
 		return
 
-	if event.is_action_pressed("ui_accept"):
+	if event.is_action_pressed("accept"):
 		if event is InputEventKey:
 			join(true, event.get_device())
 		elif event is InputEventJoypadButton:

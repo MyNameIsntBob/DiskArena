@@ -113,16 +113,17 @@ func _unhandled_input(event):
 	if !event or event.get_device() != input_id or (event is InputEventKey and !keyboard) or (
 	(event is InputEventJoypadButton or event is InputEventJoypadMotion) and keyboard):
 		return
+		
 
-	if event.is_action("ui_right"):
-		right = event.get_action_strength('ui_right')
-	if event.is_action("ui_left"):
-		left = event.get_action_strength('ui_left')
-	if event.is_action("ui_up"):
-		up = event.get_action_strength("ui_up")
-	if event.is_action('ui_down'):
-		down = event.get_action_strength("ui_down")
-	if event.is_action_pressed("shoot") or event.is_action_pressed("ui_accept"):
+	if event.is_action("right"):
+		right = event.get_action_strength('right')
+	if event.is_action("left"):
+		left = event.get_action_strength('left')
+	if event.is_action("up"):
+		up = event.get_action_strength("up")
+	if event.is_action('down'):
+		down = event.get_action_strength("down")
+	if event.is_action_pressed("shoot") or event.is_action_pressed("accept"):
 		shoot()
 		
 	if event.is_action('aim_right'):
@@ -133,6 +134,9 @@ func _unhandled_input(event):
 		look_up = event.get_action_strength('aim_up')
 	if event.is_action('aim_down'):
 		look_down = event.get_action_strength('aim_down')
+		
+	if event.is_action_pressed("pause"):
+		Global.pause_game(player_id)
 
 func shoot():
 	if disk:
