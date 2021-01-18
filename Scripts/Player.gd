@@ -114,7 +114,6 @@ func _unhandled_input(event):
 	(event is InputEventJoypadButton or event is InputEventJoypadMotion) and keyboard):
 		return
 		
-
 	if event.is_action("right"):
 		right = event.get_action_strength('right')
 	if event.is_action("left"):

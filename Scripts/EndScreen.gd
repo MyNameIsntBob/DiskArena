@@ -9,6 +9,9 @@ export(Array, NodePath) var scores
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	var button = find_node('Again')
+	button.grab_focus()
+	
 	for i in range(len(scores)):
 		scores[i] = get_node(scores[i])
 
@@ -33,4 +36,7 @@ func _on_Again_pressed():
 
 
 func _on_Exit_pressed():
-	Global.character_select_screen()
+	Global.load_start_screen()
+	
+func _unhandled_input(event):
+	Functions.control_to_UI(event)

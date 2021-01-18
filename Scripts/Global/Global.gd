@@ -10,6 +10,7 @@ var scenes = {
 	'2': 'res://Scenes/lava_map/2player.tscn',
 	'CharacterSelect': 'res://Scenes/ConnectScreen.tscn',
 	'EndScreen': 'res://Scenes/EndScreen.tscn',
+	'StartScreen': 'res://Scenes/StartScreen.tscn'
 }
 
 var players_to_respawn : Array
@@ -52,6 +53,9 @@ func pause_game(player_id):
 	
 func continue_game():
 	get_tree().paused = false
+
+func load_start_screen():
+	get_tree().change_scene(scenes['StartScreen'])
 
 func character_select_screen():
 	player_stats = {}
