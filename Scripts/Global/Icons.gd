@@ -26,8 +26,6 @@ const gui = {
 	]
 }
 
-const maps = {}
-
 const characters = {
 	'Demon': preload('res://Art/Characters/Demon-Sheet.png'),
 	'Goblin': preload('res://Art/Characters/Goblin-Sheet.png'),
@@ -49,12 +47,21 @@ const bullets = {
 	'Robot': preload('res://Art/Bullets/grayFireBall-Sheet.png')
 }
 
+const maps = {
+	'4player': preload('res://Art/Maps/TestMapSplit.png'),
+	'3player': preload('res://Art/Maps/TestMapSplit.png'),
+	'2player': preload('res://Art/Maps/TestMap.png'),
+}
+
 const character_from_id = {
 	0: 'Demon',
 	1: 'Goblin',
 	2: 'Human',
 	3: 'Robot'
 }
+
+func get_map(number_of_players):
+	return maps[str(number_of_players) + 'player']
 
 func get_character(character_id):
 	return characters[character_from_id[int(character_id)]]

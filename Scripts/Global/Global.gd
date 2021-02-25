@@ -7,7 +7,9 @@ var player_stats : Dictionary
 var who_paused : int
 
 var scenes = {
-	'2': 'res://Scenes/lava_map/2player.tscn',
+	'2': 'res://Scenes/lava_map/4player.tscn',
+	'3': 'res://Scenes/lava_map/4player.tscn',
+	'4': 'res://Scenes/lava_map/4player.tscn',
 	'CharacterSelect': 'res://Scenes/ConnectScreen.tscn',
 	'EndScreen': 'res://Scenes/EndScreen.tscn',
 	'StartScreen': 'res://Scenes/StartScreen.tscn'

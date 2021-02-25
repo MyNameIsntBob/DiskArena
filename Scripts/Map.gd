@@ -16,6 +16,10 @@ func _ready():
 	for i in range(len(spawn_locations)):
 		spawn_locations[i] = get_node(spawn_locations[i])
 	
+	$Map.texture = Icons.get_map(Global.number_of_players)
+	if Global.number_of_players < 3:
+		$Gaps/CenterGapHorizontal.queue_free()
+	
 func _process(delta):
 	if counter >= 0.01:
 		if not spawned:
