@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Art/Maps/TestMapSplit.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Map.gd" type="Script" id=2]
 [ext_resource path="res://Art/Maps/SouthWall.png" type="Texture" id=3]
+[ext_resource path="res://Prefabs/Powerups/Split.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 30.7538, 27.1847 )
@@ -220,3 +221,6 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Gaps/TopGap"]
 shape = SubResource( 4 )
+
+[node name="Split" parent="." instance=ExtResource( 4 )]
+position = Vector2( -40.7278, -66.2889 )

@@ -31,7 +31,7 @@ export var white := false
 
 ##export var diskPath : FilePath
 var diskPath = preload("res://Prefabs/Disk.tscn")
-var disk
+var disks = []
 
 onready var default_layer = self.get_collision_layer()
 
@@ -39,9 +39,6 @@ onready var animationPlayer = $AnimationPlayer
 
 #export var cameraPath : NodePath 
 #How to get an Object's path
-
-func _ready():
-	pass
 	
 func _process(delta):
 #	set_collision_layer(0)
@@ -103,6 +100,7 @@ func _physics_process(delta):
 	else:
 		look_vector.x = look_right - look_left
 		look_vector.y = look_down - look_up
+		
 		if abs(look_vector.x) + abs(look_vector.y) >= 0.5:
 			$Aim.look_at(self.position + look_vector.normalized())
 		
@@ -137,9 +135,17 @@ func _unhandled_input(event):
 	if event.is_action_pressed("pause"):
 		Global.pause_game(player_id)
 
+func add_disk(disk):
+	disks.append(disk)
+	
+func remove_disk(disk):
+	disks.erase(disk)
+
 func shoot():
-	if disk:
-		disk.sendBack = true
+	if len(disks):
+		for disk in disks:
+			if disk:
+				disk.sendBack = true
 		return
 		
 #	get the direction to send the disk
@@ -155,12 +161,13 @@ func shoot():
 			bulVelocity = Vector2(cos($Aim.rotation), sin($Aim.rotation))
 		
 #	create the disk and give it all variables
-	disk = diskPath.instance()
+	var disk = diskPath.instance()
 	find_parent("Master").add_child(disk)
 	disk.sender = self
 	disk.position = find_node("BulletPosition").global_position
 	disk.velocity = bulVelocity.normalized()
 	disk.character_id = character_id
+	disks.append(disk)
 	
 func kill():
 	Global.player_die(player_id)
