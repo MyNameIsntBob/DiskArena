@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/SouthWall.png-c97f0347838fd26d89ad9d70fa97ca67.stex"
+path="res://.import/WallLayerPlayer.png-82bd9f24a1a217fcbb491455ef821957.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Maps/SouthWall.png"
-dest_files=[ "res://.import/SouthWall.png-c97f0347838fd26d89ad9d70fa97ca67.stex" ]
+source_file="res://Art/Maps/Lava/WallLayerPlayer.png"
+dest_files=[ "res://.import/WallLayerPlayer.png-82bd9f24a1a217fcbb491455ef821957.stex" ]
 
 [params]
 

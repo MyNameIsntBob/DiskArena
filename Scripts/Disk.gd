@@ -30,7 +30,7 @@ func _physics_process(delta):
 		sendBack = false
 		
 	
-	$Sprite.texture = Icons.get_bullet(character_id)
+	$Bullet.texture = Icons.get_bullet(character_id)
 	
 	var direction = -int(velocity.normalized().angle() * (4 / PI)) + 2
 	
@@ -39,7 +39,7 @@ func _physics_process(delta):
 	if direction < 0:
 		direction += 8
 		
-	$Sprite.frame_coords.y = direction
+	$Bullet.frame_coords.y = direction
 	
 #func split():
 ##	velocity

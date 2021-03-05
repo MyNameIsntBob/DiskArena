@@ -9,6 +9,10 @@ var spawned := false
 
 export(Array, NodePath) var spawn_locations
 
+export(NodePath) var map2
+export(NodePath) var map4
+
+
 #var spawn_locations : Array
 
 #Change spawn location node paths to spawn location 
@@ -16,9 +20,14 @@ func _ready():
 	for i in range(len(spawn_locations)):
 		spawn_locations[i] = get_node(spawn_locations[i])
 	
-	$Map.texture = Icons.get_map(Global.number_of_players)
+#	$Map.texture = Icons.get_map(Global.number_of_players)
 	if Global.number_of_players < 3:
-		$Gaps/CenterGapHorizontal.queue_free()
+		if map4:
+			get_node(map4).queue_free()
+#		$Map4.queue_free()
+	else:
+		if map2:
+			get_node(map2).queue_free()
 	
 func _process(delta):
 	if counter >= 0.01:
@@ -44,8 +53,7 @@ func respawnPlayer(player_id):
 func spawnPlayer(player_id):
 	var location = spawn_locations[int(player_id) - 1]
 	var player = player_path.instance()
-#	players.append(player)
-	print(player_id)
+	Global.add_player(player)
 	find_parent("Master").add_child(player)
 	player.position = location.global_position
 	player.player_id = player_id
@@ -53,8 +61,3 @@ func spawnPlayer(player_id):
 	player.input_id = Global.get_input_id(player_id)
 	player.character_id = Global.get_character_id(player_id)
 	
-	print("Player:", player_id)
-	print("Position:", player.position)
-	print("Keyboard:", player.keyboard)
-	print("Input Id:", player.input_id)
-	print('')

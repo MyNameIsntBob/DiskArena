@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/White-Goblin-Sheet.png-a3bf55870f94df198b76fe099c0e7018.stex"
+path="res://.import/Shadow-Sheet.png-0e41e3837d08bb285c10556eed80f4bf.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Characters/White-Goblin-Sheet.png"
-dest_files=[ "res://.import/White-Goblin-Sheet.png-a3bf55870f94df198b76fe099c0e7018.stex" ]
+source_file="res://Art/Shadow-Sheet.png"
+dest_files=[ "res://.import/Shadow-Sheet.png-0e41e3837d08bb285c10556eed80f4bf.stex" ]
 
 [params]
 

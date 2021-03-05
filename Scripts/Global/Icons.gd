@@ -53,12 +53,27 @@ const maps = {
 	'2player': preload('res://Art/Maps/TestMap.png'),
 }
 
+const powers = {
+	'Split': preload('res://Art/powers/Split.png'),
+	'Speed': preload('res://Art/powers/Speed.png'),
+	'Target': preload('res://Art/powers/Target.png')
+}
+
 const character_from_id = {
 	0: 'Demon',
 	1: 'Goblin',
 	2: 'Human',
 	3: 'Robot'
 }
+
+const powers_from_id = {
+	0: 'Split',
+	1: 'Speed',
+	2: 'Target'
+}
+
+func get_power(power):
+	return powers[powers_from_id[power]]
 
 func get_map(number_of_players):
 	return maps[str(number_of_players) + 'player']

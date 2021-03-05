@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/White-Goblin-Sheet.png-a3bf55870f94df198b76fe099c0e7018.stex"
+path="res://.import/2PlayerGroundLayer.png-7f7fb342f9082ddd1d564f5621fe9443.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Characters/White-Goblin-Sheet.png"
-dest_files=[ "res://.import/White-Goblin-Sheet.png-a3bf55870f94df198b76fe099c0e7018.stex" ]
+source_file="res://Art/Maps/Lava/2PlayerGroundLayer.png"
+dest_files=[ "res://.import/2PlayerGroundLayer.png-7f7fb342f9082ddd1d564f5621fe9443.stex" ]
 
 [params]
 

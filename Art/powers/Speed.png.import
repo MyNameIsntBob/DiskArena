@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/White-Goblin-Sheet.png-a3bf55870f94df198b76fe099c0e7018.stex"
+path="res://.import/Speed.png-5ba27cec3123157ff3d026212a0a513b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Characters/White-Goblin-Sheet.png"
-dest_files=[ "res://.import/White-Goblin-Sheet.png-a3bf55870f94df198b76fe099c0e7018.stex" ]
+source_file="res://Art/powers/Speed.png"
+dest_files=[ "res://.import/Speed.png-5ba27cec3123157ff3d026212a0a513b.stex" ]
 
 [params]
 

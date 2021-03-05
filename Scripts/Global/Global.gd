@@ -5,14 +5,16 @@ var number_of_players := 0
 
 var player_stats : Dictionary 
 var who_paused : int
+var players = []
 
 var scenes = {
-	'2': 'res://Scenes/lava_map/4player.tscn',
-	'3': 'res://Scenes/lava_map/4player.tscn',
-	'4': 'res://Scenes/lava_map/4player.tscn',
+	'2': 'res://Scenes/LavaMap.tscn',
+	'3': 'res://Scenes/LavaMap.tscn',
+	'4': 'res://Scenes/LavaMap.tscn',
 	'CharacterSelect': 'res://Scenes/ConnectScreen.tscn',
 	'EndScreen': 'res://Scenes/EndScreen.tscn',
-	'StartScreen': 'res://Scenes/StartScreen.tscn'
+	'StartScreen': 'res://Scenes/StartScreen.tscn',
+	'SettingsScreen': 'res://Scenes/SettingsScreen.tscn'
 }
 
 var players_to_respawn : Array
@@ -36,6 +38,7 @@ func _ready():
 #	map = get_tree().get_current_scene().find_node('Maps')
 
 func start():
+	players = []
 	number_of_players = player_stats.size()
 	get_tree().change_scene(scenes[str(number_of_players)])
 	
@@ -56,6 +59,9 @@ func pause_game(player_id):
 func continue_game():
 	get_tree().paused = false
 
+func load_settings_screen():
+	get_tree().change_scene(scenes["SettingsScreen"])
+
 func load_start_screen():
 	get_tree().change_scene(scenes['StartScreen'])
 
@@ -74,6 +80,7 @@ func add_kill(player_id):
 func player_die(player_id):
 #	Get the stats of the player and lower the hp
 	var stats = get_stats(player_id)
+	remove_player(player_id)
 	
 	if !stats:
 		stats = default_stats
@@ -157,4 +164,13 @@ func get_deaths(player_id):
 func get_score(player_id):
 	if str(player_id) in player_stats:
 		return(get_stats(player_id)['score'])
+		
+func add_player(player):
+	players.append(player)
+	
+func remove_player(player_id):
+	for i in range(len(players)):
+		if !players[i] or players[i].player_id == player_id:
+			players.remove(i)
+			break
 	
