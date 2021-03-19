@@ -4,6 +4,7 @@ enum powers {
 	SPLIT,
 	SPEED,
 	TARGET
+#	SHIELD/HEART
 }
 
 var power = powers.SPLIT
@@ -11,8 +12,6 @@ var power = powers.SPLIT
 var waitTill = 0.3
 
 # Split veriables
-var splitRange = Vector2(0.35, 0.35)
-
 var rotationDeg = 0.25 * PI
 var spaceDirection = 0.1
 
@@ -20,7 +19,6 @@ var diskPath = preload("res://Prefabs/Disk.tscn")
 
 func _ready():
 	power = powers.values()[randi()%powers.size()]
-	power = powers.TARGET
 	$Orb.texture = Icons.get_power(power)
 
 # I tried .duplicate() and I couldn't get it to work, people online recommend me
@@ -34,6 +32,8 @@ func _process(delta):
 		self.visible = true
 
 func _on_Area2D_body_entered(body):
+	body.sendBack = false
+	
 	if power == powers.SPLIT:
 		split(body)
 		

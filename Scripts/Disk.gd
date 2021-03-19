@@ -63,6 +63,9 @@ func _on_ObjectChecker_body_entered(body):
 
 
 func _on_ObjectChecker_area_entered(area):
+	return 
+#	Originally sent it back to the player, now we don't do that
+	
 	if (area.name == 'area' + str(sender.player_id)):
 		if b:
 			sendBack = true
