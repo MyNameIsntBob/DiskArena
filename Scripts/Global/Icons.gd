@@ -22,8 +22,14 @@ const gui = {
 	'box':[
 		preload('res://Art/GUI/JoinCharacterBox.png'),
 		preload('res://Art/GUI/CharacterBox.png'),
-		preload('res://Art/GUI/EmptyCharacterBox.png'),
-	]
+		preload('res://Art/GUI/LevelSelect.png'),
+		preload('res://Art/GUI/EmptyLevelBox.png'),
+	],
+	'map':{
+		'Random': preload("res://Art/GUI/MapIcons/Random.png"),
+		'Grass': preload("res://Art/GUI/MapIcons/Grass.png"),
+		'Lava': preload("res://Art/GUI/MapIcons/Lava.png"),
+	}
 }
 
 const characters = {
@@ -47,11 +53,16 @@ const bullets = {
 	'Robot': preload('res://Art/Bullets/grayFireBall-Sheet.png')
 }
 
-const maps = {
-	'4player': preload('res://Art/Maps/TestMapSplit.png'),
-	'3player': preload('res://Art/Maps/TestMapSplit.png'),
-	'2player': preload('res://Art/Maps/TestMap.png'),
-}
+#const maps = {
+#	'Lava': {
+#		'4player': preload('res://Art/Maps/TestMapSplit.png'),
+#		'3player': preload('res://Art/Maps/TestMapSplit.png'),
+#		'2player': preload('res://Art/Maps/TestMap.png'),
+#	},
+##	'Grass': {
+##		'4player': preload('res://Art/Maps/')
+##	}
+#}
 
 const powers = {
 	'Split': preload('res://Art/powers/Split.png'),
@@ -72,11 +83,21 @@ const powers_from_id = {
 	2: 'Target'
 }
 
+func number_of_characters():
+	return len(character_from_id)
+	
+# -1 to exclude random
+func number_of_maps():
+	return len(gui['map']) - 1
+
+func get_map_icon(map_id):
+	return gui['map'][Global.level_from_id[map_id]]
+
 func get_power(power):
 	return powers[powers_from_id[power]]
 
-func get_map(number_of_players):
-	return maps[str(number_of_players) + 'player']
+#func get_map(number_of_players, map_id):
+#	return maps[Global.level_from_id[map_id]][str(number_of_players) + 'player']
 
 func get_character(character_id):
 	return characters[character_from_id[int(character_id)]]

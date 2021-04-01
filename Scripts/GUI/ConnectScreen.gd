@@ -12,6 +12,7 @@ export (NodePath) var notice
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	randomize()
 	for i in range(len(selecters)):
 		selecters[i] = get_node(selecters[i])
 	notice = get_node(notice)
@@ -34,11 +35,14 @@ func start():
 		return
 	
 	for player in activePlayers:
-		if !player['selected']:
+		if !player['selected'] or not 'level' in player:
 			return
 	
 	for i in range(len(activePlayers)):
 		Global.add_new_player(i + 1, activePlayers[i])
+		
+	Global.level = activePlayers[randi() % len(activePlayers)].level
+	
 	Global.start()
 	
 func selected_characters():

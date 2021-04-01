@@ -6,11 +6,11 @@ var number_of_players := 0
 var player_stats : Dictionary 
 var who_paused : int
 var players = []
+var level = 0
 
 var scenes = {
-	'2': 'res://Scenes/LavaMap.tscn',
-	'3': 'res://Scenes/LavaMap.tscn',
-	'4': 'res://Scenes/LavaMap.tscn',
+	'Grass': 'res://Scenes/Maps/Grass.tscn',
+	'Lava': 'res://Scenes/Maps/Lava.tscn',
 	'CharacterSelect': 'res://Scenes/ConnectScreen.tscn',
 	'EndScreen': 'res://Scenes/EndScreen.tscn',
 	'StartScreen': 'res://Scenes/StartScreen.tscn',
@@ -29,8 +29,14 @@ const default_stats := {
 	'score': 0
 }
 
+const level_from_id = {
+	0: 'Random',
+	1: 'Grass',
+	2: 'Lava'
+}
+
 func _ready():
-	pass
+	randomize()
 #	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 #	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
@@ -40,9 +46,11 @@ func _ready():
 func start():
 	players = []
 	number_of_players = player_stats.size()
-	get_tree().change_scene(scenes[str(number_of_players)])
+	if level == 0:
+		level = (randi() % (len(level_from_id) - 1)) + 1
+	get_tree().change_scene(scenes[level_from_id[level]])
 	
-	print(get_tree().get_current_scene().find_node('Master'))
+#	print(get_tree().get_current_scene().find_node('Master'))
 	
 #	Set everyone's hp to the max hp
 	for player_id in player_stats:

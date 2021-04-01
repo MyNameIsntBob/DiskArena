@@ -12,9 +12,6 @@ export(Array, NodePath) var spawn_locations
 export(NodePath) var map2
 export(NodePath) var map4
 
-
-#var spawn_locations : Array
-
 #Change spawn location node paths to spawn location 
 func _ready():
 	for i in range(len(spawn_locations)):
@@ -23,10 +20,11 @@ func _ready():
 #	$Map.texture = Icons.get_map(Global.number_of_players)
 	if Global.number_of_players < 3:
 		if map4:
+			get_node(map2).visible = true
 			get_node(map4).queue_free()
-#		$Map4.queue_free()
 	else:
 		if map2:
+			get_node(map4).visible = true
 			get_node(map2).queue_free()
 	
 func _process(delta):
