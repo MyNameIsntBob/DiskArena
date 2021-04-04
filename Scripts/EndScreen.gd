@@ -14,11 +14,13 @@ func _ready():
 	
 	for i in range(len(scores)):
 		scores[i] = get_node(scores[i])
+	find_node('HBoxContainer').show()
+	hide_extra()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	hide_extra()
+#func _process(delta):
+#	hide_extra()
 	
 func hide_extra():
 	if Global.number_of_players < 4 and len(scores) >= 3:
@@ -36,7 +38,7 @@ func _on_Again_pressed():
 
 
 func _on_Exit_pressed():
-	Global.load_start_screen()
+	Global.load_scene('start')
 	
 func _unhandled_input(event):
 	Functions.control_to_UI(event)

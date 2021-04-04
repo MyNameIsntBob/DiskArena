@@ -28,10 +28,11 @@ custom_constants/separation = 10
 
 [node name="TopPadding" type="MarginContainer" parent="CanvasLayer/ScreenContainer/VBoxContainer"]
 margin_right = 1024.0
-margin_bottom = 205.0
+margin_bottom = 268.0
 size_flags_vertical = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ScreenContainer/VBoxContainer"]
+visible = false
 margin_top = 215.0
 margin_right = 1024.0
 margin_bottom = 330.0
@@ -81,9 +82,9 @@ margin_bottom = 115.0
 size_flags_horizontal = 3
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/ScreenContainer/VBoxContainer"]
-margin_top = 340.0
+margin_top = 278.0
 margin_right = 1024.0
-margin_bottom = 384.0
+margin_bottom = 322.0
 
 [node name="Leftpadding" type="MarginContainer" parent="CanvasLayer/ScreenContainer/VBoxContainer/HBoxContainer2"]
 margin_right = 466.0
@@ -116,7 +117,7 @@ margin_bottom = 44.0
 size_flags_horizontal = 3
 
 [node name="BottomPadding" type="MarginContainer" parent="CanvasLayer/ScreenContainer/VBoxContainer"]
-margin_top = 394.0
+margin_top = 332.0
 margin_right = 1024.0
 margin_bottom = 600.0
 size_flags_vertical = 3

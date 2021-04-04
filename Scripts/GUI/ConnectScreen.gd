@@ -98,7 +98,7 @@ func _unhandled_input(event):
 		return
 
 	if event.is_action_pressed('ui_cancel') and len(players) == 0:
-		Global.load_start_screen()
+		Global.load_scene('start')
 
 	if event.is_action_pressed("accept"):
 		if event is InputEventKey:

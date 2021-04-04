@@ -8,7 +8,7 @@ func _ready():
 	button = find_node("Continue")
 
 func _process(delta):
-	if get_tree().paused:
+	if Global.paused:
 		main_container.show()
 	else: 
 		main_container.hide()
@@ -25,8 +25,8 @@ func _on_Options_pressed():
 
 func _on_Exit_pressed():
 	Global.continue_game()
-	Global.load_start_screen()
-
+	Global.load_scene('start')
+	
 func _unhandled_input(event):
 #	If the input wasn't from my player
 	var keyboard = Global.get_uses_keyboard(Global.who_paused)

@@ -7,14 +7,18 @@ var player_stats : Dictionary
 var who_paused : int
 var players = []
 var level = 0
+var paused := false
 
-var scenes = {
+const scenes = {
+	'connect': 'res://Scenes/ConnectScreen.tscn',
+	'end': 'res://Scenes/EndScreen.tscn',
+	'start': 'res://Scenes/StartScreen.tscn',
+	'settings': 'res://Scenes/SettingsScreen.tscn'
+}
+
+const levels = {
 	'Grass': 'res://Scenes/Maps/Grass.tscn',
 	'Lava': 'res://Scenes/Maps/Lava.tscn',
-	'CharacterSelect': 'res://Scenes/ConnectScreen.tscn',
-	'EndScreen': 'res://Scenes/EndScreen.tscn',
-	'StartScreen': 'res://Scenes/StartScreen.tscn',
-	'SettingsScreen': 'res://Scenes/SettingsScreen.tscn'
 }
 
 var players_to_respawn : Array
@@ -37,18 +41,14 @@ const level_from_id = {
 
 func _ready():
 	randomize()
-#	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-#	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-
-#func grab_map():
-#	map = get_tree().get_current_scene().find_node('Maps')
+	load_scene('start')
 
 func start():
 	players = []
 	number_of_players = player_stats.size()
 	if level == 0:
 		level = (randi() % (len(level_from_id) - 1)) + 1
-	get_tree().change_scene(scenes[level_from_id[level]])
+	get_tree().change_scene(levels[level_from_id[level]])
 	
 #	print(get_tree().get_current_scene().find_node('Master'))
 	
@@ -60,25 +60,48 @@ func start():
 		player['deaths'] = 0
 		player['kills'] = 0
 	
+# Pause and play game
 func pause_game(player_id):
+	if paused:
+		return
+		
 	get_tree().paused = true
+	paused = true
 	who_paused = player_id
 	
 func continue_game():
+	if !paused:
+		return
+	
 	get_tree().paused = false
+	paused = false
 
-func load_settings_screen():
-	get_tree().change_scene(scenes["SettingsScreen"])
 
-func load_start_screen():
-	get_tree().change_scene(scenes['StartScreen'])
+# Scene Loading
+func load_scene(scene):
+	$SceneFader.fade_out()
+	yield($SceneFader, 'finished')
+	
+	if scene == 'map':
+		start()
+	else:
+		if scene == 'connect':
+			player_stats = {}
+		get_tree().change_scene(scenes[scene])
 
-func character_select_screen():
-	player_stats = {}
-	get_tree().change_scene(scenes['CharacterSelect'])
+#func load_settings_screen():
+#	get_tree().change_scene(scenes["SettingsScreen"])
+#
+#func load_start_screen():
+#	get_tree().change_scene(scenes['StartScreen'])
+#
+#func character_select_screen():
+#	player_stats = {}
+#	get_tree().change_scene(scenes['CharacterSelect'])
+#
+#func load_end_screen():
+#	get_tree().change_scene(scenes['EndScreen'])
 
-func load_end_screen():
-	get_tree().change_scene(scenes['EndScreen'])
 
 # Used to keep track of the kills that people get
 func add_kill(player_id):
@@ -108,7 +131,7 @@ func player_die(player_id):
 		stats['score'] = number_of_players - number_of_dead_players()
 	
 	if is_game_over():
-		load_end_screen()
+		load_scene('end')
 		
 # Tells us how many dead players there are
 func number_of_dead_players():
@@ -123,6 +146,8 @@ func number_of_dead_players():
 func is_game_over():
 	return number_of_players - number_of_dead_players() <= 1
 	
+	
+# Player functions
 func get_player_to_respawn():
 	if len(players_to_respawn) > 0:
 		return players_to_respawn.pop_front()
@@ -133,6 +158,15 @@ func add_new_player(player_id, player_values):
 	player_stats[str(player_id)] = default_stats.duplicate()
 	for key in player_values:
 		player_stats[str(player_id)][str(key)] = player_values[key]
+	
+func add_player(player):
+	players.append(player)
+	
+func remove_player(player_id):
+	for i in range(len(players)):
+		if !players[i] or players[i].player_id == player_id:
+			players.remove(i)
+			break
 	
 	
 	
@@ -172,13 +206,5 @@ func get_deaths(player_id):
 func get_score(player_id):
 	if str(player_id) in player_stats:
 		return(get_stats(player_id)['score'])
-		
-func add_player(player):
-	players.append(player)
 	
-func remove_player(player_id):
-	for i in range(len(players)):
-		if !players[i] or players[i].player_id == player_id:
-			players.remove(i)
-			break
-	
+

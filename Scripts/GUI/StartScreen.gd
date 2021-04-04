@@ -13,11 +13,11 @@ func _ready():
 
 
 func _on_Play_pressed():
-	Global.character_select_screen()
+	Global.load_scene('connect')
 
 
 func _on_Options_pressed():
-	Global.load_settings_screen()
+	Global.load_scene('settings')
 
 
 func _on_Exit_pressed():
