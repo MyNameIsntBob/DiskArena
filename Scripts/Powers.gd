@@ -48,7 +48,6 @@ func _on_Area2D_body_entered(body):
 func target(body):
 	var players = []
 	
-	print(Global.players)
 	for player in Global.players:
 		if player and player != body.sender:
 			players.append(player)

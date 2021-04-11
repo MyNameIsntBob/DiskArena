@@ -1,8 +1,8 @@
 extends Node2D
 
 var player_path = preload("res://Prefabs/Player.tscn")
+var npc_path = preload('res://Prefabs/Bot.tscn')
 var disk_path = preload('res://Prefabs/Disk.tscn')
-var players : Array
 
 var counter : float
 var spawned := false
@@ -28,6 +28,9 @@ func _ready():
 			get_node(map2).queue_free()
 	
 func _process(delta):
+	
+#	Change this spawn method, pass a function spawnPlayer too each player, when the players die, they 
+#   need to pass that function to the global, so Global will call respawn when the player dies
 	if counter >= 0.01:
 		if not spawned:
 			spawned = true
@@ -35,7 +38,7 @@ func _process(delta):
 	else:
 		counter += delta
 		
-	if len(players) < Global.number_of_players:
+	if len(Global.players) < Global.number_of_players:
 		var player_to_respawn = Global.get_player_to_respawn()
 		if player_to_respawn != null:
 			spawnPlayer(player_to_respawn)
@@ -50,12 +53,16 @@ func respawnPlayer(player_id):
 	
 func spawnPlayer(player_id):
 	var location = spawn_locations[int(player_id) - 1]
-	var player = player_path.instance()
+	var player
+	if Global.get_npc(player_id):
+		player = npc_path.instance()
+	else:
+		player = player_path.instance()
+		player.keyboard = Global.get_uses_keyboard(player_id)
+		player.input_id = Global.get_input_id(player_id)
 	Global.add_player(player)
 	find_parent("Master").add_child(player)
 	player.position = location.global_position
 	player.player_id = player_id
-	player.keyboard = Global.get_uses_keyboard(player_id)
-	player.input_id = Global.get_input_id(player_id)
 	player.character_id = Global.get_character_id(player_id)
 	

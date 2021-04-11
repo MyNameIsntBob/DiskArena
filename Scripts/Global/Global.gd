@@ -30,7 +30,8 @@ const default_stats := {
 	'input_id': 0,
 	'kills': 0,
 	'deaths': 0,
-	'score': 0
+	'score': 0,
+	'npc': false
 }
 
 const level_from_id = {
@@ -46,6 +47,10 @@ func _ready():
 func start():
 	players = []
 	number_of_players = player_stats.size()
+	if number_of_players == 1:
+		add_new_player(number_of_players + 1, {'npc': true, 'character_id': 0})
+		number_of_players += 1
+	
 	if level == 0:
 		level = (randi() % (len(level_from_id) - 1)) + 1
 	get_tree().change_scene(levels[level_from_id[level]])
@@ -174,6 +179,9 @@ func remove_player(player_id):
 func get_stats(player_id):
 	if str(player_id) in player_stats:
 		return(player_stats[str(player_id)])
+
+func get_npc(player_id):
+	return get_stats(player_id)['npc']
 	
 func get_max_hp(player_id):
 	if str(player_id) in player_stats:

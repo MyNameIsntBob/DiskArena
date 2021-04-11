@@ -1,7 +1,7 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Prefabs/Shadow.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scripts/Player.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Bot.gd" type="Script" id=2]
 [ext_resource path="res://Art/Arrow.png" type="Texture" id=3]
 [ext_resource path="res://Art/Characters/Demon-Sheet.png" type="Texture" id=4]
 
@@ -55,12 +55,17 @@ tracks/0/keys = {
 "values": [ false, true ]
 }
 
-[node name="Player" type="KinematicBody2D"]
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 1.62528, 7.34936 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 8.3381, 1.6308 )
+
+[node name="Bot" type="KinematicBody2D"]
 use_parent_material = true
 collision_layer = 8
 collision_mask = 3
 script = ExtResource( 2 )
-white = true
 
 [node name="Shadow" parent="." instance=ExtResource( 1 )]
 position = Vector2( 0, 5.5 )
@@ -92,3 +97,51 @@ position = Vector2( 40, 0 )
 [node name="FlashingPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Invinsible"
 anims/Invinsible = SubResource( 4 )
+
+[node name="Right" type="Area2D" parent="."]
+position = Vector2( 10, -7 )
+collision_layer = 0
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right"]
+shape = SubResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Left" type="Area2D" parent="."]
+position = Vector2( -10, -7 )
+collision_layer = 0
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left"]
+shape = SubResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Bottom" type="Area2D" parent="."]
+position = Vector2( 0, 2 )
+collision_layer = 0
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bottom"]
+shape = SubResource( 6 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Top" type="Area2D" parent="."]
+position = Vector2( 0, -17 )
+collision_layer = 0
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Top"]
+shape = SubResource( 6 )
+__meta__ = {
+"_edit_lock_": true
+}
+[connection signal="body_entered" from="Right" to="." method="_on_Right_body_entered"]
+[connection signal="body_entered" from="Left" to="." method="_on_Left_body_entered"]
+[connection signal="body_entered" from="Bottom" to="." method="_on_Bottom_body_entered"]
+[connection signal="body_entered" from="Top" to="." method="_on_Top_body_entered"]

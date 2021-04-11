@@ -1,10 +1,14 @@
 extends KinematicBody2D
 
 #expor vars
-export var input_id := 0
-export var keyboard := false
+#export var input_id := 0
+#export var keyboard := false
 export var player_id := 0
 export var character_id := 0
+
+var target
+var shootTimer := 1.5
+const waitTillShoot := 1.5
 
 #tune vars
 var acceleration := 1500
@@ -14,18 +18,16 @@ var friction := 0.2
 var deadzone := 0.2
 
 #input takers
-var left := 0.0
-var right := 0.0
-var up := 0.0
-var down := 0.0
+#var left := 0.0
+#var right := 0.0
+#var up := 0.0
+#var down := 0.0
+var input_vector : Vector2
 
-var look_left := 0.0
-var look_right := 0.0
-var look_up := 0.0
-var look_down := 0.0
+var moveVariation := 5
 
 var imortalTimer := 2.0
-var imortalDuration := 2.0
+#const imortalDuration := 2.0
 
 export var white := false
 
@@ -39,6 +41,10 @@ onready var animationPlayer = $AnimationPlayer
 
 #export var cameraPath : NodePath 
 #How to get an Object's path
+
+func _ready():
+	randomize()
+	input_vector = Vector2(rand_range(-1.0, 1.0), rand_range(-1.0, 1.0))
 	
 func _process(delta):
 #	set_collision_layer(0)
@@ -56,10 +62,15 @@ func _process(delta):
 		
 
 func _physics_process(delta):
+	change_movement(delta)
+	
+	print(input_vector)
+	
 #	moveControl
-	var input_vector = Vector2(0, 0)
-	input_vector.x = right - left
-	input_vector.y = down - up
+#	var input_vector = Vector2(0, 0)
+#	input_vector.x = right - left
+#	input_vector.y = down - up
+#	input_vector = input_vector.normalized()
 	input_vector = input_vector.normalized()
 	
 	if input_vector != Vector2(0, 0):
@@ -91,49 +102,35 @@ func _physics_process(delta):
 		$Character.frame_coords.y = direction
 			
 	velocity = move_and_slide(velocity)
+#	var collission_info = move_and_collide(velocity)
 	
+	if !target:
+		var otherPlayers = Global.players.duplicate()
+		otherPlayers.erase(self)
+		if len(otherPlayers) == 0:
+			return
+		target = otherPlayers[randi() % len(otherPlayers)]
+	$Aim.look_at(target.get_global_position())
 	
-#	lookControl
-	var look_vector = Vector2(0, 0)
-	if keyboard:
-		$Aim.look_at(get_global_mouse_position())
-	else:
-		look_vector.x = look_right - look_left
-		look_vector.y = look_down - look_up
-		
-		if abs(look_vector.x) + abs(look_vector.y) >= 0.5:
-			$Aim.look_at(self.position + look_vector.normalized())
-		
-	
-	
-func _unhandled_input(event):
-#	If the input wasn't from my player
-	if !event or event.get_device() != input_id or (event is InputEventKey and !keyboard) or (
-	(event is InputEventJoypadButton or event is InputEventJoypadMotion) and keyboard):
-		return
-		
-	if event.is_action("right"):
-		right = event.get_action_strength('right')
-	if event.is_action("left"):
-		left = event.get_action_strength('left')
-	if event.is_action("up"):
-		up = event.get_action_strength("up")
-	if event.is_action('down'):
-		down = event.get_action_strength("down")
-	if event.is_action_pressed("shoot") or event.is_action_pressed("accept"):
+	if shootTimer < 0:
 		shoot()
-		
-	if event.is_action('aim_right'):
-		look_right = event.get_action_strength('aim_right')
-	if event.is_action('aim_left'):
-		look_left = event.get_action_strength('aim_left')
-	if event.is_action('aim_up'):
-		look_up = event.get_action_strength('aim_up')
-	if event.is_action('aim_down'):
-		look_down = event.get_action_strength('aim_down')
-		
-	if event.is_action_pressed("pause"):
-		Global.pause_game(player_id)
+	else:
+		shootTimer -= delta
+
+func change_movement(delta):
+	
+	input_vector += Vector2(rand_range(-1.0, 1.0), rand_range(-1.0, 1.0)) * moveVariation * delta
+	
+#	for i in range(len(directions)):
+#		var dir = directions[i]
+#		dir += rand_range(-1.5, 1.0) * moveVariation * delta
+#
+#		if dir > 1:
+#			dir = 1.0
+#		if dir < 0:
+#			dir = 0.0
+#
+#		directions[i] = dir
 
 func add_disk(disk):
 	disks.append(disk)
@@ -142,6 +139,9 @@ func remove_disk(disk):
 	disks.erase(disk)
 
 func shoot():
+	
+	shootTimer = waitTillShoot
+	
 	if len(disks):
 		for disk in disks:
 			if disk:
@@ -149,17 +149,8 @@ func shoot():
 		return
 		
 #	get the direction to send the disk
+#	Shoot the bullet towards the bulletPoision
 	var bulVelocity = ($Aim/BulletPosition.get_global_position() - get_global_position())
-#	var bulVelocity
-#	if keyboard:
-#		bulVelocity = (get_global_mouse_position() - global_position)
-#	else:
-#		bulVelocity = Vector2(0, 0)
-#		bulVelocity.x = look_right - look_left
-#		bulVelocity.y = look_down - look_up
-#
-#		if bulVelocity == Vector2.ZERO:
-#			bulVelocity = Vector2(cos($Aim.rotation), sin($Aim.rotation))
 		
 #	create the disk and give it all variables
 	var disk = diskPath.instance()
@@ -173,3 +164,28 @@ func shoot():
 func kill():
 	Global.player_die(player_id)
 	self.queue_free()
+
+
+
+func _on_Right_body_entered(body):
+	print('right')
+	if input_vector.x > 0:
+		input_vector.x = rand_range(-0.5, -0.1)
+
+
+func _on_Left_body_entered(body):
+	print('left')
+	if input_vector.x < 0:
+		input_vector.x = rand_range(0.1, 0.5)
+
+
+func _on_Bottom_body_entered(body):
+	print('bottom')
+	if input_vector.y > 0:
+		input_vector.y = rand_range(-0.5, -0.1)
+
+
+func _on_Top_body_entered(body):
+	print('Top')
+	if input_vector.y < 0:
+		input_vector.y = rand_range(0.1, 0.5)

@@ -31,8 +31,8 @@ func start():
 		if !player.empty():
 			activePlayers.append(player)
 	
-	if len(activePlayers) < 2:
-		return
+#	if len(activePlayers) < 2:
+#		return
 	
 	for player in activePlayers:
 		if !player['selected'] or not 'level' in player:
@@ -97,6 +97,7 @@ func _unhandled_input(event):
 	if !event:
 		return
 
+#	This doesn't work propperly, you need remove {} from the players or something like that
 	if event.is_action_pressed('ui_cancel') and len(players) == 0:
 		Global.load_scene('start')
 
