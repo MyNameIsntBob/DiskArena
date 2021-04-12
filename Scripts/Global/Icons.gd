@@ -6,6 +6,8 @@ const gui = {
 		'Goblin': preload('res://Art/GUI/Goblin.png'),
 		'Human': preload('res://Art/GUI/Human.png'),
 		'Robot': preload('res://Art/GUI/Robot.png'),
+		'Ai': preload('res://Art/GUI/AI.png'),
+		'Random': preload('res://Art/GUI/Random.png')
 	},
 	'taken_characters':{
 		'Demon': preload('res://Art/GUI/Taken-Demon.png'),
@@ -18,6 +20,7 @@ const gui = {
 		'Goblin': preload('res://Art/Text/goblin.png'),
 		'Human': preload('res://Art/Text/human.png'),
 		'Robot': preload('res://Art/Text/robot.png'),
+		'Random': preload('res://Art/Text/demon.png')
 	},
 	'box':[
 		preload('res://Art/GUI/JoinCharacterBox.png'),
@@ -71,10 +74,11 @@ const powers = {
 }
 
 const character_from_id = {
-	0: 'Demon',
+	0: 'Random',
 	1: 'Goblin',
 	2: 'Human',
-	3: 'Robot'
+	3: 'Robot',
+	4: 'Demon',
 }
 
 const powers_from_id = {

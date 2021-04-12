@@ -65,19 +65,20 @@ func _process(delta):
 			box.texture = Icons.get_box(3)
 	
 func taken():
-	return player and player.character_id in taken_characters and !player['selected']
+	return (player and player.character_id in taken_characters 
+		and !player['selected'] and player.character_id != 0)
 
 func pickPlayer():
 	if !player or taken():
 		return
 		
 	if player['selected']:
-		if levelSelected:
-			emit_signal('start')
-		else:
-			levelSelected = true
-			player['level'] = level
-			emit_signal('pick_character', player)
+#		if levelSelected:
+#			emit_signal('start')
+#		else:
+		levelSelected = true
+		player['level'] = level
+		emit_signal('pick_character', player)
 	else:
 		player['selected'] = true
 		emit_signal('pick_character', player)
@@ -120,6 +121,8 @@ func _unhandled_input(event):
 	(event is InputEventJoypadButton or event is InputEventJoypadMotion) and player["keyboard"]):
 		return
 		
+	if event.is_action_pressed("start"):
+		emit_signal('start')
 		
 	if event.is_action_pressed("accept"):
 		pickPlayer()

@@ -7,32 +7,32 @@ extends Control
 var players : Array
 const max_players := 4
 
+var num_of_bots := 0
+
 export (Array, NodePath) var selecters
-export (NodePath) var notice
+#export (NodePath) var notice
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
 	for i in range(len(selecters)):
 		selecters[i] = get_node(selecters[i])
-	notice = get_node(notice)
+#	notice = get_node(notice)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	if len(players) >= 2:
-		notice.hide()
-	else:
-		notice.show()
+#func _process(delta):
+#	$Label.text = str(num_of_bots)
+#	if len(players) >= 2:
+#		notice.hide()
+#	else:
+#		notice.show()
 
 func start():
 	var activePlayers = []
 	for player in players:
 		if !player.empty():
 			activePlayers.append(player)
-	
-#	if len(activePlayers) < 2:
-#		return
 	
 	for player in activePlayers:
 		if !player['selected'] or not 'level' in player:
@@ -43,7 +43,8 @@ func start():
 		
 	Global.level = activePlayers[randi() % len(activePlayers)].level
 	
-	Global.start()
+	if num_of_players() + num_of_bots >= 2:
+		Global.start(num_of_bots)
 	
 func selected_characters():
 	var characters = []
@@ -56,6 +57,9 @@ func selected_characters():
 func join(keyboard, input_id):
 	if find_player(keyboard, input_id) != null or len(players) >= max_players:
 		return
+		
+	if num_of_bots + num_of_players() >= 4 and num_of_bots > 0:
+		num_of_bots -= 1
 	
 	var player = {
 		'keyboard': keyboard,
@@ -76,6 +80,14 @@ func join(keyboard, input_id):
 		players[open] = player
 	update_selecter_data()
 	
+func add_bot():
+	if num_of_bots + num_of_players() < 4:
+		num_of_bots += 1
+	
+func remove_bot():
+	if num_of_bots:
+		num_of_bots -= 1
+
 func find_player(keyboard, input_id):
 	for i in range(len(players)):
 		var player = players[i]
@@ -83,6 +95,12 @@ func find_player(keyboard, input_id):
 			return i
 	return null
 	
+func num_of_players():
+	var amount := 0
+	for player in players:
+		if !player.empty():
+			amount += 1
+	return amount
 
 func update_selecter_data():
 	for i in range(len(selecters)):
@@ -98,8 +116,16 @@ func _unhandled_input(event):
 		return
 
 #	This doesn't work propperly, you need remove {} from the players or something like that
-	if event.is_action_pressed('ui_cancel') and len(players) == 0:
+	if event.is_action_pressed('ui_cancel') and num_of_players() == 0:
 		Global.load_scene('start')
+		
+
+# Add a bot
+	if event.is_action_pressed('add_bot'):
+		add_bot()
+			
+	if event.is_action_pressed('remove_bot'):
+		remove_bot()
 
 	if event.is_action_pressed("accept"):
 		if event is InputEventKey:
