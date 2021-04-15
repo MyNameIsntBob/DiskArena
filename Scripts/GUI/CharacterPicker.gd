@@ -1,8 +1,10 @@
 extends VBoxContainer
 
 var player : Dictionary
-export (NodePath) var text_path
-var text
+export (NodePath) var name_label_path
+var name_label
+export (NodePath) var join_label_path
+var join_label
 export (NodePath) var character_path
 var character
 export (NodePath) var box_path
@@ -11,6 +13,9 @@ export (NodePath) var level_box_path
 var level_box
 export (NodePath) var level_path
 var level_node
+
+var parent
+var id
 
 signal pick_character(character)
 signal unpick_character(character)
@@ -23,7 +28,8 @@ var delayTimer := 0.0
 var taken_characters : Array
 
 func _ready():
-	text = get_node(text_path)
+	join_label = get_node(join_label_path)
+	name_label = get_node(name_label_path)
 	character = get_node(character_path)
 	box = get_node(box_path)
 	level_node = get_node(level_path)
@@ -33,36 +39,45 @@ func _ready():
 func _process(delta):
 	if delayTimer > 0:
 		delayTimer -= delta
+		
+	join_label.visible = !player
 	
-	if text and character:
-		if player:
-			if taken():
-				character.texture = Icons.get_gui_taken_character(player['character_id'])
-			else:
-				character.texture = Icons.get_gui_character(player['character_id'])
-			character.show()
-			text.texture = Icons.get_text(player['character_id'])
-			text.show()
-		
-			if player['selected']:
-				level_node.texture = Icons.get_map_icon(level)
-		
-		else:
-			text.hide()
-			character.hide()
-			
-	level_box.visible = player && player['selected']
-	level_node.visible = level_box.visible
-			
 	if box:
 		if !player:
-			box.texture = Icons.get_box(0)
+			box.texture = Icons.get_box(4)
 		elif !player['selected']:
 			box.texture = Icons.get_box(1)
 		elif !levelSelected:
 			box.texture = Icons.get_box(2)
 		else:
 			box.texture = Icons.get_box(3)
+	
+	if name_label and character:
+		if player:
+			if taken():
+				character.texture = Icons.get_gui_taken_character(player['character_id'])
+			else:
+				character.texture = Icons.get_gui_character(player['character_id'])
+			character.show()
+			name_label.text = Icons.character_from_id[int(player["character_id"])]
+			name_label.show()
+		
+			if player['selected']:
+				level_node.texture = Icons.get_map_icon(level)
+		
+		else:
+			if parent.num_of_players() + parent.num_of_bots > id: 
+				character.texture = Icons.gui['characters']['Ai']
+				character.show()
+				join_label.hide()
+				box.texture = Icons.get_box(4)
+			else:
+				name_label.hide()
+				character.hide()
+			
+	level_box.visible = player && player['selected']
+	level_node.visible = level_box.visible
+			
 	
 func taken():
 	return (player and player.character_id in taken_characters 

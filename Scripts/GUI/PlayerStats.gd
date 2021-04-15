@@ -27,5 +27,5 @@ func change_hp_icons():
 		if hp < i + 1:
 			hp_icons[str(i + 1)].get_child(0).set_frame(4)
 		else:
-			hp_icons[str(i + 1)].get_child(0).set_frame(character_id)
+			hp_icons[str(i + 1)].get_child(0).set_frame(character_id - 1)
 

@@ -64,8 +64,6 @@ func _process(delta):
 func _physics_process(delta):
 	change_movement(delta)
 	
-	print(input_vector)
-	
 #	moveControl
 #	var input_vector = Vector2(0, 0)
 #	input_vector.x = right - left
@@ -168,24 +166,20 @@ func kill():
 
 
 func _on_Right_body_entered(body):
-	print('right')
 	if input_vector.x > 0:
 		input_vector.x = rand_range(-0.5, -0.1)
 
 
 func _on_Left_body_entered(body):
-	print('left')
 	if input_vector.x < 0:
 		input_vector.x = rand_range(0.1, 0.5)
 
 
 func _on_Bottom_body_entered(body):
-	print('bottom')
 	if input_vector.y > 0:
 		input_vector.y = rand_range(-0.5, -0.1)
 
 
 func _on_Top_body_entered(body):
-	print('Top')
 	if input_vector.y < 0:
 		input_vector.y = rand_range(0.1, 0.5)

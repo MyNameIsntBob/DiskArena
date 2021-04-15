@@ -27,6 +27,7 @@ const gui = {
 		preload('res://Art/GUI/CharacterBox.png'),
 		preload('res://Art/GUI/LevelSelect.png'),
 		preload('res://Art/GUI/EmptyLevelBox.png'),
+		preload('res://Art/GUI/EmptyCharacterBox.png')
 	],
 	'map':{
 		'Random': preload("res://Art/GUI/MapIcons/Random.png"),
@@ -75,10 +76,10 @@ const powers = {
 
 const character_from_id = {
 	0: 'Random',
-	1: 'Goblin',
-	2: 'Human',
-	3: 'Robot',
-	4: 'Demon',
+	1: 'Demon',
+	2: 'Goblin',
+	3: 'Human',
+	4: 'Robot',
 }
 
 const powers_from_id = {

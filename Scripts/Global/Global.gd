@@ -45,15 +45,17 @@ func _ready():
 	load_scene('start')
 
 func start(num_of_bots = 0):
+#	print(num_of_bots)
+	print(player_stats)
 	players = []
 	number_of_players = player_stats.size()
 	for i in range(num_of_bots):
 #	if number_of_players == 1:
 		add_new_player(number_of_players + 1, {'npc': true, 'character_id': 0})
 		number_of_players += 1
-	for player in player_stats:
-		if player_stats[player]["character_id"] == 0:
-			player_stats[player]["character_id"] = random_character()
+	for player_id in player_stats:
+		if player_stats[player_id]["character_id"] == 0:
+			player_stats[player_id]["character_id"] = random_character()
 	
 	if level == 0:
 		level = (randi() % (len(level_from_id) - 1)) + 1
@@ -181,12 +183,11 @@ func remove_player(player_id):
 # Character functions
 # Gives a random character that's not taken
 func random_character():
-	var characters = [1, 2, 3, 4]
+	var characters = range(1, 5)
 	for player_id in player_stats:
 		characters.erase(player_stats[player_id].character_id)
-	return characters[randi() % characters.size()]
-	
-	
+	characters.shuffle()
+	return characters.pop_front()
 	
 #Getter functions to simplify the process of getting data
 func get_stats(player_id):

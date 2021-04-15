@@ -1,10 +1,14 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Art/GUI/MapIcons/Grass.png" type="Texture" id=1]
-[ext_resource path="res://Art/GUI/JoinCharacterBox.png" type="Texture" id=2]
+[ext_resource path="res://Art/GUI/EmptyCharacterBox.png" type="Texture" id=2]
+[ext_resource path="res://FFFFORWA.TTF" type="DynamicFontData" id=3]
 [ext_resource path="res://Scripts/GUI/CharacterPicker.gd" type="Script" id=4]
+[ext_resource path="res://Forward.tres" type="DynamicFont" id=5]
 [ext_resource path="res://Art/GUI/Demon.png" type="Texture" id=7]
-[ext_resource path="res://Art/Text/demon.png" type="Texture" id=9]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 3 )
 
 [node name="CharacterPicker" type="VBoxContainer"]
 anchor_right = 1.0
@@ -14,7 +18,8 @@ script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-text_path = NodePath("Character/MarginContainer/TextureRect/VBoxContainer/BottomPadding/Name")
+name_label_path = NodePath("Character/MarginContainer/TextureRect/VBoxContainer/BottomPadding/Name")
+join_label_path = NodePath("Character/MarginContainer/TextureRect/Join")
 character_path = NodePath("Character/MarginContainer/TextureRect/VBoxContainer/HBoxContainer/VBoxContainer/Character")
 box_path = NodePath("Character/MarginContainer/TextureRect")
 level_box_path = NodePath("Character/MarginContainer/TextureRect/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer")
@@ -41,6 +46,21 @@ margin_bottom = 98.0
 margin_right = 76.0
 margin_bottom = 98.0
 texture = ExtResource( 2 )
+
+[node name="Join" type="Label" parent="Character/MarginContainer/TextureRect"]
+modulate = Color( 0, 0, 0, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 5 )
+text = "Press 
+A or 
+Space 
+to Join"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Character/MarginContainer/TextureRect"]
 show_behind_parent = true
@@ -107,11 +127,15 @@ margin_top = 28.0
 margin_right = 76.0
 margin_bottom = 28.0
 
-[node name="Name" type="TextureRect" parent="Character/MarginContainer/TextureRect/VBoxContainer/BottomPadding"]
+[node name="Name" type="Label" parent="Character/MarginContainer/TextureRect/VBoxContainer/BottomPadding"]
 visible = false
+modulate = Color( 0, 0, 0, 1 )
+margin_top = -11.0
 margin_right = 76.0
-margin_bottom = 28.0
-texture = ExtResource( 9 )
+margin_bottom = 11.0
+custom_fonts/font = SubResource( 1 )
+text = "Demon"
+align = 1
 
 [node name="RightPadding" type="MarginContainer" parent="Character"]
 margin_left = 554.0

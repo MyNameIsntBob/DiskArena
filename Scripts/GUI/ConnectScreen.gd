@@ -17,6 +17,8 @@ func _ready():
 	randomize()
 	for i in range(len(selecters)):
 		selecters[i] = get_node(selecters[i])
+		selecters[i].parent = self
+		selecters[i].id = i
 #	notice = get_node(notice)
 
 
@@ -41,7 +43,8 @@ func start():
 	for i in range(len(activePlayers)):
 		Global.add_new_player(i + 1, activePlayers[i])
 		
-	Global.level = activePlayers[randi() % len(activePlayers)].level
+	if len(activePlayers):
+		Global.level = activePlayers[randi() % len(activePlayers)].level
 	
 	if num_of_players() + num_of_bots >= 2:
 		Global.start(num_of_bots)
