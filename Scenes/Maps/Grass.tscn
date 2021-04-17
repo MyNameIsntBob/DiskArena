@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Prefabs/GUI/Interface.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Prefabs/GUI/PauseMenu.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Prefabs/GrassMap.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Prefabs/Maps/GrassMap.tscn" type="PackedScene" id=3]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 light_mode = 1

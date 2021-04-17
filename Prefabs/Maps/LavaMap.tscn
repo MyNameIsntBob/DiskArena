@@ -1,14 +1,13 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Art/Maps/Lava/LavaLayer4Player.png" type="Texture" id=1]
-[ext_resource path="res://Scripts/MapScripts/Map.gd" type="Script" id=2]
-[ext_resource path="res://Art/Maps/Lava/WallLayerPlayer.png" type="Texture" id=3]
-[ext_resource path="res://Art/Maps/Lava/2PlayerLavaLayer.png" type="Texture" id=4]
-[ext_resource path="res://Art/Maps/Lava/2PlayerGroundLayer.png" type="Texture" id=5]
+[ext_resource path="res://Art/Maps/Lava/WallLayerPlayer.png" type="Texture" id=2]
+[ext_resource path="res://Art/Maps/Lava/2PlayerLavaLayer.png" type="Texture" id=3]
+[ext_resource path="res://Art/Maps/Lava/2PlayerGroundLayer.png" type="Texture" id=4]
+[ext_resource path="res://Scripts/MapScripts/Map.gd" type="Script" id=5]
 [ext_resource path="res://Art/Maps/Lava/GroundLayer4Player.png" type="Texture" id=6]
-[ext_resource path="res://Scripts/MapScripts/PowerSpawner.gd" type="Script" id=7]
-
-
+[ext_resource path="res://Prefabs/Maps/PowerupSpawner.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Prefabs/Maps/RockSpawner.tscn" type="PackedScene" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 129.66, 136.27 )
@@ -28,7 +27,7 @@ extents = Vector2( 501.333, 1.83777 )
 [node name="Maps" type="Node2D"]
 use_parent_material = true
 position = Vector2( 1.68176, 0 )
-script = ExtResource( 2 )
+script = ExtResource( 5 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -57,20 +56,20 @@ shape = SubResource( 1 )
 [node name="Lava" type="Sprite" parent="Map2"]
 use_parent_material = true
 z_index = -10
-texture = ExtResource( 4 )
+texture = ExtResource( 3 )
 
 [node name="Ground" type="Sprite" parent="Map2"]
 use_parent_material = true
-texture = ExtResource( 5 )
+texture = ExtResource( 4 )
 
 [node name="Light2D" type="Light2D" parent="Map2/Ground"]
 light_mask = 2
-texture = ExtResource( 5 )
+texture = ExtResource( 4 )
 mode = 2
 
 [node name="Walls" type="Sprite" parent="Map2"]
 use_parent_material = true
-texture = ExtResource( 3 )
+texture = ExtResource( 2 )
 
 [node name="Map4" type="Node2D" parent="."]
 visible = false
@@ -138,7 +137,7 @@ __meta__ = {
 }
 
 [node name="Walls" type="Sprite" parent="Map4"]
-texture = ExtResource( 3 )
+texture = ExtResource( 2 )
 
 [node name="CenterGapHorizontal" type="StaticBody2D" parent="Map4"]
 position = Vector2( 0, -5 )
@@ -297,7 +296,10 @@ position = Vector2( -208, -100.5 )
 [node name="BottomRight" type="Position2D" parent="."]
 position = Vector2( 209, 96.5 )
 
-[node name="Powerup Spawner" type="Node2D" parent="."]
-script = ExtResource( 7 )
+[node name="Powerup Spawner" parent="." instance=ExtResource( 7 )]
+topLeft = NodePath("../TopLeft")
+bottomRight = NodePath("../BottomRight")
+
+[node name="Rock Spawner" parent="." instance=ExtResource( 8 )]
 topLeft = NodePath("../TopLeft")
 bottomRight = NodePath("../BottomRight")

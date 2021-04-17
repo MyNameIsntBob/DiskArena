@@ -108,6 +108,7 @@ func _physics_process(delta):
 	
 func _unhandled_input(event):
 #	If the input wasn't from my player
+#	print(event.get_device())
 	if !event or event.get_device() != input_id or (event is InputEventKey and !keyboard) or (
 	(event is InputEventJoypadButton or event is InputEventJoypadMotion) and keyboard):
 		return

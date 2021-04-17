@@ -7,14 +7,13 @@ extends Node2D
 export (NodePath) var topLeft
 export (NodePath) var bottomRight
 
-var powerUpPath = preload("res://Prefabs/Maps/Obstacles/Powers.tscn")
-var powerUps = []
+var rockPath = preload("res://Prefabs/Maps/Obstacles/Rocks.tscn")
 var rng = RandomNumberGenerator.new()
 
 var waitTimer = 1.0
-var waitPeriod = 8.0
+var waitPeriod = 2.0
 
-var veriation = 3.0
+var veriation = 2.0
 
 var maxNumPowers = 5
 
@@ -29,25 +28,15 @@ func _process(delta):
 	waitTimer -= delta
 	if waitTimer <= 0:
 		setNewTimer()
-		spawnPower()
-		
-	if len(powerUps) >= maxNumPowers:
-		for i in range(len(powerUps)):
-			if !powerUps[i]:
-				powerUps.remove(i)
-				break
+		spawnRock()
 	
-func spawnPower():
-	if len(powerUps) >= maxNumPowers:
-		return
-		
-	var power = powerUpPath.instance()
+func spawnRock():
+	var power = rockPath.instance()
 	
 	power.position.x = rng.randf_range(topLeft.position.x, bottomRight.position.x)
 	power.position.y = rng.randf_range(bottomRight.position.y, topLeft.position.y)
 	
 	find_parent("Master").add_child(power)
-	powerUps.append(power)
 	
 func setNewTimer():
 	waitTimer = rng.randf_range(waitPeriod - veriation, waitPeriod + veriation)

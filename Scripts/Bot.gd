@@ -7,8 +7,9 @@ export var player_id := 0
 export var character_id := 0
 
 var target
-var shootTimer := 1.5
-const waitTillShoot := 1.5
+var shootTimer
+const waitTillShoot := 2.0
+const shootVariation := 0.5
 
 #tune vars
 var acceleration := 1500
@@ -44,6 +45,8 @@ onready var animationPlayer = $AnimationPlayer
 
 func _ready():
 	randomize()
+	shootTimer = $ShootTimer
+	shootTimer.start()
 	input_vector = Vector2(rand_range(-1.0, 1.0), rand_range(-1.0, 1.0))
 	
 func _process(delta):
@@ -109,11 +112,6 @@ func _physics_process(delta):
 			return
 		target = otherPlayers[randi() % len(otherPlayers)]
 	$Aim.look_at(target.get_global_position())
-	
-	if shootTimer < 0:
-		shoot()
-	else:
-		shootTimer -= delta
 
 func change_movement(delta):
 	
@@ -137,9 +135,6 @@ func remove_disk(disk):
 	disks.erase(disk)
 
 func shoot():
-	
-	shootTimer = waitTillShoot
-	
 	if len(disks):
 		for disk in disks:
 			if disk:
@@ -183,3 +178,9 @@ func _on_Bottom_body_entered(body):
 func _on_Top_body_entered(body):
 	if input_vector.y < 0:
 		input_vector.y = rand_range(0.1, 0.5)
+
+
+func _on_ShootTimer_timeout():
+	shoot()
+	shootTimer.set_wait_time(rand_range(waitTillShoot - shootVariation, shootVariation + shootVariation))
+	shootTimer.start()

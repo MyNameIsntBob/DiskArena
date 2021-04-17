@@ -66,6 +66,7 @@ use_parent_material = true
 collision_layer = 8
 collision_mask = 3
 script = ExtResource( 2 )
+white = true
 
 [node name="Shadow" parent="." instance=ExtResource( 1 )]
 position = Vector2( 0, 5.5 )
@@ -141,7 +142,11 @@ shape = SubResource( 6 )
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="ShootTimer" type="Timer" parent="."]
+wait_time = 1.5
 [connection signal="body_entered" from="Right" to="." method="_on_Right_body_entered"]
 [connection signal="body_entered" from="Left" to="." method="_on_Left_body_entered"]
 [connection signal="body_entered" from="Bottom" to="." method="_on_Bottom_body_entered"]
 [connection signal="body_entered" from="Top" to="." method="_on_Top_body_entered"]
+[connection signal="timeout" from="ShootTimer" to="." method="_on_ShootTimer_timeout"]

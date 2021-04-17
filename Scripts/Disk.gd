@@ -1,19 +1,29 @@
 extends KinematicBody2D
 
 var velocity = Vector2(0, 0)
-export var speed = 300
+export var defaultSpeed = 300
+var speed = 0
 var character_id : int
+var slowDown = 100
 
 var sender
 
 var b := false
 var sendBack := false
 
+#func _ready():
+#	speed = defaultSpeed
+
 func _process(delta):
 	if (!sender):
 		self.queue_free()
 	
 func _physics_process(delta):
+	
+	if speed > defaultSpeed:
+		speed -= delta * slowDown
+	if speed < defaultSpeed:
+		speed = defaultSpeed
 	
 	if sendBack:
 		velocity = (sender.global_position - self.global_position).normalized()
