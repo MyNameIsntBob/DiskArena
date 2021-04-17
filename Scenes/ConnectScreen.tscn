@@ -47,7 +47,7 @@ align = 1
 margin_top = 213.0
 margin_right = 1024.0
 margin_bottom = 311.0
-custom_constants/separation = 10
+custom_constants/separation = 20
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -56,32 +56,32 @@ __meta__ = {
 [node name="CharacterPicker" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 2 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 329.0
-margin_right = 413.0
+margin_left = 330.0
+margin_right = 406.0
 margin_bottom = 98.0
 rect_scale = Vector2( 1, 1 )
 
 [node name="CharacterPicker2" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 2 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 423.0
-margin_right = 507.0
+margin_left = 426.0
+margin_right = 502.0
 margin_bottom = 98.0
 rect_scale = Vector2( 1, 1 )
 
 [node name="CharacterPicker3" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 2 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 517.0
-margin_right = 601.0
+margin_left = 522.0
+margin_right = 598.0
 margin_bottom = 98.0
 rect_scale = Vector2( 1, 1 )
 
 [node name="CharacterPicker4" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 2 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 611.0
-margin_right = 695.0
+margin_left = 618.0
+margin_right = 694.0
 margin_bottom = 98.0
 rect_scale = Vector2( 1, 1 )
 

@@ -5,6 +5,8 @@ export (NodePath) var name_label_path
 var name_label
 export (NodePath) var join_label_path
 var join_label
+export (NodePath) var select_label_path
+var select_label
 export (NodePath) var character_path
 var character
 export (NodePath) var box_path
@@ -13,6 +15,8 @@ export (NodePath) var level_box_path
 var level_box
 export (NodePath) var level_path
 var level_node
+export (NodePath) var padding_path
+var padding
 
 var parent
 var id
@@ -28,8 +32,10 @@ var delayTimer := 0.0
 var taken_characters : Array
 
 func _ready():
+	padding = get_node(padding_path)
 	join_label = get_node(join_label_path)
 	name_label = get_node(name_label_path)
+	select_label = get_node(select_label_path)
 	character = get_node(character_path)
 	box = get_node(box_path)
 	level_node = get_node(level_path)
@@ -41,6 +47,9 @@ func _process(delta):
 		delayTimer -= delta
 		
 	join_label.visible = !player
+	
+	select_label.visible = player and !levelSelected
+#	padding.rect_size.y = 24 if !select_label.visible else 0
 	
 	if box:
 		if !player:
@@ -75,8 +84,8 @@ func _process(delta):
 				name_label.hide()
 				character.hide()
 			
-	level_box.visible = player && player['selected']
-	level_node.visible = level_box.visible
+#	level_box.visible = player && player['selected']
+	level_node.visible = player && player['selected']
 			
 	
 func taken():
