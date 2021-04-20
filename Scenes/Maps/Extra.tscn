@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Prefabs/Maps/GrassMap.tscn" type="PackedScene" id=3]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+light_mode = 1
+
+[node name="Master" type="Node2D"]
+material = SubResource( 1 )
+
+[node name="Maps" parent="." instance=ExtResource( 3 )]
+position = Vector2( 0, 0 )

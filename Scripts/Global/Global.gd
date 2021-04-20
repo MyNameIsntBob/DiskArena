@@ -8,6 +8,7 @@ var who_paused : int
 var players = []
 var level = 0
 var paused := false
+var isMenuScreen := false
 
 const scenes = {
 	'connect': 'res://Scenes/ConnectScreen.tscn',
@@ -43,25 +44,24 @@ const level_from_id = {
 func _ready():
 	randomize()
 	load_scene('start')
-
-func start(num_of_bots = 0):
-#	print(num_of_bots)
-	print(player_stats)
+	
+func add_characters(num_of_bots = 0):
 	players = []
 	number_of_players = player_stats.size()
 	for i in range(num_of_bots):
-#	if number_of_players == 1:
 		add_new_player(number_of_players + 1, {'npc': true, 'character_id': 0})
 		number_of_players += 1
 	for player_id in player_stats:
 		if player_stats[player_id]["character_id"] == 0:
 			player_stats[player_id]["character_id"] = random_character()
+
+func start(num_of_bots = 0):
+	isMenuScreen = false
+	add_characters(num_of_bots)
 	
 	if level == 0:
 		level = (randi() % (len(level_from_id) - 1)) + 1
 	get_tree().change_scene(levels[level_from_id[level]])
-	
-#	print(get_tree().get_current_scene().find_node('Master'))
 	
 #	Set everyone's hp to the max hp
 	for player_id in player_stats:
@@ -93,26 +93,16 @@ func load_scene(scene):
 	$SceneFader.fade_out()
 	yield($SceneFader, 'finished')
 	
+	if scene == 'start':
+		add_characters(rand_range(2, 4))
+	
 	if scene == 'map':
 		start()
 	else:
+		isMenuScreen = true
 		if scene == 'connect':
 			player_stats = {}
 		get_tree().change_scene(scenes[scene])
-
-#func load_settings_screen():
-#	get_tree().change_scene(scenes["SettingsScreen"])
-#
-#func load_start_screen():
-#	get_tree().change_scene(scenes['StartScreen'])
-#
-#func character_select_screen():
-#	player_stats = {}
-#	get_tree().change_scene(scenes['CharacterSelect'])
-#
-#func load_end_screen():
-#	get_tree().change_scene(scenes['EndScreen'])
-
 
 # Used to keep track of the kills that people get
 func add_kill(player_id):
@@ -122,7 +112,7 @@ func add_kill(player_id):
 func player_die(player_id):
 #	Get the stats of the player and lower the hp
 	var stats = get_stats(player_id)
-	remove_player(player_id)
+#	remove_player(player_id)
 	
 	if !stats:
 		stats = default_stats
@@ -133,15 +123,11 @@ func player_die(player_id):
 	stats['hp'] -= 1
 	stats['deaths'] += 1
 	
-#	If the player isn't dead yet, respon them
-	if stats['hp'] > 0:
-		players_to_respawn.append(player_id)
-		
 #	If the player just died, we want to record there score
-	else:
+	if stats['hp'] <= 0:
 		stats['score'] = number_of_players - number_of_dead_players()
 	
-	if is_game_over():
+	if is_game_over() and !isMenuScreen:
 		load_scene('end')
 		
 # Tells us how many dead players there are

@@ -28,7 +28,7 @@ var input_vector : Vector2
 var moveVariation := 5
 
 var imortalTimer := 2.0
-#const imortalDuration := 2.0
+const imortalDuration := 2.0
 
 export var white := false
 
@@ -111,7 +111,8 @@ func _physics_process(delta):
 		if len(otherPlayers) == 0:
 			return
 		target = otherPlayers[randi() % len(otherPlayers)]
-	$Aim.look_at(target.get_global_position())
+	else:
+		$Aim.look_at(target.get_global_position())
 
 func change_movement(delta):
 	
@@ -156,9 +157,9 @@ func shoot():
 	
 func kill():
 	Global.player_die(player_id)
-	self.queue_free()
-
-
+	imortalTimer = imortalDuration
+	if Global.get_hp(player_id) <= 0 and Global.isMenuScreen == false:
+		self.queue_free()
 
 func _on_Right_body_entered(body):
 	if input_vector.x > 0:

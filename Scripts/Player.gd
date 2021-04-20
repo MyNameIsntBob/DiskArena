@@ -173,4 +173,7 @@ func shoot():
 	
 func kill():
 	Global.player_die(player_id)
-	self.queue_free()
+	imortalTimer = imortalDuration
+	if Global.get_hp(player_id) <= 0:
+		self.queue_free()
+#	self.queue_free()

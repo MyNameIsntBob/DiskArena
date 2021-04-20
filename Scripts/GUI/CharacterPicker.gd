@@ -11,8 +11,6 @@ export (NodePath) var character_path
 var character
 export (NodePath) var box_path
 var box
-export (NodePath) var level_box_path
-var level_box
 export (NodePath) var level_path
 var level_node
 export (NodePath) var padding_path
@@ -39,7 +37,6 @@ func _ready():
 	character = get_node(character_path)
 	box = get_node(box_path)
 	level_node = get_node(level_path)
-	level_box = get_node(level_box_path)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -84,7 +81,6 @@ func _process(delta):
 				name_label.hide()
 				character.hide()
 			
-#	level_box.visible = player && player['selected']
 	level_node.visible = player && player['selected']
 			
 	

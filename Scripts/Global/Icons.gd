@@ -2,18 +2,18 @@ extends Node
 
 const gui = {
 	'characters':{
-		'Demon': preload('res://Art/GUI/Demon.png'),
-		'Goblin': preload('res://Art/GUI/Goblin.png'),
-		'Human': preload('res://Art/GUI/Human.png'),
-		'Robot': preload('res://Art/GUI/Robot.png'),
-		'Ai': preload('res://Art/GUI/AI.png'),
-		'Random': preload('res://Art/GUI/Random.png')
+		'Demon': preload('res://Art/GUI/Character/Demon.png'),
+		'Goblin': preload('res://Art/GUI/Character/Goblin.png'),
+		'Human': preload('res://Art/GUI/Character/Human.png'),
+		'Robot': preload('res://Art/GUI/Character/Robot.png'),
+		'Ai': preload('res://Art/GUI/Character/AI.png'),
+		'Random': preload('res://Art/GUI/Character/Random.png')
 	},
 	'taken_characters':{
-		'Demon': preload('res://Art/GUI/Taken-Demon.png'),
-		'Goblin': preload('res://Art/GUI/Taken-Goblin.png'),
-		'Human': preload('res://Art/GUI/Taken-Human.png'),
-		'Robot': preload('res://Art/GUI/Taken-Robot.png'),
+		'Demon': preload('res://Art/GUI/Character/Taken-Demon.png'),
+		'Goblin': preload('res://Art/GUI/Character/Taken-Goblin.png'),
+		'Human': preload('res://Art/GUI/Character/Taken-Human.png'),
+		'Robot': preload('res://Art/GUI/Character/Taken-Robot.png'),
 	},
 	'text':{
 		'Demon': preload('res://Art/Text/demon.png'),
@@ -23,11 +23,11 @@ const gui = {
 		'Random': preload('res://Art/Text/demon.png')
 	},
 	'box':[
-		preload('res://Art/GUI/JoinCharacterBox.png'),
-		preload('res://Art/GUI/CharacterBox.png'),
-		preload('res://Art/GUI/LevelSelect.png'),
-		preload('res://Art/GUI/EmptyLevelBox.png'),
-		preload('res://Art/GUI/EmptyCharacterBox.png')
+		preload('res://Art/GUI/Box/JoinCharacterBox.png'),
+		preload('res://Art/GUI/Box/CharacterBox.png'),
+		preload('res://Art/GUI/Box/LevelSelect.png'),
+		preload('res://Art/GUI/Box/EmptyLevelBox.png'),
+		preload('res://Art/GUI/Box/EmptyCharacterBox.png')
 	],
 	'map':{
 		'Random': preload("res://Art/GUI/MapIcons/Random.png"),

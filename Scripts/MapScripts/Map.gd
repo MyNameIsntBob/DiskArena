@@ -48,9 +48,6 @@ func spawnPlayers():
 		if i < Global.number_of_players:
 			spawnPlayer(i + 1)
 	
-func respawnPlayer(player_id):
-	spawnPlayer(player_id)
-	
 func spawnPlayer(player_id):
 	var location = spawn_locations[int(player_id) - 1]
 	var player

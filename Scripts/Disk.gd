@@ -25,7 +25,7 @@ func _physics_process(delta):
 	if speed < defaultSpeed:
 		speed = defaultSpeed
 	
-	if sendBack:
+	if sendBack and sender:
 		velocity = (sender.global_position - self.global_position).normalized()
 	
 	var collision_info = move_and_collide(velocity.normalized() * delta * speed)
@@ -36,19 +36,16 @@ func _physics_process(delta):
 #		elif collision_info is KinematicBody2D and collision_info.get("player_id"):
 #			collision_info.kill
 #		else:
-		velocity = velocity.bounce(collision_info.normal)
 		sendBack = false
+		velocity = velocity.bounce(collision_info.normal)
 		
 	
 	$Bullet.texture = Icons.get_bullet(character_id)
 	
 	var direction = -int(velocity.normalized().angle() * (4 / PI)) + 2
 	
-	if direction > 7:
-		direction -= 8
-	if direction < 0:
-		direction += 8
-		
+	direction = fposmod(direction, 8)
+	
 	$Bullet.frame_coords.y = direction
 	
 #func split():

@@ -17,7 +17,7 @@ _global_script_class_icons={
 
 config/name="Disk Arena"
 run/main_scene="res://Scenes/Game.tscn"
-config/icon="res://Art/GUI/Human.png"
+config/icon="res://Art/GUI/Character/Human.png"
 
 [autoload]
 
