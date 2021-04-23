@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/ChainLink.png-008cf24b7caf2f303c03bd751c78ff9a.stex"
+path="res://.import/Options.png-4c7bd7ee173e05bf1c9da717807e93c7.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/ChainLink.png"
-dest_files=[ "res://.import/ChainLink.png-008cf24b7caf2f303c03bd751c78ff9a.stex" ]
+source_file="res://Art/GUI/Signs/Options.png"
+dest_files=[ "res://.import/Options.png-4c7bd7ee173e05bf1c9da717807e93c7.stex" ]
 
 [params]
 
