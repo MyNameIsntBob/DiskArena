@@ -35,7 +35,7 @@ custom_constants/separation = 20
 alignment = 1
 
 [node name="Label" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer"]
-modulate = Color( 0.0352941, 0, 0, 1 )
+modulate = Color( 0, 0, 0, 1 )
 margin_top = 169.0
 margin_right = 1024.0
 margin_bottom = 191.0
@@ -96,6 +96,7 @@ X or Ctrl to remove
 Start To Start 
 You Need 2 ppl to start"
 align = 1
+
 [connection signal="pick_character" from="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer/CharacterPicker" to="." method="_on_CharacterPicker_pick_character"]
 [connection signal="start" from="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer/CharacterPicker" to="." method="_on_CharacterPicker_start"]
 [connection signal="unpick_character" from="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer/CharacterPicker" to="." method="_on_CharacterPicker_unpick_character"]

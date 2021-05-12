@@ -165,6 +165,8 @@ start={
 2d_physics/layer_4="Player"
 2d_physics/layer_5="Powerups"
 2d_physics/layer_6="Sign"
+2d_physics/layer_7="Sign2"
+2d_physics/layer_8="Sign3"
 
 [rendering]
 

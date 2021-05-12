@@ -5,6 +5,8 @@ export var attackAt = 1.5
 var players = []
 var diskPath = preload("res://Prefabs/Disk.tscn")
 
+var isPaused := false
+
 #func _init():
 #	print('spawn')
 #	var timer = Timer.new()
@@ -12,7 +14,17 @@ var diskPath = preload("res://Prefabs/Disk.tscn")
 #	timer.set_wait_time(attackAt)
 #	timer.start()
 #
-#func _process(delta):
+func _process(delta):
+	if Global.paused and !isPaused:
+		$Timer.stop()
+		$AnimationPlayer.stop(false)
+	
+	if isPaused and !Global.paused:
+		$Timer.start()
+		$AnimationPlayer.play()
+		
+		
+		
 #	if waitTill > 0:
 #		waitTill -= delta
 #	else:

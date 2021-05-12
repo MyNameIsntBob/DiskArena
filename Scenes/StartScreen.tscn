@@ -3,7 +3,7 @@
 [ext_resource path="res://Scripts/GUI/StartScreen.gd" type="Script" id=1]
 [ext_resource path="res://Art/GUI/MenuSquare.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/Maps/Extra.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Prefabs/Chain/Signs.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Prefabs/GUI/Sign/Signs.tscn" type="PackedScene" id=5]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0

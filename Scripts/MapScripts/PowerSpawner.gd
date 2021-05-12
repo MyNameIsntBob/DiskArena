@@ -26,6 +26,9 @@ func _ready():
 	bottomRight = get_node(bottomRight)
 	
 func _process(delta):
+	if Global.paused:
+		return
+	
 	waitTimer -= delta
 	if waitTimer <= 0:
 		setNewTimer()

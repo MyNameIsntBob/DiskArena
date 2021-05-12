@@ -46,12 +46,15 @@ func _on_Area2D_body_entered(body):
 	self.queue_free()
 	
 func target(body):
-	var players = []
-	
-	for player in Global.players:
-		if player and player != body.sender:
-			players.append(player)
-	var target = players[randi() % players.size()]
+	var target = null
+	var otherPlayers = get_tree().get_nodes_in_group("Characters")
+	otherPlayers.erase(body)
+	if len(otherPlayers) == 0:
+		return
+	otherPlayers.shuffle()
+	for player in otherPlayers:
+		if !player.isDead:
+			target = player
 	
 	if !target:
 		return

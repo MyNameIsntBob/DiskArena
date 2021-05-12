@@ -79,6 +79,7 @@ margin_left = 565.0
 margin_right = 1024.0
 margin_bottom = 600.0
 size_flags_horizontal = 3
+
 [connection signal="toggled" from="CanvasLayer/MarginContainer/HBoxContainer/VBoxContainer/FullScreen/CheckBox" to="." method="_on_CheckBox_toggled"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer/HBoxContainer/VBoxContainer/Save" to="." method="_on_Save_pressed"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer/HBoxContainer/VBoxContainer/Cancel" to="." method="_on_Cancel_pressed"]

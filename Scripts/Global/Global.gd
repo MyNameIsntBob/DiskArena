@@ -76,7 +76,7 @@ func pause_game(player_id):
 	if paused:
 		return
 		
-	get_tree().paused = true
+#	get_tree().paused = true
 	paused = true
 	who_paused = player_id
 	
@@ -84,7 +84,7 @@ func continue_game():
 	if !paused:
 		return
 	
-	get_tree().paused = false
+#	get_tree().paused = false
 	paused = false
 
 

@@ -1,7 +1,7 @@
 extends Node2D
 
-var player_path = preload("res://Prefabs/Player.tscn")
-var npc_path = preload('res://Prefabs/Bot.tscn')
+var player_path = preload("res://Prefabs/Character/Player.tscn")
+var npc_path = preload('res://Prefabs/Character/Bot.tscn')
 var disk_path = preload('res://Prefabs/Disk.tscn')
 
 var counter : float

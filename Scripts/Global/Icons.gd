@@ -37,10 +37,10 @@ const gui = {
 }
 
 const characters = {
-	'Demon': preload('res://Art/Characters/Demon-Sheet.png'),
-	'Goblin': preload('res://Art/Characters/Goblin-Sheet.png'),
-	'Human': preload('res://Art/Characters/Human-Sheet.png'),
-	'Robot': preload('res://Art/Characters/Robot-Sheet.png'),
+	'Demon': preload('res://Art/Characters/Goblin-Sheet2.png'),
+	'Goblin': preload('res://Art/Characters/Goblin-Sheet2.png'),
+	'Human': preload('res://Art/Characters/Goblin-Sheet2.png'),
+	'Robot': preload('res://Art/Characters/Goblin-Sheet2.png'),
 }
 
 const white_characters = {

@@ -1,0 +1,475 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Prefabs/GUI/Sign/Chain/FrontLink.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Prefabs/GUI/Sign/Chain/BackLink.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Prefabs/GUI/Sign/CharacterPicker.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Art/GUI/Signs/CharacterSelect/Title.png" type="Texture" id=4]
+[ext_resource path="res://Scripts/GUI/Signs/CharacterSelect.gd" type="Script" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 210, 8 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 225, 32 )
+
+[node name="CharacterSelect" type="Node2D"]
+use_parent_material = true
+script = ExtResource( 5 )
+selecters = [ NodePath("CharacterPicker"), NodePath("CharacterPicker2"), NodePath("CharacterPicker3"), NodePath("CharacterPicker4") ]
+
+[node name="Mount" type="StaticBody2D" parent="."]
+use_parent_material = true
+position = Vector2( 0, -440 )
+collision_layer = 32
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mount"]
+shape = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Chain1" type="Node2D" parent="."]
+use_parent_material = true
+position = Vector2( -200, -442 )
+
+[node name="MountJoin" type="PinJoint2D" parent="Chain1"]
+visible = false
+position = Vector2( 0, 8 )
+node_a = NodePath("../../Mount")
+node_b = NodePath("../FrontLink1")
+
+[node name="FrontLink1" parent="Chain1" instance=ExtResource( 1 )]
+position = Vector2( 0, 12 )
+
+[node name="Join1" type="PinJoint2D" parent="Chain1"]
+visible = false
+position = Vector2( 0, 16 )
+node_a = NodePath("../FrontLink1")
+node_b = NodePath("../BackLink1")
+
+[node name="BackLink1" parent="Chain1" instance=ExtResource( 2 )]
+position = Vector2( 0, 21 )
+
+[node name="Join2" type="PinJoint2D" parent="Chain1"]
+visible = false
+position = Vector2( 0, 25 )
+node_a = NodePath("../BackLink1")
+node_b = NodePath("../FrontLink2")
+
+[node name="FrontLink2" parent="Chain1" instance=ExtResource( 1 )]
+position = Vector2( 0, 30 )
+
+[node name="Join3" type="PinJoint2D" parent="Chain1"]
+visible = false
+position = Vector2( 0, 34 )
+node_a = NodePath("../FrontLink2")
+node_b = NodePath("../BackLink2")
+
+[node name="BackLink2" parent="Chain1" instance=ExtResource( 2 )]
+position = Vector2( 0, 39 )
+
+[node name="Join4" type="PinJoint2D" parent="Chain1"]
+visible = false
+position = Vector2( 0, 43 )
+node_a = NodePath("../BackLink2")
+node_b = NodePath("../FrontLink3")
+
+[node name="FrontLink3" parent="Chain1" instance=ExtResource( 1 )]
+position = Vector2( 0, 48 )
+
+[node name="SignJoin" type="PinJoint2D" parent="Chain1"]
+visible = false
+position = Vector2( 0, 52 )
+node_a = NodePath("../FrontLink3")
+node_b = NodePath("../../Title")
+
+[node name="Chain2" type="Node2D" parent="."]
+use_parent_material = true
+position = Vector2( 200, -442 )
+
+[node name="MountJoin" type="PinJoint2D" parent="Chain2"]
+visible = false
+position = Vector2( 0, 8 )
+node_a = NodePath("../../Mount")
+node_b = NodePath("../FrontLink1")
+
+[node name="FrontLink1" parent="Chain2" instance=ExtResource( 1 )]
+position = Vector2( 0, 12 )
+
+[node name="Join1" type="PinJoint2D" parent="Chain2"]
+visible = false
+position = Vector2( 0, 16 )
+node_a = NodePath("../FrontLink1")
+node_b = NodePath("../BackLink1")
+
+[node name="BackLink1" parent="Chain2" instance=ExtResource( 2 )]
+position = Vector2( 0, 21 )
+
+[node name="Join2" type="PinJoint2D" parent="Chain2"]
+visible = false
+position = Vector2( 0, 25 )
+node_a = NodePath("../BackLink1")
+node_b = NodePath("../FrontLink2")
+
+[node name="FrontLink2" parent="Chain2" instance=ExtResource( 1 )]
+position = Vector2( 0, 30 )
+
+[node name="Join3" type="PinJoint2D" parent="Chain2"]
+visible = false
+position = Vector2( 0, 34 )
+node_a = NodePath("../FrontLink2")
+node_b = NodePath("../BackLink2")
+
+[node name="BackLink2" parent="Chain2" instance=ExtResource( 2 )]
+position = Vector2( 0, 39 )
+
+[node name="Join4" type="PinJoint2D" parent="Chain2"]
+visible = false
+position = Vector2( 0, 43 )
+node_a = NodePath("../BackLink2")
+node_b = NodePath("../FrontLink3")
+
+[node name="FrontLink3" parent="Chain2" instance=ExtResource( 1 )]
+position = Vector2( 0, 48 )
+
+[node name="SignJoin" type="PinJoint2D" parent="Chain2"]
+visible = false
+position = Vector2( 0, 52 )
+node_a = NodePath("../FrontLink3")
+node_b = NodePath("../../Title")
+
+[node name="Chain3" type="Node2D" parent="."]
+use_parent_material = true
+position = Vector2( -192, -342 )
+
+[node name="MountJoin" type="PinJoint2D" parent="Chain3"]
+visible = false
+position = Vector2( 0, 12 )
+node_a = NodePath("../../Title")
+node_b = NodePath("../FrontLink")
+
+[node name="FrontLink" parent="Chain3" instance=ExtResource( 1 )]
+position = Vector2( 0, 16 )
+
+[node name="Join1" type="PinJoint2D" parent="Chain3"]
+visible = false
+position = Vector2( 0, 20 )
+node_a = NodePath("../FrontLink")
+node_b = NodePath("../BackLink")
+
+[node name="BackLink" parent="Chain3" instance=ExtResource( 2 )]
+position = Vector2( 0, 25 )
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Chain3"]
+visible = false
+position = Vector2( 0, 29 )
+node_a = NodePath("../BackLink")
+node_b = NodePath("../FrontLink2")
+
+[node name="FrontLink2" parent="Chain3" instance=ExtResource( 1 )]
+position = Vector2( 0, 34 )
+
+[node name="SignJoin" type="PinJoint2D" parent="Chain3"]
+position = Vector2( 0, 39 )
+node_a = NodePath("../FrontLink2")
+node_b = NodePath("../../CharacterPicker")
+
+[node name="Chain4" type="Node2D" parent="."]
+use_parent_material = true
+position = Vector2( -128, -342 )
+
+[node name="MountJoin" type="PinJoint2D" parent="Chain4"]
+visible = false
+position = Vector2( 0, 12 )
+node_a = NodePath("../../Title")
+node_b = NodePath("../FrontLink")
+
+[node name="FrontLink" parent="Chain4" instance=ExtResource( 1 )]
+position = Vector2( 0, 16 )
+
+[node name="Join1" type="PinJoint2D" parent="Chain4"]
+visible = false
+position = Vector2( 0, 20 )
+node_a = NodePath("../FrontLink")
+node_b = NodePath("../BackLink")
+
+[node name="BackLink" parent="Chain4" instance=ExtResource( 2 )]
+position = Vector2( 0, 25 )
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Chain4"]
+visible = false
+position = Vector2( 0, 29 )
+node_a = NodePath("../BackLink")
+node_b = NodePath("../FrontLink2")
+
+[node name="FrontLink2" parent="Chain4" instance=ExtResource( 1 )]
+position = Vector2( 0, 34 )
+
+[node name="SignJoin" type="PinJoint2D" parent="Chain4"]
+position = Vector2( 0, 39 )
+node_a = NodePath("../FrontLink2")
+node_b = NodePath("../../CharacterPicker")
+
+[node name="Chain5" type="Node2D" parent="."]
+use_parent_material = true
+position = Vector2( -84, -342 )
+
+[node name="MountJoin" type="PinJoint2D" parent="Chain5"]
+visible = false
+position = Vector2( 0, 12 )
+node_a = NodePath("../../Title")
+node_b = NodePath("../FrontLink")
+
+[node name="FrontLink" parent="Chain5" instance=ExtResource( 1 )]
+position = Vector2( 0, 16 )
+
+[node name="Join1" type="PinJoint2D" parent="Chain5"]
+visible = false
+position = Vector2( 0, 20 )
+node_a = NodePath("../FrontLink")
+node_b = NodePath("../BackLink")
+
+[node name="BackLink" parent="Chain5" instance=ExtResource( 2 )]
+position = Vector2( 0, 25 )
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Chain5"]
+visible = false
+position = Vector2( 0, 29 )
+node_a = NodePath("../BackLink")
+node_b = NodePath("../FrontLink2")
+
+[node name="FrontLink2" parent="Chain5" instance=ExtResource( 1 )]
+position = Vector2( 0, 34 )
+
+[node name="SignJoin" type="PinJoint2D" parent="Chain5"]
+position = Vector2( 0, 39 )
+node_a = NodePath("../FrontLink2")
+node_b = NodePath("../../CharacterPicker2")
+
+[node name="Chain6" type="Node2D" parent="."]
+use_parent_material = true
+position = Vector2( -20, -342 )
+
+[node name="MountJoin" type="PinJoint2D" parent="Chain6"]
+visible = false
+position = Vector2( 0, 12 )
+node_a = NodePath("../../Title")
+node_b = NodePath("../FrontLink")
+
+[node name="FrontLink" parent="Chain6" instance=ExtResource( 1 )]
+position = Vector2( 0, 16 )
+
+[node name="Join1" type="PinJoint2D" parent="Chain6"]
+visible = false
+position = Vector2( 0, 20 )
+node_a = NodePath("../FrontLink")
+node_b = NodePath("../BackLink")
+
+[node name="BackLink" parent="Chain6" instance=ExtResource( 2 )]
+position = Vector2( 0, 25 )
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Chain6"]
+visible = false
+position = Vector2( 0, 29 )
+node_a = NodePath("../BackLink")
+node_b = NodePath("../FrontLink2")
+
+[node name="FrontLink2" parent="Chain6" instance=ExtResource( 1 )]
+position = Vector2( 0, 34 )
+
+[node name="SignJoin" type="PinJoint2D" parent="Chain6"]
+position = Vector2( 0, 39 )
+node_a = NodePath("../FrontLink2")
+node_b = NodePath("../../CharacterPicker2")
+
+[node name="Chain7" type="Node2D" parent="."]
+use_parent_material = true
+position = Vector2( 20, -342 )
+
+[node name="MountJoin" type="PinJoint2D" parent="Chain7"]
+visible = false
+position = Vector2( 0, 12 )
+node_a = NodePath("../../Title")
+node_b = NodePath("../FrontLink")
+
+[node name="FrontLink" parent="Chain7" instance=ExtResource( 1 )]
+position = Vector2( 0, 16 )
+
+[node name="Join1" type="PinJoint2D" parent="Chain7"]
+visible = false
+position = Vector2( 0, 20 )
+node_a = NodePath("../FrontLink")
+node_b = NodePath("../BackLink")
+
+[node name="BackLink" parent="Chain7" instance=ExtResource( 2 )]
+position = Vector2( 0, 25 )
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Chain7"]
+visible = false
+position = Vector2( 0, 29 )
+node_a = NodePath("../BackLink")
+node_b = NodePath("../FrontLink2")
+
+[node name="FrontLink2" parent="Chain7" instance=ExtResource( 1 )]
+position = Vector2( 0, 34 )
+
+[node name="SignJoin" type="PinJoint2D" parent="Chain7"]
+position = Vector2( 0, 39 )
+node_a = NodePath("../FrontLink2")
+node_b = NodePath("../../CharacterPicker3")
+
+[node name="Chain8" type="Node2D" parent="."]
+use_parent_material = true
+position = Vector2( 84, -342 )
+
+[node name="MountJoin" type="PinJoint2D" parent="Chain8"]
+visible = false
+position = Vector2( 0, 12 )
+node_a = NodePath("../../Title")
+node_b = NodePath("../FrontLink")
+
+[node name="FrontLink" parent="Chain8" instance=ExtResource( 1 )]
+position = Vector2( 0, 16 )
+
+[node name="Join1" type="PinJoint2D" parent="Chain8"]
+visible = false
+position = Vector2( 0, 20 )
+node_a = NodePath("../FrontLink")
+node_b = NodePath("../BackLink")
+
+[node name="BackLink" parent="Chain8" instance=ExtResource( 2 )]
+position = Vector2( 0, 25 )
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Chain8"]
+visible = false
+position = Vector2( 0, 29 )
+node_a = NodePath("../BackLink")
+node_b = NodePath("../FrontLink2")
+
+[node name="FrontLink2" parent="Chain8" instance=ExtResource( 1 )]
+position = Vector2( 0, 34 )
+
+[node name="SignJoin" type="PinJoint2D" parent="Chain8"]
+position = Vector2( 0, 39 )
+node_a = NodePath("../FrontLink2")
+node_b = NodePath("../../CharacterPicker3")
+
+[node name="Chain9" type="Node2D" parent="."]
+use_parent_material = true
+position = Vector2( 128, -342 )
+
+[node name="MountJoin" type="PinJoint2D" parent="Chain9"]
+visible = false
+position = Vector2( 0, 12 )
+node_a = NodePath("../../Title")
+node_b = NodePath("../FrontLink")
+
+[node name="FrontLink" parent="Chain9" instance=ExtResource( 1 )]
+position = Vector2( 0, 16 )
+
+[node name="Join1" type="PinJoint2D" parent="Chain9"]
+visible = false
+position = Vector2( 0, 20 )
+node_a = NodePath("../FrontLink")
+node_b = NodePath("../BackLink")
+
+[node name="BackLink" parent="Chain9" instance=ExtResource( 2 )]
+position = Vector2( 0, 25 )
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Chain9"]
+visible = false
+position = Vector2( 0, 29 )
+node_a = NodePath("../BackLink")
+node_b = NodePath("../FrontLink2")
+
+[node name="FrontLink2" parent="Chain9" instance=ExtResource( 1 )]
+position = Vector2( 0, 34 )
+
+[node name="SignJoin" type="PinJoint2D" parent="Chain9"]
+position = Vector2( 0, 39 )
+node_a = NodePath("../FrontLink2")
+node_b = NodePath("../../CharacterPicker4")
+
+[node name="Chain10" type="Node2D" parent="."]
+use_parent_material = true
+position = Vector2( 192, -342 )
+
+[node name="MountJoin" type="PinJoint2D" parent="Chain10"]
+visible = false
+position = Vector2( 0, 12 )
+node_a = NodePath("../../Title")
+node_b = NodePath("../FrontLink")
+
+[node name="FrontLink" parent="Chain10" instance=ExtResource( 1 )]
+position = Vector2( 0, 16 )
+
+[node name="Join1" type="PinJoint2D" parent="Chain10"]
+visible = false
+position = Vector2( 0, 20 )
+node_a = NodePath("../FrontLink")
+node_b = NodePath("../BackLink")
+
+[node name="BackLink" parent="Chain10" instance=ExtResource( 2 )]
+position = Vector2( 0, 25 )
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Chain10"]
+visible = false
+position = Vector2( 0, 29 )
+node_a = NodePath("../BackLink")
+node_b = NodePath("../FrontLink2")
+
+[node name="FrontLink2" parent="Chain10" instance=ExtResource( 1 )]
+position = Vector2( 0, 34 )
+
+[node name="SignJoin" type="PinJoint2D" parent="Chain10"]
+position = Vector2( 0, 39 )
+node_a = NodePath("../FrontLink2")
+node_b = NodePath("../../CharacterPicker4")
+
+[node name="Title" type="RigidBody2D" parent="."]
+use_parent_material = true
+position = Vector2( 0, -360 )
+z_index = 2
+collision_layer = 64
+collision_mask = 64
+
+[node name="Sprite" type="Sprite" parent="Title"]
+use_parent_material = true
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Title"]
+shape = SubResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CharacterPicker" parent="." instance=ExtResource( 3 )]
+position = Vector2( -160, -235 )
+
+[node name="CharacterPicker2" parent="." instance=ExtResource( 3 )]
+position = Vector2( -52, -235 )
+
+[node name="CharacterPicker3" parent="." instance=ExtResource( 3 )]
+position = Vector2( 52, -235 )
+
+[node name="CharacterPicker4" parent="." instance=ExtResource( 3 )]
+position = Vector2( 160, -235 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[connection signal="pick_character" from="CharacterPicker" to="." method="_on_CharacterPicker_pick_character"]
+[connection signal="start" from="CharacterPicker" to="." method="_on_CharacterPicker_start"]
+[connection signal="unpick_character" from="CharacterPicker" to="." method="_on_CharacterPicker_unpick_character"]
+[connection signal="pick_character" from="CharacterPicker2" to="." method="_on_CharacterPicker_pick_character"]
+[connection signal="start" from="CharacterPicker2" to="." method="_on_CharacterPicker_start"]
+[connection signal="unpick_character" from="CharacterPicker2" to="." method="_on_CharacterPicker_unpick_character"]
+[connection signal="pick_character" from="CharacterPicker3" to="." method="_on_CharacterPicker_pick_character"]
+[connection signal="start" from="CharacterPicker3" to="." method="_on_CharacterPicker_start"]
+[connection signal="unpick_character" from="CharacterPicker3" to="." method="_on_CharacterPicker_unpick_character"]
+[connection signal="pick_character" from="CharacterPicker4" to="." method="_on_CharacterPicker_pick_character"]
+[connection signal="start" from="CharacterPicker4" to="." method="_on_CharacterPicker_start"]
+[connection signal="unpick_character" from="CharacterPicker4" to="." method="_on_CharacterPicker_unpick_character"]

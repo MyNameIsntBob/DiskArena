@@ -11,6 +11,8 @@ var sender
 var b := false
 var sendBack := false
 
+var isPaused := false
+
 #func _ready():
 #	speed = defaultSpeed
 
@@ -19,6 +21,19 @@ func _process(delta):
 		self.queue_free()
 	
 func _physics_process(delta):
+	
+	if Global.paused:
+		if !isPaused:
+			isPaused = true
+			$AnimationPlayer.stop(false)
+			
+		return
+	
+	else:
+		if isPaused:
+			isPaused = false
+			$AnimationPlayer.play()
+			pass
 	
 	if speed > defaultSpeed:
 		speed -= delta * slowDown
@@ -65,7 +80,7 @@ func _on_ObjectChecker_body_entered(body):
 
 #	if body is KinematicBody2D and body.get("player_id"):
 	if body.get_collision_layer_bit(3):
-		body.kill()
+		body.kill(velocity)
 		Global.add_kill(sender.player_id)
 
 

@@ -220,13 +220,13 @@ frame = 3
 
 [node name="Orb" type="Sprite" parent="."]
 use_parent_material = true
-position = Vector2( 0, -1.27202 )
+position = Vector2( 0, -207.286 )
 z_index = 1
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2( 0, -1.27202 )
-collision_layer = 16
-collision_mask = 4
+collision_layer = 0
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 3 )
@@ -240,4 +240,5 @@ tree_root = SubResource( 9 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 10 )
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

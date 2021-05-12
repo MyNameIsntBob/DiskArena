@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Prefabs/GUI/Sign/PauseSign.tscn" type="PackedScene" id=1]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+light_mode = 1
+
+[node name="PauseMenu" type="Node2D"]
+pause_mode = 2
+material = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="PauseSign" parent="." instance=ExtResource( 1 )]
