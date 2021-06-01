@@ -5,6 +5,8 @@ const max_players := 4
 
 var num_of_bots := 0
 
+signal go_back
+
 export (Array, NodePath) var selecters
 #export (NodePath) var notice
 
@@ -35,8 +37,10 @@ func start():
 			activePlayers.append(player)
 	
 	for player in activePlayers:
-		if !player['selected'] or not 'level' in player:
+		if !player['selected'] or not 'level' in player or player["level"] == null:
 			return
+	
+	Global.player_stats = {}
 	
 	for i in range(len(activePlayers)):
 		Global.add_new_player(i + 1, activePlayers[i])
@@ -116,12 +120,13 @@ func update_selecter_data():
 #		selecter.taken_characters = selected_characters()
 	
 func _unhandled_input(event):
-	if !event:
+	if !event or !focused:
 		return
 
-#	This doesn't work propperly, you need remove {} from the players or something like that
 	if event.is_action_pressed('ui_cancel') and num_of_players() == 0:
-		Global.load_scene('start')
+		raise()
+		emit_signal("go_back")
+		
 		
 
 # Add a bot

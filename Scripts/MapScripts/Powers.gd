@@ -17,6 +17,12 @@ var spaceDirection = 0.1
 
 var diskPath = preload("res://Prefabs/Disk.tscn")
 
+var isPaused = false
+
+var last_anim_pos = 0.0
+var last_anim = null
+var travel_path = null
+
 func _ready():
 	power = powers.values()[randi()%powers.size()]
 	$Orb.texture = Icons.get_power(power)
@@ -26,6 +32,24 @@ func _ready():
 # Make sure to give the new instance everything it needs from the original bullet
 
 func _process(delta):
+#	if !isPaused and Global.paused:
+#		print("Animation stopped")
+##		$AnimationTree.anim_player.stop()
+##		last_anim_pos = $AnimationPlayer.current_animation_position
+##		last_anim = $AnimationPlayer.current_animation
+##		travel_path = $AnimationTree.get("parameters/playback").get_travel_path()
+##		$AnimationTree.active = false
+###		$AnimationPlayer.stop(false)
+##		isPaused = true
+#
+#	if isPaused and !Global.paused:
+#		print("Animation Start")
+#		$AnimationTree.active = true
+##		$AnimationTree.advance(last_anim_pos)
+#		$AnimationTree.get("parameters/playback").travel(travel_path)
+##		$AnimationPlayer.play()
+#		isPaused = false
+	
 	if waitTill > 0:
 		waitTill -= delta
 	else:

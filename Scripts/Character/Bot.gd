@@ -46,8 +46,6 @@ func _physics_process(delta):
 		for player in otherPlayers:
 			if !player.isDead:
 				target = player
-#		print(otherPlayers)
-#		target = otherPlayers[randi() % len(otherPlayers)]
 	
 func change_movement(delta):
 	input_vector += Vector2(rand_range(-1.0, 1.0), rand_range(-1.0, 1.0)) * moveVariation * delta

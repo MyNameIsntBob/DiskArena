@@ -20,6 +20,7 @@ extents = Vector2( 76, 24 )
 pause_mode = 2
 use_parent_material = true
 script = ExtResource( 6 )
+buttons = [ NodePath("Play/Sprite/Continue"), NodePath("Exit/Sprite/ExitPaused") ]
 
 [node name="Mount" type="StaticBody2D" parent="."]
 use_parent_material = true
@@ -293,13 +294,14 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Play" type="TextureButton" parent="Play/Sprite"]
+[node name="Continue" type="TextureButton" parent="Play/Sprite"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -77.5
 margin_top = -26.5
 margin_right = -77.5
 margin_bottom = -26.5
+focus_neighbour_bottom = NodePath("../../../Exit/Sprite/ExitPaused")
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -325,13 +327,14 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Exit" type="TextureButton" parent="Exit/Sprite"]
+[node name="ExitPaused" type="TextureButton" parent="Exit/Sprite"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -78.0
 margin_top = -27.5
 margin_right = -78.0
 margin_bottom = -27.5
+focus_neighbour_top = NodePath("../../../Play/Sprite/Continue")
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -344,5 +347,9 @@ __meta__ = {
 
 [node name="Tween" type="Tween" parent="."]
 
-[connection signal="pressed" from="Play/Sprite/Play" to="." method="_on_Play_pressed"]
-[connection signal="pressed" from="Exit/Sprite/Exit" to="." method="_on_Exit_pressed"]
+[connection signal="focus_entered" from="Play/Sprite/Continue" to="." method="_on_focus_entered" binds= [ 0 ]]
+[connection signal="focus_exited" from="Play/Sprite/Continue" to="." method="_on_focus_exited" binds= [ 0 ]]
+[connection signal="pressed" from="Play/Sprite/Continue" to="." method="_on_Play_pressed"]
+[connection signal="focus_entered" from="Exit/Sprite/ExitPaused" to="." method="_on_focus_entered" binds= [ 1 ]]
+[connection signal="focus_exited" from="Exit/Sprite/ExitPaused" to="." method="_on_focus_exited" binds= [ 1 ]]
+[connection signal="pressed" from="Exit/Sprite/ExitPaused" to="." method="_on_Exit_pressed"]

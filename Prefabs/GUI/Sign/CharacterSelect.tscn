@@ -452,12 +452,15 @@ position = Vector2( -160, -235 )
 
 [node name="CharacterPicker2" parent="." instance=ExtResource( 3 )]
 position = Vector2( -52, -235 )
+box_id = 2
 
 [node name="CharacterPicker3" parent="." instance=ExtResource( 3 )]
 position = Vector2( 52, -235 )
+box_id = 3
 
 [node name="CharacterPicker4" parent="." instance=ExtResource( 3 )]
 position = Vector2( 160, -235 )
+box_id = 4
 
 [node name="Tween" type="Tween" parent="."]
 

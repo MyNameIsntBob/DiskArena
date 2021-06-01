@@ -7,10 +7,10 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 7.93565
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 1.62528, 7.34936 )
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 8.3381, 1.6308 )
 
 [node name="Bot" type="KinematicBody2D" groups=[
@@ -40,7 +40,7 @@ collision_layer = 0
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Right"]
-shape = SubResource( 5 )
+shape = SubResource( 2 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -51,7 +51,7 @@ collision_layer = 0
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Left"]
-shape = SubResource( 5 )
+shape = SubResource( 2 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -62,7 +62,7 @@ collision_layer = 0
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bottom"]
-shape = SubResource( 6 )
+shape = SubResource( 3 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -73,7 +73,7 @@ collision_layer = 0
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Top"]
-shape = SubResource( 6 )
+shape = SubResource( 3 )
 __meta__ = {
 "_edit_lock_": true
 }

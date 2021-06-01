@@ -15,3 +15,8 @@ func _on_MenuSign_press_play():
 	$MenuSign.raise()
 	yield($MenuSign, 'finished')
 	$CharacterSelect.drop()
+
+
+func _on_go_back():
+	$MenuSign.drop()
+	

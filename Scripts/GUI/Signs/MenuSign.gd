@@ -9,13 +9,17 @@ func _on_Play_pressed():
 ##	$Chain3/Join1.queue_free()
 ##	$Chain4/Join1.queue_free()
 #	yield($Tween, "tween_completed")
-	emit_signal('press_play')
+	if focused:
+		emit_signal('press_play')
 
 
 func _on_Options_pressed():
-	emit_signal("press_options")
+	if focused:
+		emit_signal("press_options")
 #	Global.load_scene('settings')
 
 func _on_Exit_pressed():
-	emit_signal("press_exit")
+	if focused:
+		emit_signal("press_exit")
 #	get_tree().quit()
+

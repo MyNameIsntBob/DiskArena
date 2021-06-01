@@ -37,18 +37,15 @@ func _process(delta):
 			spawnPlayers()
 	else:
 		counter += delta
-		
-	if len(Global.players) < Global.number_of_players:
-		var player_to_respawn = Global.get_player_to_respawn()
-		if player_to_respawn != null:
-			spawnPlayer(player_to_respawn)
 	
 func spawnPlayers():
 	for i in range(len(spawn_locations)):
 		if i < Global.number_of_players:
 			spawnPlayer(i + 1)
 	
-func spawnPlayer(player_id):
+func spawnPlayer(player_id): 
+	if !Global.get_stats(player_id):
+		return
 	var location = spawn_locations[int(player_id) - 1]
 	var player
 	if Global.get_npc(player_id):

@@ -51,13 +51,18 @@ func _physics_process(delta):
 	
 func _unhandled_input(event):
 	
-	if Global.paused or isDead:
+	if Global.paused:
 		return
 	
 #	If the input wasn't from my player
-#	print(event.get_device())
 	if !event or event.get_device() != input_id or (event is InputEventKey and !keyboard) or (
 	(event is InputEventJoypadButton or event is InputEventJoypadMotion) and keyboard):
+		return
+	
+	if event.is_action_pressed("pause"):
+		Global.pause_game(player_id)
+		
+	if isDead:
 		return
 		
 	if event.is_action("right"):
@@ -80,5 +85,3 @@ func _unhandled_input(event):
 	if event.is_action('aim_down'):
 		look_down = event.get_action_strength('aim_down')
 		
-	if event.is_action_pressed("pause"):
-		Global.pause_game(player_id)

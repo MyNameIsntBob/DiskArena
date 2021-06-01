@@ -1,10 +1,15 @@
 extends RigidBody2D
 
+export var box_id : int
+
 signal pick_character(character)
 signal unpick_character(character)
 signal start()
 
 onready var char_picker = find_node('CharacterPicker')
+
+func _ready():
+	$Sprite.texture = load("res://Art/GUI/Signs/CharacterSelect/CharacterBox" + str(box_id) + ".png")
 
 func set_parent(parent):
 	char_picker.parent = parent

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/CharacterBox.png-d7d2c3d4b340f6f909d72f025d25888b.stex"
+path="res://.import/ContinueSelected.png-40c25ffebbbf7e8bbf8311c0c56c39ec.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/GUI/Signs/CharacterSelect/CharacterBox.png"
-dest_files=[ "res://.import/CharacterBox.png-d7d2c3d4b340f6f909d72f025d25888b.stex" ]
+source_file="res://Art/GUI/Signs/Pause/ContinueSelected.png"
+dest_files=[ "res://.import/ContinueSelected.png-40c25ffebbbf7e8bbf8311c0c56c39ec.stex" ]
 
 [params]
 

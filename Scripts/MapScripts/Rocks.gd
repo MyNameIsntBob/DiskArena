@@ -7,30 +7,17 @@ var diskPath = preload("res://Prefabs/Disk.tscn")
 
 var isPaused := false
 
-#func _init():
-#	print('spawn')
-#	var timer = Timer.new()
-#	timer.connect("timeout", self, 'kill')
-#	timer.set_wait_time(attackAt)
-#	timer.start()
-#
 func _process(delta):
 	if Global.paused and !isPaused:
 		$Timer.stop()
 		$AnimationPlayer.stop(false)
+		isPaused = true
 	
 	if isPaused and !Global.paused:
 		$Timer.start()
 		$AnimationPlayer.play()
+		isPaused = false
 		
-		
-		
-#	if waitTill > 0:
-#		waitTill -= delta
-#	else:
-#		self.visible = true
-#
-
 func _on_Area2D_body_entered(body):
 	players.append(body)
 	

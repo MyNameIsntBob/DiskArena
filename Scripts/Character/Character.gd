@@ -69,7 +69,6 @@ func _physics_process(delta):
 		return
 	
 	if isDead:
-		print(velocity)
 		velocity = velocity.linear_interpolate(Vector2.ZERO, 0.05)
 		var collision_info = move_and_collide(velocity)
 		if collision_info:
@@ -157,10 +156,3 @@ func kill(direction = Vector2.ZERO):
 		isDead = false
 		imortalTimer = imortalDuration
 		
-	
-	
-#	if Global.get_hp(player_id) <= 0:
-#		self.queue_free()
-#	self.queue_free()
-
-

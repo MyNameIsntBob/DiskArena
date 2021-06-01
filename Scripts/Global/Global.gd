@@ -47,6 +47,9 @@ func _ready():
 	
 func add_characters(num_of_bots = 0):
 	players = []
+	for player_id in player_stats:
+		if player_stats[player_id]["npc"]:
+			player_stats.erase(player_id)
 	number_of_players = player_stats.size()
 	for i in range(num_of_bots):
 		add_new_player(number_of_players + 1, {'npc': true, 'character_id': 0})
@@ -56,12 +59,14 @@ func add_characters(num_of_bots = 0):
 			player_stats[player_id]["character_id"] = random_character()
 
 func start(num_of_bots = 0):
+	# TODO : Fix this issue random amount of bots spawn
 	isMenuScreen = false
 	add_characters(num_of_bots)
 	
 	if level == 0:
 		level = (randi() % (len(level_from_id) - 1)) + 1
 	get_tree().change_scene(levels[level_from_id[level]])
+	
 	
 #	Set everyone's hp to the max hp
 	for player_id in player_stats:
@@ -94,6 +99,7 @@ func load_scene(scene):
 	yield($SceneFader, 'finished')
 	
 	if scene == 'start':
+		player_stats = {}
 		add_characters(rand_range(2, 4))
 	
 	if scene == 'map':
@@ -107,7 +113,8 @@ func load_scene(scene):
 # Used to keep track of the kills that people get
 func add_kill(player_id):
 	var stats = get_stats(player_id)
-	stats['kills'] += 1
+	if stats:
+		stats['kills'] += 1
 
 func player_die(player_id):
 #	Get the stats of the player and lower the hp
@@ -143,14 +150,6 @@ func number_of_dead_players():
 func is_game_over():
 	return number_of_players - number_of_dead_players() <= 1
 	
-	
-# Player functions
-func get_player_to_respawn():
-	if len(players_to_respawn) > 0:
-		return players_to_respawn.pop_front()
-	else:
-		return null
-	
 func add_new_player(player_id, player_values):
 	player_stats[str(player_id)] = default_stats.duplicate()
 	for key in player_values:
@@ -171,7 +170,7 @@ func remove_player(player_id):
 func random_character():
 	var characters = range(1, 5)
 	for player_id in player_stats:
-		characters.erase(player_stats[player_id].character_id)
+		characters.erase(int(player_stats[player_id].character_id))
 	characters.shuffle()
 	return characters.pop_front()
 	
@@ -181,7 +180,8 @@ func get_stats(player_id):
 		return(player_stats[str(player_id)])
 
 func get_npc(player_id):
-	return get_stats(player_id)['npc']
+	if str(player_id) in player_stats:
+		return get_stats(player_id)['npc']
 	
 func get_max_hp(player_id):
 	if str(player_id) in player_stats:

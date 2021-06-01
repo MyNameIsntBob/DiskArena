@@ -36,11 +36,26 @@ const gui = {
 	}
 }
 
+const signs = {
+	'selected': {
+		"Play": preload("res://Art/GUI/Signs/Main/PlaySelected.png"),
+		"Options": preload("res://Art/GUI/Signs/Main/OptionsSelected.png"),
+		"Exit": preload("res://Art/GUI/Signs/Main/ExitSelected.png"),
+		"Continue": preload("res://Art/GUI/Signs/Pause/ContinueSelected.png"),
+		"ExitPaused": preload("res://Art/GUI/Signs/Pause/ExitSelected.png")
+	},
+	"Play": preload("res://Art/GUI/Signs/Main/Play.png"),
+	"Options": preload("res://Art/GUI/Signs/Main/Options.png"),
+	"Exit": preload("res://Art/GUI/Signs/Main/Exit.png"),
+	"Continue": preload("res://Art/GUI/Signs/Pause/Continue.png"),
+	"ExitPaused": preload("res://Art/GUI/Signs/Pause/Exit.png")
+}
+
 const characters = {
-	'Demon': preload('res://Art/Characters/Goblin-Sheet2.png'),
+	'Demon': preload('res://Art/Characters/Demon-Sheet2.png'),
 	'Goblin': preload('res://Art/Characters/Goblin-Sheet2.png'),
-	'Human': preload('res://Art/Characters/Goblin-Sheet2.png'),
-	'Robot': preload('res://Art/Characters/Goblin-Sheet2.png'),
+	'Human': preload('res://Art/Characters/Human-Sheet2.png'),
+	'Robot': preload('res://Art/Characters/Robot-Sheet2.png'),
 }
 
 const white_characters = {
@@ -124,3 +139,8 @@ func get_box(box_id):
 	
 func get_bullet(character_id):
 	return bullets[character_from_id[int(character_id)]]
+	
+func get_sign(selected, title):
+	if selected:
+		return signs['selected'][title]
+	return signs[title]

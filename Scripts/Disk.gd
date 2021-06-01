@@ -19,6 +19,9 @@ var isPaused := false
 func _process(delta):
 	if (!sender):
 		self.queue_free()
+		
+	if sender.isDead:
+		sendBack = true
 	
 func _physics_process(delta):
 	
@@ -45,12 +48,6 @@ func _physics_process(delta):
 	
 	var collision_info = move_and_collide(velocity.normalized() * delta * speed)
 	if collision_info:
-#		print(collision_info)
-#		if collision_info == sender:
-#			self.queue_free()
-#		elif collision_info is KinematicBody2D and collision_info.get("player_id"):
-#			collision_info.kill
-#		else:
 		sendBack = false
 		velocity = velocity.bounce(collision_info.normal)
 		
@@ -62,11 +59,6 @@ func _physics_process(delta):
 	direction = fposmod(direction, 8)
 	
 	$Bullet.frame_coords.y = direction
-	
-#func split():
-##	velocity
-#	velocity - Vector2(0.1, 0.1)
-#	pass
 
 #If you can figure it out, move all of this to the move_and_collide to simplify
 func _on_ObjectChecker_body_entered(body):
