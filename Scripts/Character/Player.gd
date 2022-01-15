@@ -54,10 +54,19 @@ func _unhandled_input(event):
 	if Global.paused:
 		return
 	
-#	If the input wasn't from my player
-	if !event or event.get_device() != input_id or (event is InputEventKey and !keyboard) or (
-	(event is InputEventJoypadButton or event is InputEventJoypadMotion) and keyboard):
-		return
+	# If the input wasn't from my player
+	if !event or event.get_device() != input_id:
+		return 
+		
+	# If I'm a keyboard and it was a Joypad event
+	if keyboard:
+		if event is InputEventJoypadButton or event is InputEventJoypadMotion:
+			return
+	
+	# If I'm a Joypad and it was a keyboard or mouse event
+	else:
+		if event is InputEventKey or event is InputEventMouseButton:
+			return
 	
 	if event.is_action_pressed("pause"):
 		Global.pause_game(player_id)

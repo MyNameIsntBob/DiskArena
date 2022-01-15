@@ -7,9 +7,7 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 7.93565
 
-[node name="Player" type="KinematicBody2D" groups=[
-"Characters",
-]]
+[node name="Player" type="KinematicBody2D" groups=["Characters"]]
 use_parent_material = true
 collision_layer = 8
 collision_mask = 3
