@@ -1,13 +1,12 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://Prefabs/GUI/Sign/Chain/FrontLink.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Prefabs/GUI/Sign/Chain/BackLink.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Prefabs/GUI/Sign/Chain/5Chain.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Art/GUI/Signs/Main/Exit.png" type="Texture" id=3]
 [ext_resource path="res://Art/GUI/Signs/Main/TitleSign.png" type="Texture" id=4]
 [ext_resource path="res://Art/GUI/Signs/Main/Play.png" type="Texture" id=5]
 [ext_resource path="res://Art/GUI/Signs/Main/Options.png" type="Texture" id=6]
 [ext_resource path="res://Scripts/GUI/Signs/MenuSign.gd" type="Script" id=7]
-[ext_resource path="res://Prefabs/GUI/Sign/Chain/ShortChain.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Prefabs/GUI/Sign/Chain/2Chain.tscn" type="PackedScene" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 114, 8 )
@@ -35,235 +34,43 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Chain1" type="Node2D" parent="."]
-use_parent_material = true
-position = Vector2( -112, -442 )
+[node name="Chain1" parent="." instance=ExtResource( 1 )]
+position = Vector2( -112, -437 )
+first_mount_path = NodePath("../Mount")
+last_mount_path = NodePath("../Title")
 
-[node name="MountJoin" type="PinJoint2D" parent="Chain1"]
-visible = false
-position = Vector2( 0, 8 )
-node_a = NodePath("../../Mount")
-node_b = NodePath("../FrontLink1")
+[node name="Chain2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 112, -437 )
+first_mount_path = NodePath("../Mount")
+last_mount_path = NodePath("../Title")
 
-[node name="FrontLink1" parent="Chain1" instance=ExtResource( 1 )]
-position = Vector2( 0, 12 )
+[node name="Chain3" parent="." instance=ExtResource( 8 )]
+position = Vector2( -64, -333 )
+first_mount_path = NodePath("../Title")
+last_mount_path = NodePath("../Play")
 
-[node name="Join1" type="PinJoint2D" parent="Chain1"]
-visible = false
-position = Vector2( 0, 16 )
-node_a = NodePath("../FrontLink1")
-node_b = NodePath("../BackLink1")
+[node name="Chain4" parent="." instance=ExtResource( 8 )]
+position = Vector2( 64, -333 )
+first_mount_path = NodePath("../Title")
+last_mount_path = NodePath("../Play")
 
-[node name="BackLink1" parent="Chain1" instance=ExtResource( 2 )]
-position = Vector2( 0, 21 )
+[node name="Chain5" parent="." instance=ExtResource( 8 )]
+position = Vector2( -64, -273 )
+first_mount_path = NodePath("../Play")
+last_mount_path = NodePath("../Options")
 
-[node name="Join2" type="PinJoint2D" parent="Chain1"]
-visible = false
-position = Vector2( 0, 25 )
-node_a = NodePath("../BackLink1")
-node_b = NodePath("../FrontLink2")
+[node name="Chain6" parent="." instance=ExtResource( 8 )]
+position = Vector2( 64, -273 )
+first_mount_path = NodePath("../Play")
+last_mount_path = NodePath("../Options")
 
-[node name="FrontLink2" parent="Chain1" instance=ExtResource( 1 )]
-position = Vector2( 0, 30 )
-
-[node name="Join3" type="PinJoint2D" parent="Chain1"]
-visible = false
-position = Vector2( 0, 34 )
-node_a = NodePath("../FrontLink2")
-node_b = NodePath("../BackLink2")
-
-[node name="BackLink2" parent="Chain1" instance=ExtResource( 2 )]
-position = Vector2( 0, 39 )
-
-[node name="Join4" type="PinJoint2D" parent="Chain1"]
-visible = false
-position = Vector2( 0, 43 )
-node_a = NodePath("../BackLink2")
-node_b = NodePath("../FrontLink3")
-
-[node name="FrontLink3" parent="Chain1" instance=ExtResource( 1 )]
-position = Vector2( 0, 48 )
-
-[node name="SignJoin" type="PinJoint2D" parent="Chain1"]
-visible = false
-position = Vector2( 0, 52 )
-node_a = NodePath("../FrontLink3")
-node_b = NodePath("../../Title")
-
-[node name="Chain2" type="Node2D" parent="."]
-use_parent_material = true
-position = Vector2( 112, -442 )
-
-[node name="MountJoin" type="PinJoint2D" parent="Chain2"]
-visible = false
-position = Vector2( 0, 8 )
-node_a = NodePath("../../Mount")
-node_b = NodePath("../FrontLink1")
-
-[node name="FrontLink1" parent="Chain2" instance=ExtResource( 1 )]
-position = Vector2( 0, 12 )
-
-[node name="Join1" type="PinJoint2D" parent="Chain2"]
-visible = false
-position = Vector2( 0, 16 )
-node_a = NodePath("../FrontLink1")
-node_b = NodePath("../BackLink1")
-
-[node name="BackLink1" parent="Chain2" instance=ExtResource( 2 )]
-position = Vector2( 0, 21 )
-
-[node name="Join2" type="PinJoint2D" parent="Chain2"]
-visible = false
-position = Vector2( 0, 25 )
-node_a = NodePath("../BackLink1")
-node_b = NodePath("../FrontLink2")
-
-[node name="FrontLink2" parent="Chain2" instance=ExtResource( 1 )]
-position = Vector2( 0, 30 )
-
-[node name="Join3" type="PinJoint2D" parent="Chain2"]
-visible = false
-position = Vector2( 0, 34 )
-node_a = NodePath("../FrontLink2")
-node_b = NodePath("../BackLink2")
-
-[node name="BackLink2" parent="Chain2" instance=ExtResource( 2 )]
-position = Vector2( 0, 39 )
-
-[node name="Join4" type="PinJoint2D" parent="Chain2"]
-visible = false
-position = Vector2( 0, 43 )
-node_a = NodePath("../BackLink2")
-node_b = NodePath("../FrontLink3")
-
-[node name="FrontLink3" parent="Chain2" instance=ExtResource( 1 )]
-position = Vector2( 0, 48 )
-
-[node name="SignJoin" type="PinJoint2D" parent="Chain2"]
-visible = false
-position = Vector2( 0, 52 )
-node_a = NodePath("../FrontLink3")
-node_b = NodePath("../../Title")
-
-[node name="Chain3" type="Node2D" parent="."]
-use_parent_material = true
-position = Vector2( -64, -342 )
-
-[node name="MountJoin" type="PinJoint2D" parent="Chain3"]
-visible = false
-position = Vector2( 0, 12 )
-node_a = NodePath("../../Title")
-node_b = NodePath("../FrontLink")
-
-[node name="FrontLink" parent="Chain3" instance=ExtResource( 1 )]
-position = Vector2( 0, 16 )
-
-[node name="Join1" type="PinJoint2D" parent="Chain3"]
-visible = false
-position = Vector2( 0, 20 )
-node_a = NodePath("../FrontLink")
-node_b = NodePath("../BackLink")
-
-[node name="BackLink" parent="Chain3" instance=ExtResource( 2 )]
-position = Vector2( 0, 25 )
-
-[node name="SignJoin" type="PinJoint2D" parent="Chain3"]
-visible = false
-position = Vector2( 0, 28 )
-node_a = NodePath("../BackLink")
-node_b = NodePath("../../Play")
-
-[node name="Chain4" type="Node2D" parent="."]
-use_parent_material = true
-position = Vector2( 64, -342 )
-
-[node name="MountJoin" type="PinJoint2D" parent="Chain4"]
-visible = false
-position = Vector2( 0, 12 )
-node_a = NodePath("../../Title")
-node_b = NodePath("../FrontLink")
-
-[node name="FrontLink" parent="Chain4" instance=ExtResource( 1 )]
-position = Vector2( 0, 16 )
-
-[node name="Join1" type="PinJoint2D" parent="Chain4"]
-visible = false
-position = Vector2( 0, 20 )
-node_a = NodePath("../FrontLink")
-node_b = NodePath("../BackLink")
-
-[node name="BackLink" parent="Chain4" instance=ExtResource( 2 )]
-position = Vector2( 0, 25 )
-
-[node name="SignJoin" type="PinJoint2D" parent="Chain4"]
-visible = false
-position = Vector2( 0, 28 )
-node_a = NodePath("../BackLink")
-node_b = NodePath("../../Play")
-
-[node name="Chain5" type="Node2D" parent="."]
-use_parent_material = true
-position = Vector2( -64, -282 )
-
-[node name="MountJoin" type="PinJoint2D" parent="Chain5"]
-visible = false
-position = Vector2( 0, 12 )
-node_a = NodePath("../../Play")
-node_b = NodePath("../FrontLink")
-
-[node name="FrontLink" parent="Chain5" instance=ExtResource( 1 )]
-position = Vector2( 0, 16 )
-
-[node name="Join1" type="PinJoint2D" parent="Chain5"]
-visible = false
-position = Vector2( 0, 20 )
-node_a = NodePath("../FrontLink")
-node_b = NodePath("../BackLink")
-
-[node name="BackLink" parent="Chain5" instance=ExtResource( 2 )]
-position = Vector2( 0, 25 )
-
-[node name="SignJoin" type="PinJoint2D" parent="Chain5"]
-visible = false
-position = Vector2( 0, 28 )
-node_a = NodePath("../BackLink")
-node_b = NodePath("../../Options")
-
-[node name="Chain6" type="Node2D" parent="."]
-use_parent_material = true
-position = Vector2( 64, -282 )
-
-[node name="MountJoin" type="PinJoint2D" parent="Chain6"]
-visible = false
-position = Vector2( 0, 12 )
-node_a = NodePath("../../Play")
-node_b = NodePath("../FrontLink")
-
-[node name="FrontLink" parent="Chain6" instance=ExtResource( 1 )]
-position = Vector2( 0, 16 )
-
-[node name="Join1" type="PinJoint2D" parent="Chain6"]
-visible = false
-position = Vector2( 0, 20 )
-node_a = NodePath("../FrontLink")
-node_b = NodePath("../BackLink")
-
-[node name="BackLink" parent="Chain6" instance=ExtResource( 2 )]
-position = Vector2( 0, 25 )
-
-[node name="SignJoin" type="PinJoint2D" parent="Chain6"]
-visible = false
-position = Vector2( 0, 28 )
-node_a = NodePath("../BackLink")
-node_b = NodePath("../../Options")
-
-[node name="ShortChain7" parent="." instance=ExtResource( 8 )]
-position = Vector2( -64, -223 )
+[node name="Chain7" parent="." instance=ExtResource( 8 )]
+position = Vector2( -64, -214 )
 first_mount_path = NodePath("../Options")
 last_mount_path = NodePath("../Exit")
 
-[node name="ShortChain8" parent="." instance=ExtResource( 8 )]
-position = Vector2( 64, -223 )
+[node name="Chain8" parent="." instance=ExtResource( 8 )]
+position = Vector2( 64, -214 )
 first_mount_path = NodePath("../Options")
 last_mount_path = NodePath("../Exit")
 

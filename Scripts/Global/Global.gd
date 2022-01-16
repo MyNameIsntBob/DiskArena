@@ -134,9 +134,9 @@ func player_die(player_id):
 	if stats['hp'] <= 0:
 		stats['score'] = number_of_players - number_of_dead_players()
 	
-	if is_game_over() and !isMenuScreen:
-		load_scene('end')
-		
+#	if is_game_over() and !isMenuScreen:
+#		load_scene('end')
+	
 # Tells us how many dead players there are
 func number_of_dead_players():
 	var sum = 0

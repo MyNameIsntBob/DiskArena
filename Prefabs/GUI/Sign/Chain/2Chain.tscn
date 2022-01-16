@@ -4,7 +4,7 @@
 [ext_resource path="res://Prefabs/GUI/Sign/Chain/FrontLink.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/GUI/Signs/ChainLinker.gd" type="Script" id=3]
 
-[node name="ShortChain" type="Node2D"]
+[node name="Chain" type="Node2D"]
 use_parent_material = true
 script = ExtResource( 3 )
 first_link_path = NodePath("MountJoin")
@@ -12,24 +12,24 @@ last_link_path = NodePath("SignJoin")
 
 [node name="MountJoin" type="PinJoint2D" parent="."]
 visible = false
-position = Vector2( 0, 12 )
+position = Vector2( 0, 2 )
 node_b = NodePath("../FrontLink")
 
 [node name="FrontLink" parent="." instance=ExtResource( 2 )]
 pause_mode = 2
-position = Vector2( 0, 16 )
+position = Vector2( 0, 7 )
 
 [node name="Join1" type="PinJoint2D" parent="."]
 visible = false
-position = Vector2( 0, 20 )
+position = Vector2( 0, 10 )
 node_a = NodePath("../FrontLink")
 node_b = NodePath("../BackLink")
 
 [node name="BackLink" parent="." instance=ExtResource( 1 )]
 pause_mode = 2
-position = Vector2( 0, 25 )
+position = Vector2( 0, 16 )
 
 [node name="SignJoin" type="PinJoint2D" parent="."]
 visible = false
-position = Vector2( 0, 28 )
+position = Vector2( 0, 21 )
 node_a = NodePath("../BackLink")

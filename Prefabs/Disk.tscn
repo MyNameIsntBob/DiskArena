@@ -37,7 +37,6 @@ visible = false
 shape = SubResource( 1 )
 
 [node name="ObjectChecker" type="Area2D" parent="."]
-visible = false
 __meta__ = {
 "_edit_lock_": true
 }
