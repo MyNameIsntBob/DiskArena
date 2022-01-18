@@ -128,7 +128,7 @@ func shoot():
 		
 #	create the disk and give it all variables
 	var disk = diskPath.instance()
-	find_parent("Master").add_child(disk)
+	Global.add_child(disk)
 	disk.sender = self
 	disk.position = find_node("BulletPosition").global_position
 	disk.velocity = bulVelocity.normalized()

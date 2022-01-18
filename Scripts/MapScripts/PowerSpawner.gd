@@ -49,8 +49,7 @@ func spawnPower():
 	power.position.x = rng.randf_range(topLeft.position.x, bottomRight.position.x)
 	power.position.y = rng.randf_range(bottomRight.position.y, topLeft.position.y)
 	
-	find_parent("Master").add_child(power)
-	powerUps.append(power)
+	Global.add_child(power)
 	
 func setNewTimer():
 	waitTimer = rng.randf_range(waitPeriod - veriation, waitPeriod + veriation)

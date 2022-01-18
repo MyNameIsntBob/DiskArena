@@ -1,46 +1,44 @@
 extends Node2D
 
+var top_left
+var bottom_right
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-export (NodePath) var topLeft
-export (NodePath) var bottomRight
-
-var rockPath = preload("res://Prefabs/Maps/Obstacles/Rocks.tscn")
+var rock_path = preload("res://Prefabs/Maps/Obstacles/Rocks.tscn")
 var rng = RandomNumberGenerator.new()
 
-var waitTimer = 1.0
-var waitPeriod = 2.0
+var wait_timer = 1.0
+var wait_period = 2.0
 
 var veriation = 2.0
 
-var maxNumPowers = 5
+# TODO Make so that is actually getting used
+var max_num_powers = 5
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	rng.randomize()
 	setNewTimer()
-	topLeft = get_node(topLeft)
-	bottomRight = get_node(bottomRight)
 	
+	top_left = Global.find_node("TopLeft")
+	bottom_right = Global.find_node("BottomRight")
+
 func _process(delta):
 	if Global.paused:
 		return
 	
-	waitTimer -= delta
-	if waitTimer <= 0:
+	wait_timer -= delta
+	if wait_timer <= 0:
 		setNewTimer()
 		spawnRock()
 	
 func spawnRock():
-	var power = rockPath.instance()
+	var rock = rock_path.instance()
 	
-	power.position.x = rng.randf_range(topLeft.position.x, bottomRight.position.x)
-	power.position.y = rng.randf_range(bottomRight.position.y, topLeft.position.y)
+	rock.position.x = rng.randf_range(top_left.position.x, bottom_right.position.x)
+	rock.position.y = rng.randf_range(bottom_right.position.y, top_left.position.y)
 	
-	find_parent("Master").add_child(power)
+	Global.add_child(rock)
 	
 func setNewTimer():
-	waitTimer = rng.randf_range(waitPeriod - veriation, waitPeriod + veriation)
+	wait_timer = rng.randf_range(wait_period - veriation, wait_period + veriation)
 

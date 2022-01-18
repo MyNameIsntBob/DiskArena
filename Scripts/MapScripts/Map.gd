@@ -14,6 +14,8 @@ export(NodePath) var map4
 
 #Change spawn location node paths to spawn location 
 func _ready():
+	
+	
 	for i in range(len(spawn_locations)):
 		spawn_locations[i] = get_node(spawn_locations[i])
 	
@@ -55,7 +57,7 @@ func spawnPlayer(player_id):
 		player.keyboard = Global.get_uses_keyboard(player_id)
 		player.input_id = Global.get_input_id(player_id)
 	Global.add_player(player)
-	find_parent("Master").add_child(player)
+	Global.add_child(player)
 	player.position = location.global_position
 	player.player_id = player_id
 	player.character_id = Global.get_character_id(player_id)

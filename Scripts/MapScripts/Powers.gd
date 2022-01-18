@@ -102,7 +102,7 @@ func split(body):
 	
 	newDisk.position += rotate_vel(newDisk.velocity, 0.5 * PI) * spaceDirection 
 	body.position += rotate_vel(body.velocity, -0.5 * PI) * spaceDirection
-	body.get_parent().add_child(newDisk)
+	Global.add_child(newDisk)
 	
 	body.velocity = rotate_vel(body.velocity, rotationDeg)
 	newDisk.velocity = rotate_vel(newDisk.velocity, -rotationDeg)

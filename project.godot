@@ -24,6 +24,7 @@ Global="*res://Scenes/Game.tscn"
 Icons="*res://Scripts/Global/Icons.gd"
 Functions="*res://Scripts/Global/Functions.gd"
 Settings="*res://Scripts/Global/Settings.gd"
+ScoreKeeper="*res://Scripts/Global/ScoreKeeper.gd"
 
 [display]
 
@@ -167,7 +168,4 @@ start={
 2d_physics/layer_6="Sign"
 2d_physics/layer_7="Sign2"
 2d_physics/layer_8="Sign3"
-
-[rendering]
-
-environment/default_environment="res://default_env.tres"
+2d_physics/layer_9="Sign4"
