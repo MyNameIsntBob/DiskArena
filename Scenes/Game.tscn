@@ -1,47 +1,24 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Scripts/Global/Global.gd" type="Script" id=1]
-[ext_resource path="res://Prefabs/GUI/SceneFader.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Prefabs/GUI/Interface.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Resources/ShadowImune.tres" type="Material" id=1]
+[ext_resource path="res://Scripts/Global/Global.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/Global/SceneManager.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Prefabs/GUI/Sign/PauseSign.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Resources/ShadowImune.tres" type="Material" id=5]
-[ext_resource path="res://Prefabs/Maps/PowerupSpawner.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scenes/SceneManager.gd" type="Script" id=7]
-[ext_resource path="res://Scenes/PlayerSpawner.gd" type="Script" id=8]
+[ext_resource path="res://Prefabs/GUI/Interface.tscn" type="PackedScene" id=5]
 
 [node name="Game" type="Node2D"]
-script = ExtResource( 1 )
+script = ExtResource( 2 )
 
 [node name="ChildrenHolder" type="Node2D" parent="."]
 
-[node name="SceneManager" type="Node2D" parent="."]
-script = ExtResource( 7 )
-
-[node name="SceneFader" parent="SceneManager" instance=ExtResource( 2 )]
-pause_mode = 2
-z_as_relative = false
-
-[node name="Spawners" type="Node2D" parent="."]
-
-[node name="PlayerSpawner" type="Node2D" parent="Spawners"]
-script = ExtResource( 8 )
-
-[node name="PowerupSpawner" parent="Spawners" instance=ExtResource( 6 )]
-topLeft = NodePath("../TopLeft")
-bottomRight = NodePath("../BottomRight")
-
-[node name="TopLeft" type="Position2D" parent="Spawners"]
-position = Vector2( -208, -100.5 )
-
-[node name="BottomRight" type="Position2D" parent="Spawners"]
-position = Vector2( 209, 96.5 )
+[node name="SceneManager" parent="." instance=ExtResource( 3 )]
 
 [node name="PauseSign" parent="." instance=ExtResource( 4 )]
-material = ExtResource( 5 )
+material = ExtResource( 1 )
 use_parent_material = false
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 zoom = Vector2( 0.465, 0.465 )
 
-[node name="Interface" parent="." instance=ExtResource( 3 )]
+[node name="Interface" parent="." instance=ExtResource( 5 )]

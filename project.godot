@@ -25,6 +25,9 @@ Icons="*res://Scripts/Global/Icons.gd"
 Functions="*res://Scripts/Global/Functions.gd"
 Settings="*res://Scripts/Global/Settings.gd"
 ScoreKeeper="*res://Scripts/Global/ScoreKeeper.gd"
+Spawners="*res://Scenes/Global/Spawners.tscn"
+PlayerSpawner="*res://Scenes/Global/PlayerSpawner.tscn"
+SceneManager="*res://Scenes/Global/SceneManager.tscn"
 
 [display]
 

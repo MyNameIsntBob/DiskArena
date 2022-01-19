@@ -2,21 +2,14 @@ extends 'res://Scripts/GUI/Signs/Sign.gd'
 
 var dropped := false
 
-#onready var colorRect = find_node('ColorRect')
-
-#func _ready():
-#	$PauseSign.drop()
-
 func _process(delta):
 	if Global.paused and !dropped:
-#		colorRect.show()
 		drop()
 		dropped = true
 
 func _on_Play_pressed():
 	raise()
 	yield(self, 'finished')
-#	colorRect.hide()
 	dropped = false
 	Global.continue_game()
 
@@ -42,4 +35,3 @@ func _unhandled_input(event):
 	
 	if event.is_action_pressed("pause") and dropped:
 		_on_Play_pressed()
-#		Global.continue_game()

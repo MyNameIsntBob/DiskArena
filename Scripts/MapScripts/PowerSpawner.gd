@@ -1,12 +1,5 @@
 extends Node2D
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-export (NodePath) var topLeft
-export (NodePath) var bottomRight
-
 var powerUpPath = preload("res://Prefabs/Maps/Obstacles/Powers.tscn")
 var powerUps = []
 var rng = RandomNumberGenerator.new()
@@ -18,14 +11,22 @@ var veriation = 3.0
 
 var maxNumPowers = 5
 
-# Called when the node enters the scene tree for the first time.
+var active = false
+
 func _ready():
 	rng.randomize()
+
+func activate():
 	setNewTimer()
-	topLeft = get_node(topLeft)
-	bottomRight = get_node(bottomRight)
-	
+	active = true
+
+func deactivate():
+	active = false
+
 func _process(delta):
+	if !active:
+		return
+	
 	if Global.paused:
 		return
 	
@@ -46,8 +47,7 @@ func spawnPower():
 		
 	var power = powerUpPath.instance()
 	
-	power.position.x = rng.randf_range(topLeft.position.x, bottomRight.position.x)
-	power.position.y = rng.randf_range(bottomRight.position.y, topLeft.position.y)
+	power.position = Spawners.random_spawn_position()
 	
 	Global.add_child(power)
 	

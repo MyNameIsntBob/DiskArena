@@ -19,8 +19,8 @@ func _process(delta):
 #This works for now, but we might want to change the icons to 
 #generate based off of hp and max hp in the future just for simplicity
 func change_hp_icons():
-	var hp = Global.get_hp(player_id)
-	character_id = Global.get_character_id(player_id)
+	var hp = ScoreKeeper.get_hp(player_id)
+	character_id = ScoreKeeper.get_character_id(player_id)
 	if character_id == null:
 		return
 	for i in range(len(hp_icons)):

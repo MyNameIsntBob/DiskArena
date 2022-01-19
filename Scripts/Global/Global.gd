@@ -21,4 +21,10 @@ func continue_game():
 func add_child(node, legible_unique_name: bool = false):
 	$ChildrenHolder.add_child(node, legible_unique_name)
 	
+func focus_camera():
+	$Camera2D.current = true
+
+func set_hp_bars():
+	$Interface.set_hp_bars()
+	
 

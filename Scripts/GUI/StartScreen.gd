@@ -1,14 +1,8 @@
-extends Control
-
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
+extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var button = find_node("Play")
+	var button = find_node("Play").find_node('Play')
 	button.grab_focus()
 
 

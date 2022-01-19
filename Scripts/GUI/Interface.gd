@@ -19,22 +19,22 @@ func _ready():
 	
 	
 func set_hp_bars():
-	if Global.number_of_players < 4 and player_stats['4']:
+	if ScoreKeeper.num_of_players < 4 and player_stats['4']:
 		player_stats['4'].hide()
 	else:
 		player_stats['4'].show()
 	
-	if Global.number_of_players < 3 and player_stats['3']:
+	if ScoreKeeper.num_of_players < 3 and player_stats['3']:
 		player_stats['3'].hide()
 	else:
 		player_stats['3'].show()
 	
-	if Global.number_of_players < 2 and player_stats['2']:
+	if ScoreKeeper.num_of_players < 2 and player_stats['2']:
 		player_stats['2'].hide()
 	else:
 		player_stats['2'].show()
 	
-	if Global.number_of_players < 1 and player_stats['1']:
+	if ScoreKeeper.num_of_players < 1 and player_stats['1']:
 		player_stats['1'].hide()
 	else:
 		player_stats['1'].show()
