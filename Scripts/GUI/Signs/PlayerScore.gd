@@ -16,14 +16,14 @@ func set_background():
 	$Sprite.texture = load("res://Art/GUI/Signs/CharacterSelect/CharacterBox" + str(player_id) + ".png")	
 
 func set_scores():
-	var score = scores_to_text[int(Global.get_score(player_id))]
-	var deaths = Global.get_deaths(player_id)
-	var kills = Global.get_kills(player_id)
+	var score = scores_to_text[int(ScoreKeeper.get_score(player_id))]
+	var deaths = ScoreKeeper.get_deaths(player_id)
+	var kills = ScoreKeeper.get_kills(player_id)
 	get_node(place).text = str(score) + ' place'
 	get_node(scores).text = str(deaths) + '\n' + str(kills)
 
 func set_character():
-	var character_id = Global.get_character_id(player_id)
+	var character_id = ScoreKeeper.get_character_id(player_id)
 	if character_id == null:
 		return
 	

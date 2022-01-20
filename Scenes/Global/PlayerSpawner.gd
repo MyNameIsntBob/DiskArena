@@ -15,18 +15,19 @@ func spawnPoints(num_of_players = null):
 		return $Players2.get_children()
 
 # Used when having npcs play in the background on main screen
-func spawnNpcs():
-	var num_of_npcs = randi()%3 + 2
-	var spawn_points = spawnPoints(num_of_npcs)
-	
-	
-	for i in range(num_of_npcs):
-		var npc = npc_path.instance()
-		Global.add_child(npc)
-		npc.position = spawn_points[i].position
+#func spawnNpcs():
+#	var num_of_npcs = randi()%3 + 2
+#	var spawn_points = spawnPoints(num_of_npcs)
+#
+#
+#	for i in range(num_of_npcs):
+#		var npc = npc_path.instance()
+#		Global.add_child(npc)
+#		npc.position = spawn_points[i].position
 
 func spawnPlayers():
 	for i in range(len(spawnPoints())):
+		
 		if i < ScoreKeeper.num_of_players:
 			spawnPlayer(i + 1)
 	

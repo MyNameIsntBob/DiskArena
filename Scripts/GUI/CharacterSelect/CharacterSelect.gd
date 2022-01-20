@@ -40,17 +40,18 @@ func start():
 		if !player['selected'] or not 'level' in player or player["level"] == null:
 			return
 	
-	Global.player_stats = {}
+	ScoreKeeper.player_stats = {}
 	
 	for i in range(len(activePlayers)):
-		Global.add_new_player(i + 1, activePlayers[i])
+		ScoreKeeper.add_new_player(i + 1, activePlayers[i])
 		
+	var level = 0
 	if len(activePlayers):
-		Global.level = activePlayers[randi() % len(activePlayers)].level
+		level = activePlayers[randi() % len(activePlayers)].level
 	
-	if num_of_players() + num_of_bots >= 2:
-		Global.start(num_of_bots)
-	
+	if len(activePlayers) and num_of_players() + num_of_bots >= 2:
+		SceneManager.load_arena(level)
+
 func selected_characters():
 	var characters = []
 	for player in players:

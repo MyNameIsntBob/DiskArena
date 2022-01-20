@@ -25,8 +25,8 @@ func _unhandled_input(event):
 	if !focused:
 		return
 
-	var keyboard = Global.get_uses_keyboard(Global.who_paused)
-	var input_id = Global.get_input_id(Global.who_paused)
+	var keyboard = ScoreKeeper.get_uses_keyboard(Global.who_paused)
+	var input_id = ScoreKeeper.get_input_id(Global.who_paused)
 	if !event or event.get_device() != input_id or (event is InputEventKey and !keyboard) or (
 	(event is InputEventJoypadButton or event is InputEventJoypadMotion) and keyboard):
 		return

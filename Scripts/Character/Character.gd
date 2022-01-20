@@ -139,8 +139,8 @@ func kill(direction = Vector2.ZERO):
 	if isDead or imortalTimer > 0:
 		return
 		
-	if !Global.isMenuScreen:
-		Global.player_die(player_id)
+	if !SceneManager.isMenuScreen:
+		ScoreKeeper.player_die(player_id)
 #	imortalTimer = imortalDuration
 	isDead = true
 	animationPlayer.stop()
@@ -149,7 +149,7 @@ func kill(direction = Vector2.ZERO):
 	velocity = direction.normalized() * 10
 	yield(animationPlayer, "animation_finished")
 	
-	if Global.get_hp(player_id) > 0:
+	if SceneManager.isMenuScreen || ScoreKeeper.get_hp(player_id) > 0:
 		animationPlayer.play("Revive")
 		yield(animationPlayer, "animation_finished")
 		

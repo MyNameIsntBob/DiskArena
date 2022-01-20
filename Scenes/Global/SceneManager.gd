@@ -1,6 +1,6 @@
 extends Node2D
 
-var level = 0
+#var level = 0
 var isMenuScreen := false
 
 export (NodePath) var ChildrenHolder
@@ -24,8 +24,9 @@ func _ready():
 
 func load_main_menu():
 	ScoreKeeper.reset_stats()
+	ScoreKeeper.setup_npc_stats()
 	change_scene(main_menu)
-	PlayerSpawner.spawnNpcs()
+	PlayerSpawner.spawnPlayers()
 
 func load_arena(level = 0):
 	if level == 0:
@@ -41,6 +42,7 @@ func _random_level():
 	return (randi() % (len(level_from_id) - 1)) + 1
 	
 func change_scene(scene):
+	isMenuScreen = scene == main_menu
 	$SceneFader.fade_out()
 	yield($SceneFader, 'finished')
 	get_tree().change_scene(main_menu)

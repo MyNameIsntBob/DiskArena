@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Resources/ShadowImune.tres" type="Material" id=1]
 [ext_resource path="res://Scripts/Global/Global.gd" type="Script" id=2]
-[ext_resource path="res://Scenes/Global/SceneManager.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Prefabs/GUI/Sign/PauseSign.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Prefabs/GUI/Interface.tscn" type="PackedScene" id=5]
 
@@ -10,8 +9,8 @@
 script = ExtResource( 2 )
 
 [node name="ChildrenHolder" type="Node2D" parent="."]
-
-[node name="SceneManager" parent="." instance=ExtResource( 3 )]
+material = ExtResource( 1 )
+z_index = 1
 
 [node name="PauseSign" parent="." instance=ExtResource( 4 )]
 material = ExtResource( 1 )

@@ -10,12 +10,13 @@ const default_stats := {
 	'kills': 0,
 	'deaths': 0,
 	'score': 0,
-	'npc': false
+	'npc': false,
+	'character_id': 0
 }
 
 var num_of_players := 0
 
-#var players = []
+var players = []
 
 #---------------------------
 #    PRIVATE FUNCTIONS
@@ -28,11 +29,6 @@ func _number_of_dead_players():
 		if get_hp(player_id) <= 0:
 			sum += 1
 	return sum
-
-
-#---------------------------
-#     PUBLIC FUNCTIONS
-#---------------------------
 
 func reset_scores():
 	for player_id in player_stats:
@@ -49,11 +45,29 @@ func reset_stats():
 func is_game_over():
 	return num_of_players - _number_of_dead_players() <= 1
 
-func add_npc(npc):
-	pass
+#---------------------------
+#      SET UP STATS
+#---------------------------
+func setup_npc_stats(num_of_npcs = 0):
+	if num_of_npcs == 0:
+		num_of_npcs = randi()%3 + 2
 	
-func add_player(player):
-	pass
+	for i in range(num_of_npcs):
+		add_new_player(i + 1, {'npc': true})
+	
+	num_of_players = num_of_npcs
+
+func add_new_player(player_id, player_values):
+	print("Add Player: ", player_id, "\nValues: ", player_values)
+	player_stats[str(player_id)] = default_stats.duplicate()
+	for key in player_values:
+		player_stats[str(player_id)][str(key)] = player_values[key]
+		
+	if player_stats[str(player_id)]['character_id'] == 0:
+		player_stats[str(player_id)]['character_id'] = random_unused_character()
+
+#func add_player(player):
+#	pass
 
 #
 ## TODO Rework this function
@@ -71,11 +85,11 @@ func add_player(player):
 #			player_stats[player_id]["character_id"] = random_character()
 #
 ## Used to keep track of the kills that people get
-#func add_kill(player_id):
-#	var stats = get_stats(player_id)
-#	if stats:
-#		stats['kills'] += 1
-#
+func add_kill(player_id):
+	var stats = get_stats(player_id)
+	if stats:
+		stats['kills'] += 1
+
 #func player_die(player_id):
 ##	Get the stats of the player and lower the hp
 #	var stats = get_stats(player_id)
@@ -96,29 +110,23 @@ func add_player(player):
 #
 ##	if is_game_over() and !isMenuScreen:
 ##		load_scene('end')
-#
-#func add_new_player(player_id, player_values):
-#	player_stats[str(player_id)] = default_stats.duplicate()
-#	for key in player_values:
-#		player_stats[str(player_id)][str(key)] = player_values[key]
-#
-##func add_player(player):
-##	players.append(player)
+func add_player(player):
+	players.append(player)
 #
 ##func remove_player(player_id):
 ##	for i in range(len(players)):
 ##		if !players[i] or players[i].player_id == player_id:
 ##			players.remove(i)
 ##			break
-#
-## Character functions
-## Gives a random character that's not taken
-#func random_character():
-#	var characters = range(1, 5)
-#	for player_id in player_stats:
-#		characters.erase(int(player_stats[player_id].character_id))
-#	characters.shuffle()
-#	return characters.pop_front()
+
+
+# Gives a random character that's not taken
+func random_unused_character():
+	var characters = range(1, 5)
+	for player_id in player_stats:
+		characters.erase(int(player_stats[player_id].character_id))
+	characters.shuffle()
+	return characters.pop_front()
 
 
 #-------------------------------

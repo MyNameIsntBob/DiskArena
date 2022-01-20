@@ -11,20 +11,12 @@ var veriation = 3.0
 
 var maxNumPowers = 5
 
-var active = false
-
 func _ready():
 	rng.randomize()
-
-func activate():
 	setNewTimer()
-	active = true
-
-func deactivate():
-	active = false
 
 func _process(delta):
-	if !active:
+	if SceneManager.isMenuScreen || ScoreKeeper.is_game_over():
 		return
 	
 	if Global.paused:

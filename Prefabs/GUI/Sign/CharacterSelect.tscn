@@ -4,7 +4,7 @@
 [ext_resource path="res://Prefabs/GUI/Sign/Chain/5Chain.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Prefabs/GUI/Sign/CharacterPicker.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Art/GUI/Signs/CharacterSelect/Title.png" type="Texture" id=4]
-[ext_resource path="res://Scripts/GUI/Signs/CharacterSelect.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/GUI/CharacterSelect/CharacterSelect.gd" type="Script" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 210, 8 )
@@ -20,8 +20,8 @@ selecters = [ NodePath("CharacterPicker"), NodePath("CharacterPicker2"), NodePat
 [node name="Mount" type="StaticBody2D" parent="."]
 use_parent_material = true
 position = Vector2( 0, -440 )
-collision_layer = 32
-collision_mask = 32
+collision_layer = 64
+collision_mask = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Mount"]
 shape = SubResource( 1 )

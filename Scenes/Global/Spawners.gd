@@ -18,8 +18,5 @@ func random_spawn_position() -> Vector2:
 	pos.y = rng.randf_range(bottom_right.position.y, top_left.position.y)
 	return pos
 
-func activate_power_spawner():
-	$PowerSpawner.activate()
-	
 func add_characters(num_of_bots):
 	$PlayerSpawner.add_characters(num_of_bots)

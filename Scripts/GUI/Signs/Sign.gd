@@ -17,16 +17,12 @@ func _ready():
 	for i in range(len(buttons)):
 		buttons[i] = get_node(buttons[i])
 	raise_to = $Mount.position.y
-	
+
 func _process(delta):
 	if focused:
 		for button in buttons:
 			if button.is_hovered():
 				button.grab_focus()
-#			button.get_parent().texture = Icons.get_sign(true, button.name)
-#		else:
-#			button.get_parent().texture = Icons.get_sign(false, button.name)
-	pass
 
 func drop():
 	$Tween.interpolate_property($Mount, "position", $Mount.position, Vector2(0, drop_to), drop_time, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)

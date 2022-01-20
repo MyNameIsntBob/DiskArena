@@ -72,17 +72,6 @@ const bullets = {
 	'Robot': preload('res://Art/Bullets/grayFireBall-Sheet.png')
 }
 
-#const maps = {
-#	'Lava': {
-#		'4player': preload('res://Art/Maps/TestMapSplit.png'),
-#		'3player': preload('res://Art/Maps/TestMapSplit.png'),
-#		'2player': preload('res://Art/Maps/TestMap.png'),
-#	},
-##	'Grass': {
-##		'4player': preload('res://Art/Maps/')
-##	}
-#}
-
 const powers = {
 	'Split': preload('res://Art/powers/Split.png'),
 	'Speed': preload('res://Art/powers/Speed.png'),
@@ -111,13 +100,10 @@ func number_of_maps():
 	return len(gui['map']) - 1
 
 func get_map_icon(map_id):
-	return gui['map'][Global.level_from_id[map_id]]
+	return gui['map'][SceneManager.level_from_id[map_id]]
 
 func get_power(power):
 	return powers[powers_from_id[power]]
-
-#func get_map(number_of_players, map_id):
-#	return maps[Global.level_from_id[map_id]][str(number_of_players) + 'player']
 
 func get_character(character_id):
 	return characters[character_from_id[int(character_id)]]
