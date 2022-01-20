@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Prefabs/GUI/Sign/MenuSign.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/GUI/MenuSign.gd" type="Script" id=2]
-[ext_resource path="res://Prefabs/GUI/Sign/CharacterSelect.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Prefabs/GUI/CharacterSelect/CharacterSelect.tscn" type="PackedScene" id=3]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 light_mode = 1

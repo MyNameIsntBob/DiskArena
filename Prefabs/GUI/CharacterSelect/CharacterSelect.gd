@@ -8,9 +8,7 @@ var num_of_bots := 0
 signal go_back
 
 export (Array, NodePath) var selecters
-#export (NodePath) var notice
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
 	for i in range(len(selecters)):
@@ -20,15 +18,6 @@ func _ready():
 		selecters[i].set_id(i)
 #		selecters[i].id = i
 #	notice = get_node(notice)
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	$Label.text = str(num_of_bots)
-#	if len(players) >= 2:
-#		notice.hide()
-#	else:
-#		notice.show()
 
 func start():
 	var activePlayers = []
@@ -40,7 +29,8 @@ func start():
 		if !player['selected'] or not 'level' in player or player["level"] == null:
 			return
 	
-	ScoreKeeper.player_stats = {}
+	print("Reset Score Keeper Stats")
+	ScoreKeeper.reset_stats()
 	
 	for i in range(len(activePlayers)):
 		ScoreKeeper.add_new_player(i + 1, activePlayers[i])

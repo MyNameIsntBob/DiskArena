@@ -6,9 +6,11 @@ func _ready():
 func _on_MenuSign_press_exit():
 	get_tree().quit()
 
+# TODO 
+# Make so that options open
 func _on_MenuSign_press_options():
-	Global.load_scene('settings')
-	
+#	Global.load_scene('settings')
+	pass
 
 func _on_MenuSign_press_play():
 #	Global.load_scene('connect')
