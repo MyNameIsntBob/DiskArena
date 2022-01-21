@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://menus/game_over/PlayerScore.gd" type="Script" id=1]
+[ext_resource path="res://Art/GUI/Character/Demon.png" type="Texture" id=2]
+
+[node name="CharacterScore" type="VBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Image" type="TextureRect" parent="."]
+margin_right = 1024.0
+margin_bottom = 46.0
+texture = ExtResource( 2 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_top = 50.0
+margin_right = 1024.0
+margin_bottom = 115.0
+custom_constants/separation = 5
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+margin_right = 45.0
+margin_bottom = 65.0
+text = "Place
+Kills
+Deaths
+"
+
+[node name="Label2" type="Label" parent="HBoxContainer"]
+margin_left = 50.0
+margin_right = 70.0
+margin_bottom = 65.0
+text = "1st
+2
+3
+"

@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://resources/shadow_imune.tres" type="Material" id=1]
+[ext_resource path="res://ui/interface.tscn" type="PackedScene" id=2]
+[ext_resource path="res://menus/pause/pause_sign.tscn" type="PackedScene" id=3]
+[ext_resource path="res://globals/game.gd" type="Script" id=4]
+
+[node name="Game" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="ChildrenHolder" type="Node2D" parent="."]
+material = ExtResource( 1 )
+z_index = 1
+
+[node name="PauseSign" parent="." instance=ExtResource( 3 )]
+material = ExtResource( 1 )
+use_parent_material = false
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 0.465, 0.465 )
+
+[node name="Interface" parent="." instance=ExtResource( 2 )]

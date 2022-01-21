@@ -1,6 +1,6 @@
 extends Node2D
 
-var powerUpPath = preload("res://Prefabs/Maps/Obstacles/Powers.tscn")
+var powerUpPath = preload("res://entities/powers.tscn")
 var powerUps = []
 var rng = RandomNumberGenerator.new()
 

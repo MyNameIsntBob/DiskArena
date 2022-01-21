@@ -1,0 +1,207 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://menus/chain/chain5.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Art/GUI/Signs/Main/Exit.png" type="Texture" id=3]
+[ext_resource path="res://Art/GUI/Signs/Main/TitleSign.png" type="Texture" id=4]
+[ext_resource path="res://Art/GUI/Signs/Main/Play.png" type="Texture" id=5]
+[ext_resource path="res://Art/GUI/Signs/Main/Options.png" type="Texture" id=6]
+[ext_resource path="res://menus/main_menu/menu_sign.gd" type="Script" id=7]
+[ext_resource path="res://menus/chain/chain2.tscn" type="PackedScene" id=8]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 114, 8 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 136, 32 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 76, 24 )
+
+[node name="MenuSign" type="Node2D"]
+use_parent_material = true
+script = ExtResource( 7 )
+buttons = [ NodePath("Play/Sprite/Play"), NodePath("Options/Sprite/Options"), NodePath("Exit/Sprite/Exit") ]
+
+[node name="Mount" type="StaticBody2D" parent="."]
+use_parent_material = true
+position = Vector2( 0, -440 )
+collision_layer = 32
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mount"]
+shape = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Chain1" parent="." instance=ExtResource( 1 )]
+position = Vector2( -112, -437 )
+first_mount_path = NodePath("../Mount")
+last_mount_path = NodePath("../Title")
+
+[node name="Chain2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 112, -437 )
+first_mount_path = NodePath("../Mount")
+last_mount_path = NodePath("../Title")
+
+[node name="Chain3" parent="." instance=ExtResource( 8 )]
+position = Vector2( -64, -333 )
+first_mount_path = NodePath("../Title")
+last_mount_path = NodePath("../Play")
+
+[node name="Chain4" parent="." instance=ExtResource( 8 )]
+position = Vector2( 64, -333 )
+first_mount_path = NodePath("../Title")
+last_mount_path = NodePath("../Play")
+
+[node name="Chain5" parent="." instance=ExtResource( 8 )]
+position = Vector2( -64, -273 )
+first_mount_path = NodePath("../Play")
+last_mount_path = NodePath("../Options")
+
+[node name="Chain6" parent="." instance=ExtResource( 8 )]
+position = Vector2( 64, -273 )
+first_mount_path = NodePath("../Play")
+last_mount_path = NodePath("../Options")
+
+[node name="Chain7" parent="." instance=ExtResource( 8 )]
+position = Vector2( -64, -214 )
+first_mount_path = NodePath("../Options")
+last_mount_path = NodePath("../Exit")
+
+[node name="Chain8" parent="." instance=ExtResource( 8 )]
+position = Vector2( 64, -214 )
+first_mount_path = NodePath("../Options")
+last_mount_path = NodePath("../Exit")
+
+[node name="Title" type="RigidBody2D" parent="."]
+use_parent_material = true
+position = Vector2( 0, -360 )
+z_index = 2
+collision_layer = 32
+collision_mask = 32
+
+[node name="Sprite" type="Sprite" parent="Title"]
+use_parent_material = true
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Title"]
+shape = SubResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Play" type="RigidBody2D" parent="."]
+use_parent_material = true
+position = Vector2( 0, -292 )
+z_index = 2
+collision_layer = 32
+collision_mask = 32
+
+[node name="Sprite" type="Sprite" parent="Play"]
+use_parent_material = true
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Play" type="TextureButton" parent="Play/Sprite"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -80.0
+margin_top = -26.5
+margin_right = -80.0
+margin_bottom = -26.5
+focus_neighbour_bottom = NodePath("../../../Options/Sprite/Options")
+action_mode = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Play"]
+shape = SubResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Options" type="RigidBody2D" parent="."]
+use_parent_material = true
+position = Vector2( 0, -231 )
+z_index = 2
+collision_layer = 32
+collision_mask = 32
+
+[node name="Sprite" type="Sprite" parent="Options"]
+use_parent_material = true
+texture = ExtResource( 6 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Options" type="TextureButton" parent="Options/Sprite"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -80.0
+margin_top = -26.5
+margin_right = -80.0
+margin_bottom = -26.5
+focus_neighbour_top = NodePath("../../../Play/Sprite/Play")
+focus_neighbour_bottom = NodePath("../../../Exit/Sprite/Exit")
+action_mode = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Options"]
+shape = SubResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Exit" type="RigidBody2D" parent="."]
+use_parent_material = true
+position = Vector2( 0, -172 )
+z_index = 2
+collision_layer = 32
+collision_mask = 32
+
+[node name="Sprite" type="Sprite" parent="Exit"]
+use_parent_material = true
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Exit" type="TextureButton" parent="Exit/Sprite"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -80.0
+margin_top = -26.5
+margin_right = -80.0
+margin_bottom = -26.5
+focus_neighbour_top = NodePath("../../../Options/Sprite/Options")
+action_mode = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Exit"]
+shape = SubResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Tween" type="Tween" parent="."]
+
+[connection signal="focus_entered" from="Play/Sprite/Play" to="." method="_on_focus_entered" binds= [ 0 ]]
+[connection signal="focus_exited" from="Play/Sprite/Play" to="." method="_on_focus_exited" binds= [ 0 ]]
+[connection signal="pressed" from="Play/Sprite/Play" to="." method="_on_Play_pressed"]
+[connection signal="focus_entered" from="Options/Sprite/Options" to="." method="_on_focus_entered" binds= [ 1 ]]
+[connection signal="focus_exited" from="Options/Sprite/Options" to="." method="_on_focus_exited" binds= [ 1 ]]
+[connection signal="pressed" from="Options/Sprite/Options" to="." method="_on_Options_pressed"]
+[connection signal="focus_entered" from="Exit/Sprite/Exit" to="." method="_on_focus_entered" binds= [ 2 ]]
+[connection signal="focus_exited" from="Exit/Sprite/Exit" to="." method="_on_focus_exited" binds= [ 2 ]]
+[connection signal="pressed" from="Exit/Sprite/Exit" to="." method="_on_Exit_pressed"]

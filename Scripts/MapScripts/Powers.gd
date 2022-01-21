@@ -15,7 +15,7 @@ var waitTill = 0.3
 var rotationDeg = 0.25 * PI
 var spaceDirection = 0.1
 
-var diskPath = preload("res://Prefabs/Disk.tscn")
+var diskPath = preload("res://entities/Disk.tscn")
 
 var isPaused = false
 

@@ -1,0 +1,275 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://maps/rock_spawner.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/MapScripts/Map.gd" type="Script" id=3]
+[ext_resource path="res://Art/Maps/Lava/GroundLayer4Player.png" type="Texture" id=4]
+[ext_resource path="res://Art/Maps/Lava/LavaLayer4Player.png" type="Texture" id=5]
+[ext_resource path="res://Art/Maps/Lava/2PlayerGroundLayer.png" type="Texture" id=6]
+[ext_resource path="res://Art/Maps/Lava/WallLayerPlayer.png" type="Texture" id=7]
+[ext_resource path="res://Art/Maps/Lava/2PlayerLavaLayer.png" type="Texture" id=8]
+[ext_resource path="res://resources/shadow_imune.tres" type="Material" id=9]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 129.66, 136.27 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 130.873, 72.0502 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 488.399, 2.83292 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 30.7538, 27.1847 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 501.333, 1.83777 )
+
+[node name="Maps" type="Node2D"]
+material = ExtResource( 9 )
+position = Vector2( 1.68176, 0 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
+spawn_locations = [ NodePath(""), NodePath(""), NodePath(""), NodePath("") ]
+map2 = NodePath("Map2")
+map4 = NodePath("Map4")
+
+[node name="Map2" type="Node2D" parent="."]
+use_parent_material = true
+
+[node name="Areas2" type="Node2D" parent="Map2"]
+visible = false
+
+[node name="area1" type="Area2D" parent="Map2/Areas2"]
+position = Vector2( -130, 0 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Map2/Areas2/area1"]
+shape = SubResource( 1 )
+
+[node name="area2" type="Area2D" parent="Map2/Areas2"]
+position = Vector2( 130, 0 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Map2/Areas2/area2"]
+shape = SubResource( 1 )
+
+[node name="Lava" type="Sprite" parent="Map2"]
+use_parent_material = true
+z_index = -10
+texture = ExtResource( 8 )
+
+[node name="Ground" type="Sprite" parent="Map2"]
+use_parent_material = true
+texture = ExtResource( 6 )
+
+[node name="Light2D" type="Light2D" parent="Map2/Ground"]
+light_mask = 2
+texture = ExtResource( 6 )
+mode = 2
+
+[node name="Walls" type="Sprite" parent="Map2"]
+use_parent_material = true
+texture = ExtResource( 7 )
+
+[node name="Map4" type="Node2D" parent="."]
+visible = false
+use_parent_material = true
+
+[node name="Areas" type="Node2D" parent="Map4"]
+visible = false
+
+[node name="area1" type="Area2D" parent="Map4/Areas"]
+position = Vector2( -130, -60 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map4/Areas/area1"]
+shape = SubResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="area2" type="Area2D" parent="Map4/Areas"]
+position = Vector2( 130, -60 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map4/Areas/area2"]
+shape = SubResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="area3" type="Area2D" parent="Map4/Areas"]
+position = Vector2( -130, 75 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map4/Areas/area3"]
+shape = SubResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="area4" type="Area2D" parent="Map4/Areas"]
+position = Vector2( 130, 75 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map4/Areas/area4"]
+shape = SubResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Lava" type="Sprite" parent="Map4"]
+z_index = -10
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Ground" type="Sprite" parent="Map4"]
+use_parent_material = true
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Light2D" type="Light2D" parent="Map4/Ground"]
+light_mask = 2
+texture = ExtResource( 4 )
+mode = 2
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Walls" type="Sprite" parent="Map4"]
+texture = ExtResource( 7 )
+
+[node name="CenterGapHorizontal" type="StaticBody2D" parent="Map4"]
+position = Vector2( 0, -5 )
+scale = Vector2( 0.486822, 5.04377 )
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map4/CenterGapHorizontal"]
+position = Vector2( -3.26444, -0.531271 )
+shape = SubResource( 3 )
+
+[node name="Walls" type="Node2D" parent="."]
+visible = false
+position = Vector2( -250, 0 )
+scale = Vector2( 0.486822, 5.04377 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="LeftWall" type="StaticBody2D" parent="Walls"]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/LeftWall"]
+shape = SubResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="RightWall" type="StaticBody2D" parent="Walls"]
+position = Vector2( 1027.07, 0 )
+collision_mask = 0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/RightWall"]
+shape = SubResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="TopWall" type="StaticBody2D" parent="Walls"]
+position = Vector2( 513.535, -27.757 )
+collision_mask = 0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/TopWall"]
+shape = SubResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="BottomWall" type="StaticBody2D" parent="Walls"]
+position = Vector2( 513.535, 27.757 )
+collision_mask = 0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/BottomWall"]
+shape = SubResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Gaps" type="Node2D" parent="."]
+visible = false
+
+[node name="CenterGapVertical" type="StaticBody2D" parent="Gaps"]
+scale = Vector2( 0.486822, 5.04377 )
+collision_layer = 2
+collision_mask = 0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gaps/CenterGapVertical"]
+shape = SubResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="LeftGap" type="StaticBody2D" parent="Gaps"]
+position = Vector2( -240, 0 )
+scale = Vector2( 0.486822, 5.04377 )
+collision_layer = 2
+collision_mask = 0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gaps/LeftGap"]
+shape = SubResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="RightGap" type="StaticBody2D" parent="Gaps"]
+position = Vector2( 240, 0 )
+scale = Vector2( 0.486822, 5.04377 )
+collision_layer = 2
+collision_mask = 0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gaps/RightGap"]
+shape = SubResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="BottomGap" type="StaticBody2D" parent="Gaps"]
+position = Vector2( 0, 125 )
+scale = Vector2( 0.486822, 5.04377 )
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gaps/BottomGap"]
+position = Vector2( 0, -0.336746 )
+shape = SubResource( 3 )
+
+[node name="TopGap" type="StaticBody2D" parent="Gaps"]
+position = Vector2( 0, -130 )
+scale = Vector2( 0.486822, 5.04377 )
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gaps/TopGap"]
+position = Vector2( 0, -0.420109 )
+shape = SubResource( 3 )
+
+[node name="Rock Spawner" parent="." instance=ExtResource( 1 )]

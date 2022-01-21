@@ -23,7 +23,7 @@ var isDead := false
 var isPaused := false
 
 ##export var diskPath : FilePath
-var diskPath = preload("res://Prefabs/Disk.tscn")
+var diskPath = preload("res://entities/Disk.tscn")
 var disks = []
 
 onready var default_layer = self.get_collision_layer()

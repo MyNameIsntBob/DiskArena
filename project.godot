@@ -8,26 +8,32 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Node2D",
+"class": "SignMenu",
+"language": "GDScript",
+"path": "res://menus/chain/sign.gd"
+} ]
 _global_script_class_icons={
+"SignMenu": ""
 }
 
 [application]
 
 config/name="Disk Arena"
-run/main_scene="res://Scenes/Game.tscn"
+run/main_scene="res://globals/game.tscn"
 config/icon="res://Art/GUI/Character/Human.png"
 
 [autoload]
 
-Global="*res://Scenes/Game.tscn"
-Icons="*res://Scripts/Global/Icons.gd"
-Functions="*res://Scripts/Global/Functions.gd"
-Settings="*res://Scripts/Global/Settings.gd"
-ScoreKeeper="*res://Scripts/Global/ScoreKeeper.gd"
-Spawners="*res://Scenes/Global/Spawners.tscn"
-PlayerSpawner="*res://Scenes/Global/PlayerSpawner.tscn"
-SceneManager="*res://Scenes/Global/SceneManager.tscn"
+Global="*res://globals/game.tscn"
+Icons="*res://globals/icons.gd"
+Functions="*res://globals/functions.gd"
+Settings="*res://globals/settings.gd"
+ScoreKeeper="*res://globals/score_keeper.gd"
+Spawners="*res://globals/spawners/spawners.tscn"
+PlayerSpawner="*res://globals/player_spawner.tscn"
+SceneManager="*res://globals/scene_manager.tscn"
 
 [display]
 

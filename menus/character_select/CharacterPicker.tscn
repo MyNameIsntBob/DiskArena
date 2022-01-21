@@ -1,0 +1,149 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Art/GUI/Character/Demon.png" type="Texture" id=1]
+[ext_resource path="res://Art/GUI/MapIcons/Grass.png" type="Texture" id=2]
+[ext_resource path="res://Art/GUI/Box/EmptyCharacterBox.png" type="Texture" id=3]
+[ext_resource path="res://Art/Text/FFFFORWA.TTF" type="DynamicFontData" id=4]
+[ext_resource path="res://resources/forward.tres" type="DynamicFont" id=5]
+[ext_resource path="res://menus/character_select/CharacterPicker.gd" type="Script" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 4 )
+
+[node name="CharacterPicker" type="VBoxContainer"]
+use_parent_material = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_scale = Vector2( 2, 2 )
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+name_label_path = NodePath("Character/MarginContainer/Box/VBoxContainer/BottomPadding/Name")
+join_label_path = NodePath("Character/MarginContainer/Box/Join")
+select_label_path = NodePath("Character/MarginContainer/Box/VBoxContainer/Select")
+character_path = NodePath("Character/MarginContainer/Box/VBoxContainer/HBoxContainer/VBoxContainer/Character")
+box_path = NodePath("Character/MarginContainer/Box")
+level_path = NodePath("Character/MarginContainer/Box/VBoxContainer/HBoxContainer/VBoxContainer/Level")
+top_padding_path = NodePath("Character/MarginContainer/Box/VBoxContainer/TopPadding")
+
+[node name="Character" type="HBoxContainer" parent="."]
+use_parent_material = true
+margin_right = 1024.0
+margin_bottom = 102.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="Character"]
+use_parent_material = true
+margin_left = 472.0
+margin_right = 552.0
+margin_bottom = 102.0
+
+[node name="Box" type="TextureRect" parent="Character/MarginContainer"]
+self_modulate = Color( 1, 1, 1, 0 )
+use_parent_material = true
+margin_right = 80.0
+margin_bottom = 102.0
+texture = ExtResource( 3 )
+
+[node name="Join" type="Label" parent="Character/MarginContainer/Box"]
+modulate = Color( 0, 0, 0, 1 )
+use_parent_material = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 5.0
+custom_fonts/font = ExtResource( 5 )
+text = "Press A or 
+Space to Join
+
+tab or x
+for bot"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Character/MarginContainer/Box"]
+show_behind_parent = true
+use_parent_material = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+alignment = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TopPadding" type="MarginContainer" parent="Character/MarginContainer/Box/VBoxContainer"]
+use_parent_material = true
+margin_right = 80.0
+margin_bottom = 68.0
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Select" type="Label" parent="Character/MarginContainer/Box/VBoxContainer"]
+visible = false
+modulate = Color( 0, 0, 0, 1 )
+use_parent_material = true
+margin_top = 46.0
+margin_right = 80.0
+margin_bottom = 68.0
+custom_fonts/font = ExtResource( 5 )
+text = "Select"
+align = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Character/MarginContainer/Box/VBoxContainer"]
+use_parent_material = true
+margin_top = 72.0
+margin_right = 80.0
+margin_bottom = 72.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Character/MarginContainer/Box/VBoxContainer/HBoxContainer"]
+use_parent_material = true
+margin_left = 40.0
+margin_right = 40.0
+
+[node name="Character" type="TextureRect" parent="Character/MarginContainer/Box/VBoxContainer/HBoxContainer/VBoxContainer"]
+visible = false
+use_parent_material = true
+margin_right = 44.0
+margin_bottom = 46.0
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Level" type="TextureRect" parent="Character/MarginContainer/Box/VBoxContainer/HBoxContainer/VBoxContainer"]
+visible = false
+show_behind_parent = true
+use_parent_material = true
+margin_right = 44.0
+margin_bottom = 26.0
+texture = ExtResource( 2 )
+
+[node name="BottomPadding" type="MarginContainer" parent="Character/MarginContainer/Box/VBoxContainer"]
+use_parent_material = true
+margin_top = 76.0
+margin_right = 80.0
+margin_bottom = 102.0
+rect_min_size = Vector2( 0, 26 )
+
+[node name="Name" type="Label" parent="Character/MarginContainer/Box/VBoxContainer/BottomPadding"]
+visible = false
+modulate = Color( 0, 0, 0, 1 )
+use_parent_material = true
+margin_top = 2.0
+margin_right = 80.0
+margin_bottom = 24.0
+custom_fonts/font = SubResource( 1 )
+text = "Demon"
+align = 1

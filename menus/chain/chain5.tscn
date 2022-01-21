@@ -1,0 +1,60 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://menus/chain/LinkFront.tscn" type="PackedScene" id=1]
+[ext_resource path="res://menus/chain/LinkBack.tscn" type="PackedScene" id=2]
+[ext_resource path="res://menus/chain/ChainLinker.gd" type="Script" id=3]
+
+[node name="Chain" type="Node2D"]
+use_parent_material = true
+script = ExtResource( 3 )
+first_link_path = NodePath("MountJoin")
+last_link_path = NodePath("SignJoin")
+
+[node name="MountJoin" type="PinJoint2D" parent="."]
+visible = false
+position = Vector2( 0, 2 )
+node_b = NodePath("../FrontLink1")
+
+[node name="FrontLink1" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, 7 )
+
+[node name="Join1" type="PinJoint2D" parent="."]
+visible = false
+position = Vector2( 0, 10 )
+node_a = NodePath("../FrontLink1")
+node_b = NodePath("../BackLink1")
+
+[node name="BackLink1" parent="." instance=ExtResource( 2 )]
+position = Vector2( 0, 16 )
+
+[node name="Join2" type="PinJoint2D" parent="."]
+visible = false
+position = Vector2( 0, 20 )
+node_a = NodePath("../BackLink1")
+node_b = NodePath("../FrontLink2")
+
+[node name="FrontLink2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, 25 )
+
+[node name="Join3" type="PinJoint2D" parent="."]
+visible = false
+position = Vector2( 0, 29 )
+node_a = NodePath("../FrontLink2")
+node_b = NodePath("../BackLink2")
+
+[node name="BackLink2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 0, 34 )
+
+[node name="Join4" type="PinJoint2D" parent="."]
+visible = false
+position = Vector2( 0, 39 )
+node_a = NodePath("../BackLink2")
+node_b = NodePath("../FrontLink3")
+
+[node name="FrontLink3" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, 43 )
+
+[node name="SignJoin" type="PinJoint2D" parent="."]
+visible = false
+position = Vector2( 0, 48 )
+node_a = NodePath("../FrontLink3")
