@@ -26,6 +26,7 @@ character_path = NodePath("Character/MarginContainer/Box/VBoxContainer/HBoxConta
 box_path = NodePath("Character/MarginContainer/Box")
 level_path = NodePath("Character/MarginContainer/Box/VBoxContainer/HBoxContainer/VBoxContainer/Level")
 top_padding_path = NodePath("Character/MarginContainer/Box/VBoxContainer/TopPadding")
+bot_text_path = NodePath("Character/MarginContainer/Box/VBoxContainer/BottomPadding/BotText")
 
 [node name="Character" type="HBoxContainer" parent="."]
 use_parent_material = true
@@ -59,7 +60,7 @@ custom_fonts/font = ExtResource( 5 )
 text = "Press A or 
 Space to Join
 
-tab or x
+tab or Y
 for bot"
 align = 1
 valign = 1
@@ -146,4 +147,14 @@ margin_right = 80.0
 margin_bottom = 24.0
 custom_fonts/font = SubResource( 1 )
 text = "Demon"
+align = 1
+
+[node name="BotText" type="Label" parent="Character/MarginContainer/Box/VBoxContainer/BottomPadding"]
+visible = false
+margin_right = 80.0
+margin_bottom = 25.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 5 )
+text = "ctrl or x
+to remove"
 align = 1

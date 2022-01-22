@@ -1,4 +1,4 @@
-extends 'res://Scripts/Character/Character.gd'
+extends Character
 
 var target
 var shootTimer

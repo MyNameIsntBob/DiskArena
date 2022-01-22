@@ -39,6 +39,9 @@ func drop():
 
 func raise():
 	focused = false
+	if len(buttons) > 0:
+		buttons[0].release_focus()
+	
 	$Tween.interpolate_property($Mount, "position", $Mount.position, Vector2(0, raise_to), raise_time, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$Tween.start()
 	yield($Tween, 'tween_completed')

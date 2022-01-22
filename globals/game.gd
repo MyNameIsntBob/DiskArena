@@ -2,6 +2,7 @@ extends Node
  
 var who_paused : int
 var paused := false
+var game_over := false
 
 
 # Pause and play game
@@ -19,6 +20,11 @@ func continue_game():
 	
 	paused = false
 
+
+func game_over():
+	$GameOverSign.set_scores()
+	$GameOverSign.drop()
+	yield($GameOverSign, 'finished')
 
 # Overwrite add child to add child to children holder
 func add_child(node, legible_unique_name: bool = false):

@@ -40,6 +40,7 @@ func reset_scores():
 
 func reset_stats():
 	player_stats = {}
+	num_of_players = 0
 
 # Tells us if the game is over
 func is_game_over():
@@ -65,6 +66,8 @@ func add_new_player(player_id, player_values):
 		
 	if player_stats[str(player_id)]['character_id'] == 0:
 		player_stats[str(player_id)]['character_id'] = random_unused_character()
+	
+	num_of_players += 1
 
 #func add_player(player):
 #	pass
@@ -90,26 +93,28 @@ func add_kill(player_id):
 	if stats:
 		stats['kills'] += 1
 
-#func player_die(player_id):
-##	Get the stats of the player and lower the hp
-#	var stats = get_stats(player_id)
-##	remove_player(player_id)
-#
-#	if !stats:
-#		stats = default_stats
-#
-#	if stats['hp'] <= 0:
-#		return
-#
-#	stats['hp'] -= 1
-#	stats['deaths'] += 1
-#
-##	If the player just died, we want to record there score
-#	if stats['hp'] <= 0:
-#		stats['score'] = num_of_players - _number_of_dead_players()
-#
-##	if is_game_over() and !isMenuScreen:
-##		load_scene('end')
+func player_die(player_id):
+#	Get the stats of the player and lower the hp
+	var stats = get_stats(player_id)
+#	remove_player(player_id)
+
+	if !stats:
+		stats = default_stats
+
+	if stats['hp'] <= 0:
+		return
+
+	stats['hp'] -= 1
+	stats['deaths'] += 1
+
+#	If the player just died, we want to record there score
+	if stats['hp'] <= 0:
+		stats['score'] = num_of_players - _number_of_dead_players()
+
+	if is_game_over() and !SceneManager.isMenuScreen:
+		Global.game_over()
+
+
 func add_player(player):
 	players.append(player)
 #

@@ -3,7 +3,7 @@ extends Node2D
 var waitTill = 0.3
 export var attackAt = 1.5
 var players = []
-var diskPath = preload("res://Prefabs/Disk.tscn")
+var diskPath = preload("res://entities/Disk.tscn")
 
 var isPaused := false
 

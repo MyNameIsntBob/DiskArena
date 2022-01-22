@@ -3,8 +3,10 @@ extends Node2D
 var player_path = preload("res://entities/Character/Player.tscn")
 var npc_path = preload("res://entities/Character/Bot.tscn")
 
+
 func _ready():
 	randomize()
+
 
 func spawnPoints(num_of_players = null):
 	if num_of_players == null:
@@ -14,23 +16,16 @@ func spawnPoints(num_of_players = null):
 	else:
 		return $Players2.get_children()
 
-# Used when having npcs play in the background on main screen
-#func spawnNpcs():
-#	var num_of_npcs = randi()%3 + 2
-#	var spawn_points = spawnPoints(num_of_npcs)
-#
-#
-#	for i in range(num_of_npcs):
-#		var npc = npc_path.instance()
-#		Global.add_child(npc)
-#		npc.position = spawn_points[i].position
 
 func spawnPlayers():
+	print("\nSpawn Players: ", spawnPoints())
+	print("Player Stats: ", ScoreKeeper.player_stats)
+	print("Number Of Players: ", ScoreKeeper.num_of_players, '\n')
 	for i in range(len(spawnPoints())):
-		
 		if i < ScoreKeeper.num_of_players:
 			spawnPlayer(i + 1)
-	
+
+
 func spawnPlayer(player_id): 
 	if !ScoreKeeper.get_stats(player_id):
 		return

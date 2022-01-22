@@ -30,6 +30,8 @@ export (NodePath) var level_path
 var level_node
 export (NodePath) var top_padding_path
 var top_padding
+export (NodePath) var bot_text_path
+var bot_text
 
 
 func _ready():
@@ -40,6 +42,7 @@ func _ready():
 	character = get_node(character_path)
 	box = get_node(box_path)
 	level_node = get_node(level_path)
+	bot_text = get_node(bot_text_path)
 
 
 func _process(delta):
@@ -71,8 +74,7 @@ func _process(delta):
 			name_label.show()
 		
 			if player['selected']:
-				print(level)
-#				level_node.texture = Icons.get_map_icon(level)
+				level_node.texture = Icons.get_map_icon(level)
 		
 		else:
 			if parent.num_of_players() + parent.num_of_bots > id: 
@@ -80,7 +82,9 @@ func _process(delta):
 				character.show()
 				join_label.hide()
 				box.texture = Icons.get_box(4)
+				bot_text.show()
 			else:
+				bot_text.hide()
 				name_label.hide()
 				character.hide()
 	

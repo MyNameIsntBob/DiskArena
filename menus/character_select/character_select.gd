@@ -33,9 +33,12 @@ func start():
 	print("Reset Score Keeper Stats")
 	ScoreKeeper.reset_stats()
 	
-	for i in range(len(activePlayers)):
-		ScoreKeeper.add_new_player(i + 1, activePlayers[i])
-		
+	for i in range(len(activePlayers) + num_of_bots):
+		if i < len(activePlayers):
+			ScoreKeeper.add_new_player(i + 1, activePlayers[i])
+		else:
+			ScoreKeeper.add_new_player(i + 1, {'npc': true})
+	
 	var level = 0
 	if len(activePlayers):
 		level = activePlayers[randi() % len(activePlayers)].level
@@ -78,6 +81,7 @@ func join(keyboard, input_id):
 	update_selecter_data()
 	
 func add_bot():
+	print('Add Bot')
 	if num_of_bots + num_of_players() < 4:
 		num_of_bots += 1
 	
@@ -114,29 +118,28 @@ func update_selecter_data():
 func _unhandled_input(event):
 	if !event or !focused:
 		return
-
+	
 	if event.is_action_pressed('ui_cancel') and num_of_players() == 0:
 		raise()
 		emit_signal("go_back")
-		
-		
-
-# Add a bot
+	
 	if event.is_action_pressed('add_bot'):
 		add_bot()
-			
+	
 	if event.is_action_pressed('remove_bot'):
 		remove_bot()
-
+	
 	if event.is_action_pressed("accept"):
 		if event is InputEventKey:
 			join(true, event.get_device())
 		elif event is InputEventJoypadButton:
 			join(false, event.get_device())
 
+
 func _on_CharacterPicker_pick_character(character):
 	players[find_player(character['keyboard'], character['input_id'])] = character
 	update_selecter_data()
+
 
 func _on_CharacterPicker_unpick_character(character):
 	var player_id = find_player(character['keyboard'], character['input_id'])

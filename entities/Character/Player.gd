@@ -1,4 +1,4 @@
-extends 'res://Scripts/Character/Character.gd'
+extends Character
 
 #expor vars
 export var input_id := 0

@@ -1,6 +1,6 @@
 extends Node2D
 
-var rock_path = preload("res://Prefabs/Maps/Obstacles/Rocks.tscn")
+onready var rock_path = load("res://entities/Rocks.gd")
 var rng = RandomNumberGenerator.new()
 
 var wait_timer = 1.0

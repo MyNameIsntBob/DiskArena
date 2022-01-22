@@ -1,4 +1,4 @@
-extends VBoxContainer
+extends RigidBody2D
 
 export var player_id : int
 
@@ -12,6 +12,6 @@ func _ready():
 	var score = scores_to_text[int(ScoreKeeper.get_score(player_id))]
 	var deaths = str(ScoreKeeper.get_deaths(player_id)) + '\n'
 	var kills = str(ScoreKeeper.get_kills(player_id)) + '\n'
-	find_node('Label2').text = score + kills + deaths
+	find_node('Scores').text = score + kills + deaths
 	
 	$Image.texture = Icons.get_gui_character(character_id)
