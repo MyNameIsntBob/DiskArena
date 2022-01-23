@@ -11,6 +11,8 @@ light_mode = 1
 
 [node name="Shadow" type="Sprite"]
 material = SubResource( 1 )
+z_index = 1
+z_as_relative = false
 texture = ExtResource( 1 )
 hframes = 6
 script = ExtResource( 2 )
