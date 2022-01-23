@@ -18,5 +18,7 @@ __meta__ = {
 
 [node name="CharacterSelect" parent="." instance=ExtResource( 3 )]
 
+[connection signal="press_exit" from="MenuSign" to="." method="_on_MenuSign_press_exit"]
+[connection signal="press_options" from="MenuSign" to="." method="_on_MenuSign_press_options"]
 [connection signal="press_play" from="MenuSign" to="." method="_on_MenuSign_press_play"]
 [connection signal="go_back" from="CharacterSelect" to="." method="_on_go_back"]

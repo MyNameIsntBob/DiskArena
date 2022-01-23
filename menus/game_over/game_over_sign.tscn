@@ -18,6 +18,7 @@ extents = Vector2( 224, 32 )
 material = ExtResource( 7 )
 z_as_relative = false
 script = ExtResource( 1 )
+player_paths = [ NodePath("Player1/PlayerScore"), NodePath("Player2/PlayerScore"), NodePath("Player3/PlayerScore"), NodePath("Player4/PlayerScore") ]
 
 [node name="Mount" type="StaticBody2D" parent="."]
 use_parent_material = true
