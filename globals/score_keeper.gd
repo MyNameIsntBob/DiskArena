@@ -3,7 +3,7 @@ extends Node
 var player_stats : Dictionary
 
 const default_stats := {
-	'hp': 3,
+	'hp': 0,
 	'max_hp': 3,
 	'keyboard': false,
 	'input_id': 0,
@@ -92,6 +92,7 @@ func add_kill(player_id):
 	var stats = get_stats(player_id)
 	if stats:
 		stats['kills'] += 1
+	Global.set_scores()
 
 func player_die(player_id):
 #	Get the stats of the player and lower the hp

@@ -23,7 +23,6 @@ func continue_game():
 
 func game_over():
 	game_over = true
-	$GameOverSign.set_scores()
 	$GameOverSign.drop()
 	yield($GameOverSign, 'finished')
 
@@ -43,5 +42,9 @@ func focus_camera():
 
 func set_hp_bars():
 	$Interface.set_hp_bars()
+
+
+func set_scores():
+	$GameOverSign.set_scores()
 
 

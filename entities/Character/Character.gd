@@ -37,6 +37,8 @@ onready var charImage = $Character/Character_icon
 	
 func _process(delta):
 	
+	$Character/Label.text = str(ScoreKeeper.get_kills(player_id))
+	
 	if Global.paused:
 		if !isPaused:
 			isPaused = true
@@ -139,9 +141,9 @@ func shoot():
 	disk.character_id = character_id
 	disks.append(disk)
 	
-func kill(direction = Vector2.ZERO):
+func kill(direction = Vector2.ZERO) -> bool:
 	if isDead or imortalTimer > 0:
-		return
+		return false
 		
 	if !SceneManager.isMenuScreen:
 		ScoreKeeper.player_die(player_id)
@@ -151,6 +153,12 @@ func kill(direction = Vector2.ZERO):
 	animationPlayer.play("Death")
 	charImage.frame_coords.y = int(charImage.frame_coords.y / 2) * 2
 	velocity = direction.normalized() * 10
+	respawn()
+	return true
+	
+
+func respawn():
+	
 	yield(animationPlayer, "animation_finished")
 	
 	if SceneManager.isMenuScreen || ScoreKeeper.get_hp(player_id) > 0:
@@ -159,4 +167,4 @@ func kill(direction = Vector2.ZERO):
 		
 		isDead = false
 		imortalTimer = imortalDuration
-		
+

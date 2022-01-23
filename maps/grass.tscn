@@ -26,6 +26,7 @@ extents = Vector2( 501.333, 1.83777 )
 [node name="Maps" type="Node2D"]
 material = ExtResource( 6 )
 position = Vector2( 1.68176, 0 )
+z_as_relative = false
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_lock_": true

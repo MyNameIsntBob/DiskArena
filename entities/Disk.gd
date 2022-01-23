@@ -72,8 +72,8 @@ func _on_ObjectChecker_body_entered(body):
 
 #	if body is KinematicBody2D and body.get("player_id"):
 	if body.get_collision_layer_bit(3):
-		body.kill(velocity)
-		ScoreKeeper.add_kill(sender.player_id)
+		if body.kill(velocity):
+			ScoreKeeper.add_kill(sender.player_id)
 
 
 func _on_ObjectChecker_area_entered(area):

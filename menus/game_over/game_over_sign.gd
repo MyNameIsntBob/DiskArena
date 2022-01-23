@@ -5,12 +5,13 @@ var players = []
 
 func _ready():
 	for player_path in player_paths:
-		players.append(get_node(player_paths))
-	
-#	for i in range(players):
-#		if ScoreKeeper.num_of_players < i + 1:
-#			players[i].queue_free()
+		players.append(get_node(player_path))
+
 
 func set_scores():
+	print('set scores')
 	for player in players:
-		player.get_node('PlayerScore').set_score()
+		if is_instance_valid(player):
+			player.set_score()
+		else:
+			players.erase(player)

@@ -13,3 +13,7 @@ func _ready():
 	
 	var last_link = get_node(last_link_path)
 	last_link.set_node_b("../" + last_mount_path)
+
+func break_chain():
+	queue_free()
+	pass
