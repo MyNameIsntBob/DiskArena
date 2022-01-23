@@ -20,7 +20,7 @@ func _process(delta):
 	if (!sender):
 		self.queue_free()
 		
-	if sender.isDead:
+	if sender.isDead or Global.game_over:
 		sendBack = true
 	
 func _physics_process(delta):

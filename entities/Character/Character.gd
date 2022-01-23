@@ -118,6 +118,9 @@ func remove_disk(disk):
 	disks.erase(disk)
 
 func shoot():
+	if Global.game_over:
+		return
+	
 	if len(disks):
 		for disk in disks:
 			if disk:

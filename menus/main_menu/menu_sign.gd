@@ -18,4 +18,5 @@ func _on_Exit_pressed():
 	if focused:
 		emit_signal("press_exit")
 
-
+func _unhandled_input(event):
+	Functions.control_to_UI(event)

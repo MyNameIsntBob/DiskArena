@@ -22,6 +22,7 @@ func continue_game():
 
 
 func game_over():
+	game_over = true
 	$GameOverSign.set_scores()
 	$GameOverSign.drop()
 	yield($GameOverSign, 'finished')

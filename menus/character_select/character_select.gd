@@ -81,7 +81,6 @@ func join(keyboard, input_id):
 	update_selecter_data()
 	
 func add_bot():
-	print('Add Bot')
 	if num_of_bots + num_of_players() < 4:
 		num_of_bots += 1
 	
