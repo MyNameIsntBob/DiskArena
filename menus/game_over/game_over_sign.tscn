@@ -30,20 +30,24 @@ collision_mask = 256
 use_parent_material = true
 shape = SubResource( 1 )
 
-[node name="Chain" parent="." instance=ExtResource( 2 )]
-position = Vector2( -200, -437 )
-first_mount_path = NodePath("../Mount")
-last_mount_path = NodePath("../Title")
+[node name="Chains" type="Node2D" parent="."]
+use_parent_material = true
 
-[node name="Chain2" parent="." instance=ExtResource( 2 )]
+[node name="Chain" parent="Chains" instance=ExtResource( 2 )]
+position = Vector2( -200, -437 )
+first_mount_path = NodePath("../../Mount")
+last_mount_path = NodePath("../../Title")
+
+[node name="Chain2" parent="Chains" instance=ExtResource( 2 )]
 position = Vector2( 200, -437 )
-first_mount_path = NodePath("../Mount")
-last_mount_path = NodePath("../Title")
+first_mount_path = NodePath("../../Mount")
+last_mount_path = NodePath("../../Title")
 
 [node name="Title" type="RigidBody2D" parent="."]
 use_parent_material = true
 position = Vector2( 0, -360 )
-z_index = 2
+z_index = 15
+z_as_relative = false
 collision_layer = 256
 collision_mask = 256
 
@@ -84,7 +88,6 @@ last_mount_path = NodePath("../PlayerScore")
 
 [node name="PlayerScore" parent="Player1" instance=ExtResource( 5 )]
 position = Vector2( 2, -237 )
-z_index = 2
 player_id = 1
 
 [node name="Player2" type="Node2D" parent="."]
@@ -103,7 +106,6 @@ last_mount_path = NodePath("../PlayerScore")
 
 [node name="PlayerScore" parent="Player2" instance=ExtResource( 5 )]
 position = Vector2( 2, -237 )
-z_index = 2
 player_id = 2
 
 [node name="Player3" type="Node2D" parent="."]
@@ -122,7 +124,6 @@ last_mount_path = NodePath("../PlayerScore")
 
 [node name="PlayerScore" parent="Player3" instance=ExtResource( 5 )]
 position = Vector2( 2, -237 )
-z_index = 2
 player_id = 3
 
 [node name="Player4" type="Node2D" parent="."]
@@ -141,7 +142,6 @@ last_mount_path = NodePath("../PlayerScore")
 
 [node name="PlayerScore" parent="Player4" instance=ExtResource( 5 )]
 position = Vector2( 2, -237 )
-z_index = 2
 player_id = 4
 
 [node name="Tween" type="Tween" parent="."]

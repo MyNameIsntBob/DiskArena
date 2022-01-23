@@ -9,6 +9,8 @@ extents = Vector2( 42, 73 )
 
 [node name="CharacterPicker" type="RigidBody2D"]
 use_parent_material = true
+z_index = 15
+z_as_relative = false
 collision_layer = 64
 collision_mask = 64
 script = ExtResource( 3 )
