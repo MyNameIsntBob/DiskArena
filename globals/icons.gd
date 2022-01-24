@@ -59,10 +59,10 @@ const characters = {
 }
 
 const white_characters = {
-	'Demon': preload('res://Art/Characters/White-Demon-Sheet.png'),
-	'Goblin': preload('res://Art/Characters/White-Goblin-Sheet.png'),
-	'Human': preload('res://Art/Characters/White-Human-Sheet.png'),
-	'Robot': preload('res://Art/Characters/White-Robot-Sheet.png'),
+	'Demon': preload("res://Art/Characters/Demon-White-Sheet.png"),
+	'Goblin': preload('res://Art/Characters/Goblin-White-Sheet.png'),
+	'Human': preload('res://Art/Characters/Human-White-Sheet.png'),
+	'Robot': preload('res://Art/Characters/Robot-White-Sheet.png'),
 }
 
 const bullets = {

@@ -4,6 +4,9 @@ var who_paused : int
 var paused := false
 var game_over := false
 
+# TODO 
+# Implement this
+var can_shoot := false
 
 # Pause and play game
 func pause_game(player_id):

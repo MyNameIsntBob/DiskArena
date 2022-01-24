@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/White-Demon-Sheet.png-551ac6f4c6b36533e0ff3d85cf04da8f.stex"
+path="res://.import/Robot-White-Sheet.png-7d49d76958b05c47e16f14725245c9e3.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Characters/White-Demon-Sheet.png"
-dest_files=[ "res://.import/White-Demon-Sheet.png-551ac6f4c6b36533e0ff3d85cf04da8f.stex" ]
+source_file="res://Art/Characters/Robot-White-Sheet.png"
+dest_files=[ "res://.import/Robot-White-Sheet.png-7d49d76958b05c47e16f14725245c9e3.stex" ]
 
 [params]
 
@@ -28,6 +28,7 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
+process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=true

@@ -14,10 +14,11 @@ var friction := 0.2
 var input_vector := Vector2(0, 0)
 var look_vector := Vector2(0, 0)
 
-var imortalTimer := 2.0
-var imortalDuration := 2.0
+var flashTimer := 0.0
+var flashDuration := 0.2
+var white := false
 
-export var white := false
+export var invincible := false setget set_invincible
 
 var isDead := false
 
@@ -32,13 +33,13 @@ onready var default_layer = self.get_collision_layer()
 onready var animationPlayer = $Character/AnimationPlayer
 onready var charImage = $Character/Character_icon
 
-#export var cameraPath : NodePath 
-#How to get an Object's path
-	
+
+func _ready():
+	$Character/InvincibleTimer.connect('timeout', self, '_on_invincible_timeout')
+	$Character/FlashTimer.connect('timeout', self, '_on_flash_timeout')
+
+
 func _process(delta):
-	
-	$Character/Label.text = str(ScoreKeeper.get_kills(player_id))
-	
 	if Global.paused:
 		if !isPaused:
 			isPaused = true
@@ -53,14 +54,14 @@ func _process(delta):
 			pass
 	
 #	set_collision_layer(0)
-	if white and imortalTimer > 0:
+#	if white and imortalTimer > 0:
+	if white:
 		charImage.texture = Icons.get_white_character(character_id)
 	else:
 		charImage.texture = Icons.get_character(character_id)
 	
-#	You just spawned in
-	if imortalTimer > 0:
-		imortalTimer -= delta
+	
+	if invincible:
 		set_collision_layer(0)
 	else:
 		set_collision_layer(default_layer)
@@ -120,6 +121,8 @@ func remove_disk(disk):
 	disks.erase(disk)
 
 func shoot():
+	# TODO
+	# Change this to use !Global.can_shoot 
 	if Global.game_over:
 		return
 	
@@ -140,9 +143,10 @@ func shoot():
 	disk.velocity = bulVelocity.normalized()
 	disk.character_id = character_id
 	disks.append(disk)
-	
+
+
 func kill(direction = Vector2.ZERO) -> bool:
-	if isDead or imortalTimer > 0:
+	if isDead or invincible:
 		return false
 		
 	if !SceneManager.isMenuScreen:
@@ -155,7 +159,7 @@ func kill(direction = Vector2.ZERO) -> bool:
 	velocity = direction.normalized() * 10
 	respawn()
 	return true
-	
+
 
 func respawn():
 	
@@ -166,5 +170,25 @@ func respawn():
 		yield(animationPlayer, "animation_finished")
 		
 		isDead = false
-		imortalTimer = imortalDuration
+		self.invincible = true
+
+func set_invincible(new_value : bool):
+	if new_value == true:
+		white = true
+		invincible = true
+		$Character/InvincibleTimer.start()
+		$Character/FlashTimer.start()
+	else:
+		white = false
+		invincible = false
+		$Character/InvincibleTimer.stop()
+		$Character/FlashTimer.stop()
+
+
+func _on_flash_timeout():
+	white = !white
+
+
+func _on_invincible_timeout():
+	self.invincible = false
 
