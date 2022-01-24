@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/white-Human-Sheet.png-f579b8b903e82375a7597144d619a577.stex"
+path="res://.import/GameOver.png-57f3eecd44808eaa83681a5d1daf28c8.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Characters/white-Human-Sheet.png"
-dest_files=[ "res://.import/white-Human-Sheet.png-f579b8b903e82375a7597144d619a577.stex" ]
+source_file="res://Art/GUI/Signs/GameOver.png"
+dest_files=[ "res://.import/GameOver.png-57f3eecd44808eaa83681a5d1daf28c8.stex" ]
 
 [params]
 

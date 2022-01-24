@@ -11,11 +11,11 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 129.66, 136.27 )
 
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 130.873, 72.0502 )
-
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 488.399, 2.88879 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 130.873, 72.0502 )
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 30.7538, 27.1847 )
@@ -26,6 +26,7 @@ extents = Vector2( 501.333, 1.83777 )
 [node name="Maps" type="Node2D"]
 material = ExtResource( 6 )
 position = Vector2( 1.68176, 0 )
+z_as_relative = false
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_lock_": true
@@ -74,45 +75,6 @@ texture = ExtResource( 4 )
 [node name="Map4" type="Node2D" parent="."]
 use_parent_material = true
 
-[node name="Areas" type="Node2D" parent="Map4"]
-visible = false
-
-[node name="area1" type="Area2D" parent="Map4/Areas"]
-position = Vector2( -130, -60 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Map4/Areas/area1"]
-shape = SubResource( 2 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="area2" type="Area2D" parent="Map4/Areas"]
-position = Vector2( 130, -60 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Map4/Areas/area2"]
-shape = SubResource( 2 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="area3" type="Area2D" parent="Map4/Areas"]
-position = Vector2( -130, 75 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Map4/Areas/area3"]
-shape = SubResource( 2 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="area4" type="Area2D" parent="Map4/Areas"]
-position = Vector2( 130, 75 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Map4/Areas/area4"]
-shape = SubResource( 2 )
-__meta__ = {
-"_edit_lock_": true
-}
-
 [node name="Water" type="Sprite" parent="Map4"]
 z_index = -10
 texture = ExtResource( 5 )
@@ -139,67 +101,110 @@ __meta__ = {
 use_parent_material = true
 texture = ExtResource( 4 )
 
-[node name="CenterGapHorizontal" type="StaticBody2D" parent="Map4"]
+[node name="Collisions" type="Node2D" parent="Map4"]
+visible = false
+
+[node name="CenterGapHorizontal" type="StaticBody2D" parent="Map4/Collisions"]
 position = Vector2( 0, -5 )
 scale = Vector2( 0.486822, 5.04377 )
 collision_layer = 2
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Map4/CenterGapHorizontal"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map4/Collisions/CenterGapHorizontal"]
 position = Vector2( -4.16664, 0.0635223 )
 shape = SubResource( 3 )
 
-[node name="Walls" type="Node2D" parent="."]
+[node name="Areas" type="Node2D" parent="Map4/Collisions"]
+visible = false
+
+[node name="area1" type="Area2D" parent="Map4/Collisions/Areas"]
+position = Vector2( -130, -60 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map4/Collisions/Areas/area1"]
+shape = SubResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="area2" type="Area2D" parent="Map4/Collisions/Areas"]
+position = Vector2( 130, -60 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map4/Collisions/Areas/area2"]
+shape = SubResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="area3" type="Area2D" parent="Map4/Collisions/Areas"]
+position = Vector2( -130, 75 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map4/Collisions/Areas/area3"]
+shape = SubResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="area4" type="Area2D" parent="Map4/Collisions/Areas"]
+position = Vector2( 130, 75 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map4/Collisions/Areas/area4"]
+shape = SubResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionWalls" type="Node2D" parent="."]
+visible = false
 position = Vector2( -250, 0 )
 scale = Vector2( 0.486822, 5.04377 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="LeftWall" type="StaticBody2D" parent="Walls"]
+[node name="LeftWall" type="StaticBody2D" parent="CollisionWalls"]
 position = Vector2( 15, 0.315 )
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/LeftWall"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionWalls/LeftWall"]
 shape = SubResource( 4 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="RightWall" type="StaticBody2D" parent="Walls"]
+[node name="RightWall" type="StaticBody2D" parent="CollisionWalls"]
 position = Vector2( 1010, 0 )
 collision_mask = 0
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/RightWall"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionWalls/RightWall"]
 shape = SubResource( 4 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="TopWall" type="StaticBody2D" parent="Walls"]
+[node name="TopWall" type="StaticBody2D" parent="CollisionWalls"]
 position = Vector2( 513.535, -27.757 )
 collision_mask = 0
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/TopWall"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionWalls/TopWall"]
 shape = SubResource( 5 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="BottomWall" type="StaticBody2D" parent="Walls"]
+[node name="BottomWall" type="StaticBody2D" parent="CollisionWalls"]
 position = Vector2( 513.535, 27 )
 collision_mask = 0
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/BottomWall"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionWalls/BottomWall"]
 shape = SubResource( 5 )
 __meta__ = {
 "_edit_lock_": true

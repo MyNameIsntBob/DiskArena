@@ -4,6 +4,9 @@ var who_paused : int
 var paused := false
 var game_over := false
 
+# TODO 
+# Implement this
+var can_shoot := false
 
 # Pause and play game
 func pause_game(player_id):
@@ -23,7 +26,6 @@ func continue_game():
 
 func game_over():
 	game_over = true
-	$GameOverSign.set_scores()
 	$GameOverSign.drop()
 	yield($GameOverSign, 'finished')
 
@@ -43,5 +45,9 @@ func focus_camera():
 
 func set_hp_bars():
 	$Interface.set_hp_bars()
+
+
+func set_scores():
+	$GameOverSign.set_scores()
 
 

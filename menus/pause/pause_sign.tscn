@@ -69,7 +69,8 @@ last_mount_path = NodePath("../Exit")
 [node name="Title" type="RigidBody2D" parent="."]
 use_parent_material = true
 position = Vector2( 0, -312 )
-z_index = 2
+z_index = 15
+z_as_relative = false
 collision_layer = 128
 collision_mask = 128
 
@@ -89,7 +90,8 @@ __meta__ = {
 [node name="Play" type="RigidBody2D" parent="."]
 use_parent_material = true
 position = Vector2( 0, -244 )
-z_index = 2
+z_index = 15
+z_as_relative = false
 collision_layer = 128
 collision_mask = 128
 
@@ -122,7 +124,8 @@ __meta__ = {
 pause_mode = 2
 use_parent_material = true
 position = Vector2( 0, -183 )
-z_index = 2
+z_index = 15
+z_as_relative = false
 collision_layer = 128
 collision_mask = 128
 gravity_scale = 2.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://entities/Shadow.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Art/Characters/Goblin-Sheet2.png" type="Texture" id=2]
@@ -66,22 +66,6 @@ tracks/0/keys = {
 "values": [ 2.0, 3.0, 4.0, 5.0 ]
 }
 
-[sub_resource type="Animation" id=5]
-length = 0.4
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:white")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ false, true ]
-}
-
 [node name="Character" type="Node2D"]
 use_parent_material = true
 
@@ -104,6 +88,9 @@ anims/Idle = SubResource( 2 )
 anims/Revive = SubResource( 3 )
 anims/Run = SubResource( 4 )
 
-[node name="FlashingPlayer" type="AnimationPlayer" parent="."]
-autoplay = "Invinsible"
-anims/Invinsible = SubResource( 5 )
+[node name="InvincibleTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="FlashTimer" type="Timer" parent="."]
+wait_time = 0.2

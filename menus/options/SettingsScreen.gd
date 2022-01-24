@@ -13,7 +13,7 @@ func _process(delta):
 		fullScreenButton.pressed = Settings.fullScreen
 
 func go_back():
-	Global.load_scene('start')
+	SceneManager.load_main_menu()
 
 func _on_CheckBox_toggled(button_pressed):
 	Settings.set_full_screen(button_pressed)

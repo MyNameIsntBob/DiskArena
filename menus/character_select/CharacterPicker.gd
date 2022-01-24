@@ -65,6 +65,7 @@ func _process(delta):
 	
 	if name_label and character:
 		if player:
+			bot_text.hide()
 			if taken():
 				character.texture = Icons.get_gui_taken_character(player['character_id'])
 			else:

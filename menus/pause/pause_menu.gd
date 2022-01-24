@@ -18,7 +18,7 @@ func _on_Exit_pressed():
 	raise()
 	yield(self, 'finished')
 	Global.continue_game()
-	Global.load_scene('start')
+	SceneManager.load_main_menu()
 	
 func _unhandled_input(event):
 #	If the input wasn't from my player

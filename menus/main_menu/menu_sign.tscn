@@ -34,50 +34,54 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Chain1" parent="." instance=ExtResource( 1 )]
+[node name="Chains" type="Node2D" parent="."]
+use_parent_material = true
+
+[node name="Chain1" parent="Chains" instance=ExtResource( 1 )]
 position = Vector2( -112, -437 )
-first_mount_path = NodePath("../Mount")
-last_mount_path = NodePath("../Title")
+first_mount_path = NodePath("../../Mount")
+last_mount_path = NodePath("../../Title")
 
-[node name="Chain2" parent="." instance=ExtResource( 1 )]
+[node name="Chain2" parent="Chains" instance=ExtResource( 1 )]
 position = Vector2( 112, -437 )
-first_mount_path = NodePath("../Mount")
-last_mount_path = NodePath("../Title")
+first_mount_path = NodePath("../../Mount")
+last_mount_path = NodePath("../../Title")
 
-[node name="Chain3" parent="." instance=ExtResource( 8 )]
+[node name="Chain3" parent="Chains" instance=ExtResource( 8 )]
 position = Vector2( -64, -333 )
-first_mount_path = NodePath("../Title")
-last_mount_path = NodePath("../Play")
+first_mount_path = NodePath("../../Title")
+last_mount_path = NodePath("../../Play")
 
-[node name="Chain4" parent="." instance=ExtResource( 8 )]
+[node name="Chain4" parent="Chains" instance=ExtResource( 8 )]
 position = Vector2( 64, -333 )
-first_mount_path = NodePath("../Title")
-last_mount_path = NodePath("../Play")
+first_mount_path = NodePath("../../Title")
+last_mount_path = NodePath("../../Play")
 
-[node name="Chain5" parent="." instance=ExtResource( 8 )]
+[node name="Chain5" parent="Chains" instance=ExtResource( 8 )]
 position = Vector2( -64, -273 )
-first_mount_path = NodePath("../Play")
-last_mount_path = NodePath("../Options")
+first_mount_path = NodePath("../../Play")
+last_mount_path = NodePath("../../Options")
 
-[node name="Chain6" parent="." instance=ExtResource( 8 )]
+[node name="Chain6" parent="Chains" instance=ExtResource( 8 )]
 position = Vector2( 64, -273 )
-first_mount_path = NodePath("../Play")
-last_mount_path = NodePath("../Options")
+first_mount_path = NodePath("../../Play")
+last_mount_path = NodePath("../../Options")
 
-[node name="Chain7" parent="." instance=ExtResource( 8 )]
+[node name="Chain7" parent="Chains" instance=ExtResource( 8 )]
 position = Vector2( -64, -214 )
-first_mount_path = NodePath("../Options")
-last_mount_path = NodePath("../Exit")
+first_mount_path = NodePath("../../Options")
+last_mount_path = NodePath("../../Exit")
 
-[node name="Chain8" parent="." instance=ExtResource( 8 )]
+[node name="Chain8" parent="Chains" instance=ExtResource( 8 )]
 position = Vector2( 64, -214 )
-first_mount_path = NodePath("../Options")
-last_mount_path = NodePath("../Exit")
+first_mount_path = NodePath("../../Options")
+last_mount_path = NodePath("../../Exit")
 
 [node name="Title" type="RigidBody2D" parent="."]
 use_parent_material = true
 position = Vector2( 0, -360 )
-z_index = 2
+z_index = 15
+z_as_relative = false
 collision_layer = 32
 collision_mask = 32
 
@@ -97,7 +101,8 @@ __meta__ = {
 [node name="Play" type="RigidBody2D" parent="."]
 use_parent_material = true
 position = Vector2( 0, -292 )
-z_index = 2
+z_index = 15
+z_as_relative = false
 collision_layer = 32
 collision_mask = 32
 
@@ -130,7 +135,8 @@ __meta__ = {
 [node name="Options" type="RigidBody2D" parent="."]
 use_parent_material = true
 position = Vector2( 0, -231 )
-z_index = 2
+z_index = 15
+z_as_relative = false
 collision_layer = 32
 collision_mask = 32
 
@@ -164,7 +170,8 @@ __meta__ = {
 [node name="Exit" type="RigidBody2D" parent="."]
 use_parent_material = true
 position = Vector2( 0, -172 )
-z_index = 2
+z_index = 15
+z_as_relative = false
 collision_layer = 32
 collision_mask = 32
 

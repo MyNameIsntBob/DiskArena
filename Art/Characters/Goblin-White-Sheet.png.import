@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/White-Robot-Sheet.png-1b0206e9d69ac4126721d177fd5816fe.stex"
+path="res://.import/Goblin-White-Sheet.png-747d481559fe0b17a9bb3086a57d41fc.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Characters/White-Robot-Sheet.png"
-dest_files=[ "res://.import/White-Robot-Sheet.png-1b0206e9d69ac4126721d177fd5816fe.stex" ]
+source_file="res://Art/Characters/Goblin-White-Sheet.png"
+dest_files=[ "res://.import/Goblin-White-Sheet.png-747d481559fe0b17a9bb3086a57d41fc.stex" ]
 
 [params]
 
@@ -28,6 +28,7 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
+process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=true
