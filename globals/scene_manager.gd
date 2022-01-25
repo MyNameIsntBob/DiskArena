@@ -20,9 +20,11 @@ const level_from_id = {
 	2: 'Lava'
 }
 
+
 func _ready():
 	randomize()
 	load_main_menu()
+
 
 func load_main_menu():
 	isMenuScreen = true
@@ -32,6 +34,7 @@ func load_main_menu():
 	Global.add_child(SIGNS.instance())
 	PlayerSpawner.spawnPlayers()
 
+
 func load_arena(level = 0):
 	isMenuScreen = false
 	if level == 0:
@@ -39,18 +42,20 @@ func load_arena(level = 0):
 	
 	ScoreKeeper.reset_scores()
 	
-	Global.remove_children()
-	Global.set_hp_bars()
-	
 	change_scene(levels[level_from_id[level]])
+	Global.set_hp_bars()
 	PlayerSpawner.spawnPlayers()
+
 
 func _random_level():
 	return (randi() % (len(level_from_id) - 1)) + 1
-	
+
+
 func change_scene(scene):
 	print('change_scene: ', scene)
 	$SceneFader.fade_out()
+	Global.remove_children()
 	yield($SceneFader, 'finished')
 	get_tree().change_scene(scene)
 	Global.focus_camera()
+
