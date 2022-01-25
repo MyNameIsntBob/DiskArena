@@ -1,18 +1,9 @@
 extends SignMenu
 
-var dropped := false
-
-func _process(delta):
-	if Global.paused and !dropped:
-		print("Pause Screen")
-		drop()
-		dropped = true
-
 
 func _on_Play_pressed():
 	raise()
 	yield(self, 'finished')
-	dropped = false
 	Global.continue_game()
 
 
@@ -35,5 +26,5 @@ func _unhandled_input(event):
 		
 	Functions.control_to_UI(event)
 	
-	if event.is_action_pressed("pause") and dropped:
+	if event.is_action_pressed("pause") and Global.paused:
 		_on_Play_pressed()

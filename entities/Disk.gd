@@ -64,13 +64,12 @@ func _physics_process(delta):
 func _on_ObjectChecker_body_entered(body):
 	if body == self:
 		return
-
+	
 	if body == sender:
 		sender.remove_disk(self)
 		self.queue_free()
 		return
-
-#	if body is KinematicBody2D and body.get("player_id"):
+	
 	if body.get_collision_layer_bit(3):
 		if body.kill(velocity):
 			ScoreKeeper.add_kill(sender.player_id)

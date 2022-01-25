@@ -15,6 +15,7 @@ func pause_game(player_id):
 	
 	paused = true
 	who_paused = player_id
+	$PauseSign.drop()
 
 
 func continue_game():
@@ -38,6 +39,8 @@ func add_child(node, legible_unique_name: bool = false):
 func remove_children():
 	for node in $ChildrenHolder.get_children():
 		node.queue_free()
+		
+	print("Children Left: ", get_children())
 
 
 func focus_camera():
