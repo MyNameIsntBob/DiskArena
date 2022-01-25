@@ -8,7 +8,7 @@ var game_over := false
 # Implement this
 var can_shoot := false
 
-# Pause and play game
+
 func pause_game(player_id):
 	if paused:
 		return
@@ -28,6 +28,7 @@ func game_over():
 	game_over = true
 	$GameOverSign.drop()
 	yield($GameOverSign, 'finished')
+
 
 # Overwrite add child to add child to children holder
 func add_child(node, legible_unique_name: bool = false):

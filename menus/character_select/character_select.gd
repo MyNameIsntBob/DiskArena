@@ -10,6 +10,7 @@ signal go_back
 export (Array, NodePath) var selector_paths
 var selectors := []
 
+
 func _ready():
 	randomize()
 	for i in range(len(selector_paths)):
@@ -46,6 +47,7 @@ func start():
 	if len(activePlayers) and num_of_players() + num_of_bots >= 2:
 		SceneManager.load_arena(level)
 
+
 func selected_characters():
 	var characters = []
 	for player in players:
@@ -53,6 +55,7 @@ func selected_characters():
 			characters.append(player.character_id)
 	
 	return characters
+
 
 func join(keyboard, input_id):
 	if find_player(keyboard, input_id) != null or len(players) >= max_players:
@@ -79,14 +82,17 @@ func join(keyboard, input_id):
 	else:
 		players[open] = player
 	update_selector_data()
-	
+
+
 func add_bot():
 	if num_of_bots + num_of_players() < 4:
 		num_of_bots += 1
-	
+
+
 func remove_bot():
 	if num_of_bots:
 		num_of_bots -= 1
+
 
 func find_player(keyboard, input_id):
 	for i in range(len(players)):
@@ -94,7 +100,8 @@ func find_player(keyboard, input_id):
 		if player and player['input_id'] == input_id and player['keyboard'] == keyboard:
 			return i
 	return null
-	
+
+
 func num_of_players():
 	var amount := 0
 	for player in players:
@@ -102,18 +109,17 @@ func num_of_players():
 			amount += 1
 	return amount
 
+
 func update_selector_data():
 	for i in range(len(selectors)):
 		var selector = selectors[i]
 		if i > len(players) - 1:
 			selector.set_player({})
-#			selector.player = {}
 		else:
 			selector.set_player(players[i])
-#			selector.player = players[i]
 		selector.set_taken_characters(selected_characters())
-#		selector.taken_characters = selected_characters()
-	
+
+
 func _unhandled_input(event):
 	if !event or !focused:
 		return

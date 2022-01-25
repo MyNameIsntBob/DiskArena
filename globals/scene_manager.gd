@@ -1,13 +1,10 @@
 extends Node2D
 
-#var level = 0
 var isMenuScreen := false
 
 export (NodePath) var ChildrenHolder
 
 onready var SIGNS = preload("res://menus/signs.tscn")
-
-#const main_menu_screen = "res://menus/main_menu/StartScreen.tscn"
 
 const levels = {
 	'Grass': "res://maps/grass.tscn",

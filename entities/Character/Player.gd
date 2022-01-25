@@ -15,30 +15,26 @@ var look_right := 0.0
 var look_up := 0.0
 var look_down := 0.0
 
-#export var cameraPath : NodePath 
-#How to get an Object's path
-	
+
 func _process(delta):
-	
 	if Global.paused or isDead:
 		right = 0
 		left = 0
 		up = 0
 		down = 0
-	
+
 
 func _physics_process(delta):
-	
 	if Global.paused:
 		return
 	
-#	moveControl
+	# moveControl
 	var iv = Vector2(0, 0)
 	iv.x = right - left
 	iv.y = down - up
 	input_vector = iv.normalized()
 	
-#	lookControl
+	# lookControl
 	if keyboard:
 		look_vector = get_global_mouse_position() - global_position
 	else:
@@ -50,7 +46,6 @@ func _physics_process(delta):
 			look_vector = lv
 	
 func _unhandled_input(event):
-	
 	if Global.paused:
 		return
 	

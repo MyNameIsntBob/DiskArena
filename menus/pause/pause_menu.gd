@@ -4,8 +4,10 @@ var dropped := false
 
 func _process(delta):
 	if Global.paused and !dropped:
+		print("Pause Screen")
 		drop()
 		dropped = true
+
 
 func _on_Play_pressed():
 	raise()
@@ -19,12 +21,12 @@ func _on_Exit_pressed():
 	yield(self, 'finished')
 	Global.continue_game()
 	SceneManager.load_main_menu()
-	
+
+
 func _unhandled_input(event):
-#	If the input wasn't from my player
 	if !focused:
 		return
-
+	
 	var keyboard = ScoreKeeper.get_uses_keyboard(Global.who_paused)
 	var input_id = ScoreKeeper.get_input_id(Global.who_paused)
 	if !event or event.get_device() != input_id or (event is InputEventKey and !keyboard) or (
