@@ -24,8 +24,7 @@ var isDead := false
 
 var isPaused := false
 
-##export var diskPath : FilePath
-var diskPath = preload("res://entities/Disk.tscn")
+var DISK = preload("res://entities/Disk.tscn")
 var disks = []
 
 onready var default_layer = self.get_collision_layer()
@@ -53,8 +52,6 @@ func _process(delta):
 			animationPlayer.play()
 			pass
 	
-#	set_collision_layer(0)
-#	if white and imortalTimer > 0:
 	if white:
 		charImage.texture = Icons.get_white_character(character_id)
 	else:
@@ -65,10 +62,11 @@ func _process(delta):
 		set_collision_layer(0)
 	else:
 		set_collision_layer(default_layer)
-		
 
+
+# TODO 
+# Split this up into mulitiple functions
 func _physics_process(delta):
-	
 	if Global.paused:
 		return
 	
@@ -87,18 +85,18 @@ func _physics_process(delta):
 	else:
 		velocity = velocity.linear_interpolate(Vector2(0, 0), friction)
 	
-#	play run animation
+	# play run animation
 	if input_vector != Vector2(0, 0):
 		if animationPlayer.get_current_animation() != 'Run':
 			animationPlayer.stop()
 			animationPlayer.play("Run")
-#	play Idle animation
+	# play Idle animation
 	else:
 		if animationPlayer.get_current_animation() != 'Idle':
 			animationPlayer.stop()
 			animationPlayer.play('Idle')
 			
-#	Get the direction the character is heading and make the character look that direction
+	# Get the direction the character is heading and make the character look that direction
 	var direction = -int(input_vector.normalized().angle() * (4 / PI)) + 2
 	
 	if direction > 7:
@@ -132,11 +130,11 @@ func shoot():
 				disk.sendBack = true
 		return
 		
-#	get the direction to send the disk
+	# get the direction to send the disk
 	var bulVelocity = ($Aim/BulletPosition.get_global_position() - get_global_position())
 		
-#	create the disk and give it all variables
-	var disk = diskPath.instance()
+	# create the disk and give it all variables
+	var disk = DISK.instance()
 	Global.add_child(disk)
 	disk.sender = self
 	disk.position = find_node("BulletPosition").global_position
@@ -151,10 +149,11 @@ func kill(direction = Vector2.ZERO) -> bool:
 		
 	if !SceneManager.isMenuScreen:
 		ScoreKeeper.player_die(player_id)
-#	imortalTimer = imortalDuration
+	
 	isDead = true
 	animationPlayer.stop()
 	animationPlayer.play("Death")
+	
 	charImage.frame_coords.y = int(charImage.frame_coords.y / 2) * 2
 	velocity = direction.normalized() * 10
 	respawn()
@@ -162,7 +161,6 @@ func kill(direction = Vector2.ZERO) -> bool:
 
 
 func respawn():
-	
 	yield(animationPlayer, "animation_finished")
 	
 	if SceneManager.isMenuScreen || ScoreKeeper.get_hp(player_id) > 0:

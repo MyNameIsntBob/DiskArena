@@ -3,7 +3,8 @@ extends Node2D
 
 signal finished
 
-export (Array, NodePath) var buttons
+export (Array, NodePath) var button_paths
+var buttons := []
 export var drop_time := 2.0
 export var raise_time := 1.0
 
@@ -14,8 +15,8 @@ var focused = false
 
 
 func _ready():
-	for i in range(len(buttons)):
-		buttons[i] = get_node(buttons[i])
+	for i in range(len(button_paths)):
+		buttons.append(get_node(button_paths[i]))
 	raise_to = $Mount.position.y
 
 

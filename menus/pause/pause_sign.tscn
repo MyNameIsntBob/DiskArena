@@ -20,9 +20,9 @@ extents = Vector2( 76, 24 )
 pause_mode = 2
 use_parent_material = true
 script = ExtResource( 6 )
-buttons = [ NodePath("Play/Sprite/Continue"), NodePath("Exit/Sprite/ExitPaused") ]
+button_paths = [ NodePath("Play/Sprite/Continue"), NodePath("Exit/Sprite/ExitPaused") ]
 drop_time = 1.0
-raise_time = 0.5
+raise_time = 0.75
 
 [node name="Mount" type="StaticBody2D" parent="."]
 use_parent_material = true

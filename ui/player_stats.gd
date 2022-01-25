@@ -14,8 +14,8 @@ func _ready():
 
 func _process(delta):
 	change_hp_icons()
-		
-		
+
+
 #This works for now, but we might want to change the icons to 
 #generate based off of hp and max hp in the future just for simplicity
 func change_hp_icons():

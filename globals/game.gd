@@ -8,13 +8,14 @@ var game_over := false
 # Implement this
 var can_shoot := false
 
-# Pause and play game
+
 func pause_game(player_id):
 	if paused:
 		return
 	
 	paused = true
 	who_paused = player_id
+	$PauseSign.drop()
 
 
 func continue_game():
@@ -29,6 +30,7 @@ func game_over():
 	$GameOverSign.drop()
 	yield($GameOverSign, 'finished')
 
+
 # Overwrite add child to add child to children holder
 func add_child(node, legible_unique_name: bool = false):
 	$ChildrenHolder.add_child(node, legible_unique_name)
@@ -37,6 +39,8 @@ func add_child(node, legible_unique_name: bool = false):
 func remove_children():
 	for node in $ChildrenHolder.get_children():
 		node.queue_free()
+		
+	print("Children Left: ", get_children())
 
 
 func focus_camera():

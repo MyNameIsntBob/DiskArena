@@ -9,7 +9,6 @@ func _ready():
 
 
 func set_scores():
-	print('set scores')
 	for player in players:
 		if is_instance_valid(player):
 			player.set_score()

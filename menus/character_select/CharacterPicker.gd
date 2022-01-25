@@ -45,6 +45,8 @@ func _ready():
 	bot_text = get_node(bot_text_path)
 
 
+# TODO
+# Split this up
 func _process(delta):
 	if delay_timer > 0:
 		delay_timer -= delta
@@ -147,6 +149,8 @@ func move(direction):
 	self.player['character_id'] = fposmod(self.player['character_id'] + direction, Icons.number_of_characters())
 
 
+# TODO
+# Split up this if statement
 func _unhandled_input(event):
 #	If the input wasn't from my player
 	if !self.player or !event or event.get_device() != self.player["input_id"] or (event is InputEventKey and !self.player["keyboard"]) or (
