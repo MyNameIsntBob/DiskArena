@@ -43,7 +43,6 @@ func load_arena(level = 0):
 	ScoreKeeper.reset_scores()
 	
 	change_scene(levels[level_from_id[level]])
-	Global.set_hp_bars()
 	PlayerSpawner.spawnPlayers()
 
 
@@ -54,6 +53,7 @@ func _random_level():
 func change_scene(scene):
 	print('change_scene: ', scene)
 	$SceneFader.fade_out()
+	Global.set_hp_bars()
 	Global.remove_children()
 	yield($SceneFader, 'finished')
 	get_tree().change_scene(scene)

@@ -15,7 +15,7 @@ extents = Vector2( 225, 32 )
 [node name="CharacterSelect" type="Node2D"]
 use_parent_material = true
 script = ExtResource( 5 )
-selecters = [ NodePath("CharacterPicker"), NodePath("CharacterPicker2"), NodePath("CharacterPicker3"), NodePath("CharacterPicker4") ]
+selector_paths = [ NodePath("CharacterPicker"), NodePath("CharacterPicker2"), NodePath("CharacterPicker3"), NodePath("CharacterPicker4") ]
 
 [node name="Mount" type="StaticBody2D" parent="."]
 use_parent_material = true

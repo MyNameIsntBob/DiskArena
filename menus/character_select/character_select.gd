@@ -7,17 +7,17 @@ var num_of_bots := 0
 
 signal go_back
 
-export (Array, NodePath) var selecters
+export (Array, NodePath) var selector_paths
+var selectors := []
 
 func _ready():
 	randomize()
-	for i in range(len(selecters)):
-		selecters[i] = get_node(selecters[i])
-		selecters[i].set_parent(self)
-#		selecters[i].parent = self
-		selecters[i].set_id(i)
-#		selecters[i].id = i
-#	notice = get_node(notice)
+	for i in range(len(selector_paths)):
+		var current_selector = get_node(selector_paths[i])
+		current_selector.set_parent(self)
+		current_selector.set_id(i)
+		selectors.append(current_selector)
+
 
 func start():
 	print('start called')
@@ -78,7 +78,7 @@ func join(keyboard, input_id):
 		players.append(player)
 	else:
 		players[open] = player
-	update_selecter_data()
+	update_selector_data()
 	
 func add_bot():
 	if num_of_bots + num_of_players() < 4:
@@ -102,17 +102,17 @@ func num_of_players():
 			amount += 1
 	return amount
 
-func update_selecter_data():
-	for i in range(len(selecters)):
-		var selecter = selecters[i]
+func update_selector_data():
+	for i in range(len(selectors)):
+		var selector = selectors[i]
 		if i > len(players) - 1:
-			selecter.set_player({})
-#			selecter.player = {}
+			selector.set_player({})
+#			selector.player = {}
 		else:
-			selecter.set_player(players[i])
-#			selecter.player = players[i]
-		selecter.set_taken_characters(selected_characters())
-#		selecter.taken_characters = selected_characters()
+			selector.set_player(players[i])
+#			selector.player = players[i]
+		selector.set_taken_characters(selected_characters())
+#		selector.taken_characters = selected_characters()
 	
 func _unhandled_input(event):
 	if !event or !focused:
@@ -137,7 +137,7 @@ func _unhandled_input(event):
 
 func _on_CharacterPicker_pick_character(character):
 	players[find_player(character['keyboard'], character['input_id'])] = character
-	update_selecter_data()
+	update_selector_data()
 
 
 func _on_CharacterPicker_unpick_character(character):
@@ -145,7 +145,7 @@ func _on_CharacterPicker_unpick_character(character):
 	if player_id != null:
 		players[player_id] = {}
 		
-		update_selecter_data()
+		update_selector_data()
 
 
 func _on_CharacterPicker_start():
