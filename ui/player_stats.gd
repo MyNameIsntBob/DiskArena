@@ -10,11 +10,7 @@ var hp_icons : Array
 
 func setup():
 	if !valid():
-		print("Invalid player_id: ", player_id)
 		return
-	
-	print("Valid player_id: ", player_id)
-	
 	
 	var max_hp = ScoreKeeper.get_max_hp(player_id)
 	for i in range(max_hp):
@@ -27,8 +23,6 @@ func _process(delta):
 	change_hp_icons()
 
 
-#This works for now, but we might want to change the icons to 
-#generate based off of hp and max hp in the future just for simplicity
 func change_hp_icons():
 	if !valid():
 		return

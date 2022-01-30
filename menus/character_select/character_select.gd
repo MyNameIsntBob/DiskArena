@@ -21,7 +21,6 @@ func _ready():
 
 
 func start():
-	print('start called')
 	var activePlayers = []
 	for player in players:
 		if !player.empty():
