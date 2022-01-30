@@ -29,3 +29,4 @@ func set_hp_bars():
 			stat.hide()
 		else:
 			stat.show()
+			stat.setup()
