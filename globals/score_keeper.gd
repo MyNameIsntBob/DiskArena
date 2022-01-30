@@ -64,7 +64,6 @@ func setup_npc_stats(num_of_npcs = 0):
 
 
 func add_new_player(player_id, player_values):
-	print("Add Player: ", player_id, "\nValues: ", player_values)
 	player_stats[str(player_id)] = default_stats.duplicate()
 	for key in player_values:
 		player_stats[str(player_id)][str(key)] = player_values[key]

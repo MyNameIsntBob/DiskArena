@@ -48,7 +48,6 @@ func _random_level():
 
 
 func change_scene(scene):
-	print('change_scene: ', scene)
 	$SceneFader.fade_out()
 	Global.set_hp_bars()
 	Global.remove_children()

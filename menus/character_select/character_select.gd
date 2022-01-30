@@ -31,7 +31,6 @@ func start():
 		if !player['selected'] or not 'level' in player or player["level"] == null:
 			return
 	
-	print("Reset Score Keeper Stats")
 	ScoreKeeper.reset_stats()
 	
 	for i in range(len(activePlayers) + num_of_bots):
