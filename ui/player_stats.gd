@@ -3,14 +3,25 @@ extends Control
 export var player_id : int
 var character_id
 
-var hp_icons : Dictionary
+onready var HEART = preload("res://ui/Heart.tscn")
 
-func _ready():
-	hp_icons = {
-		'1': find_node('Hp1'),
-		'2': find_node('Hp2'),
-		'3': find_node('Hp3'),
-	}
+var hp_icons : Array
+
+
+func setup():
+	if !valid():
+		print("Invalid player_id: ", player_id)
+		return
+	
+	print("Valid player_id: ", player_id)
+	
+	
+	var max_hp = ScoreKeeper.get_max_hp(player_id)
+	for i in range(max_hp):
+		var heart = HEART.instance()
+		hp_icons.append(heart)
+		add_child(heart)
+
 
 func _process(delta):
 	change_hp_icons()
@@ -19,13 +30,17 @@ func _process(delta):
 #This works for now, but we might want to change the icons to 
 #generate based off of hp and max hp in the future just for simplicity
 func change_hp_icons():
-	var hp = ScoreKeeper.get_hp(player_id)
-	character_id = ScoreKeeper.get_character_id(player_id)
-	if character_id == null:
+	if !valid():
 		return
+	
+	var hp = ScoreKeeper.get_hp(player_id)
 	for i in range(len(hp_icons)):
 		if hp < i + 1:
-			hp_icons[str(i + 1)].get_child(0).set_frame(4)
+			hp_icons[i].get_child(0).set_frame(4)
 		else:
-			hp_icons[str(i + 1)].get_child(0).set_frame(character_id - 1)
+			hp_icons[i].get_child(0).set_frame(character_id - 1)
 
+
+func valid():
+	character_id = ScoreKeeper.get_character_id(player_id)
+	return character_id != null

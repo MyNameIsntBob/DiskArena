@@ -52,19 +52,19 @@ mouse_filter = 2
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 14.0
-margin_right = 202.0
+margin_right = 14.0
 player_id = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MarginContainer/VBoxContainer/Top2Players"]
-margin_left = 206.0
-margin_right = 818.0
+margin_left = 18.0
+margin_right = 1006.0
 mouse_filter = 2
 size_flags_horizontal = 3
 
 [node name="hp2" parent="CanvasLayer/MarginContainer/VBoxContainer/Top2Players" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 822.0
+margin_left = 1010.0
 margin_right = 1010.0
 player_id = 2
 
@@ -96,19 +96,19 @@ mouse_filter = 2
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 14.0
-margin_right = 202.0
+margin_right = 14.0
 player_id = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MarginContainer/VBoxContainer/Bottom2Players2"]
-margin_left = 206.0
-margin_right = 818.0
+margin_left = 18.0
+margin_right = 1006.0
 mouse_filter = 2
 size_flags_horizontal = 3
 
 [node name="hp4" parent="CanvasLayer/MarginContainer/VBoxContainer/Bottom2Players2" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 822.0
+margin_left = 1010.0
 margin_right = 1010.0
 player_id = 4
 
