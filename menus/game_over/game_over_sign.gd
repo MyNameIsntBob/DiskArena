@@ -21,4 +21,4 @@ func _on_Continue_pressed():
 
 
 func _on_Exit_pressed():
-	print("Exit Pressed")
+	SceneManager.load_main_menu()
