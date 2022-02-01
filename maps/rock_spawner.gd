@@ -22,7 +22,11 @@ func _process(delta):
 		setNewTimer()
 		spawnRock()
 	
+# TODO
+# FIX THIS
 func spawnRock():
+	return
+	
 	var rock = rock_path.instance()
 	
 	rock.position = Spawners.random_spawn_position()

@@ -3,11 +3,11 @@ extends RigidBody2D
 export var player_id : int
 
 export (NodePath) var character_texture_path
-var character_texture
+var character_texture : TextureRect
 export (NodePath) var place_text_path
-var place_text
+var place_text : Label
 export (NodePath) var scores_text_path
-var scores_text
+var scores_text : Label
 
 var place_to_text := ['1st\n', '2nd\n', '3rd\n', '4th\n']
 
@@ -23,10 +23,11 @@ func set_score():
 		return
 	
 	var place = place_to_text[int(ScoreKeeper.get_score(player_id))]
-	place_text.text = place + ' Place'
+	place_text.text = place
 	var deaths = str(ScoreKeeper.get_deaths(player_id)) + '\n'
 	var kills = str(ScoreKeeper.get_kills(player_id)) + '\n'
-	find_node('Scores').text = kills + deaths
+	scores_text.text = kills + deaths
+	scores_text.margin_top = 0
 
 
 func set_character():
@@ -38,7 +39,9 @@ func set_character():
 	
 
 func break_chain():
-	for node in get_parent().get_children():
-		if node.has_method('break_chain') and node != self:
-			node.break_chain()
-	queue_free()
+	if is_instance_valid($Image/VBoxContainer):
+		$Image/VBoxContainer.queue_free()
+#	for node in get_parent().get_children():
+#		if node.has_method('break_chain') and node != self:
+#			node.break_chain()
+#	queue_free()

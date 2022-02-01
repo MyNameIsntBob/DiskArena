@@ -1,4 +1,4 @@
-extends SignMenu
+extends BaseSignMenu
 
 export (Array, NodePath) var player_paths
 var players = []
@@ -15,3 +15,11 @@ func set_scores():
 			player.set_score()
 		else:
 			players.erase(player)
+
+
+func _on_Continue_pressed():
+	print("Continue Pressed")
+
+
+func _on_Exit_pressed():
+	print("Exit Pressed")

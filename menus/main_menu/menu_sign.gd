@@ -1,4 +1,4 @@
-extends SignMenu
+extends BaseSignMenu
 
 signal press_play
 signal press_options

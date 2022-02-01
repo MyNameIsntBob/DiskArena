@@ -4,7 +4,7 @@ var player_stats : Dictionary
 
 const default_stats := {
 	'hp': 0,
-	'max_hp': 3,
+	'max_hp': 1,
 	'keyboard': false,
 	'input_id': 0,
 	'kills': 0,

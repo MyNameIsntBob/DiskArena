@@ -1,4 +1,4 @@
-extends SignMenu
+extends BaseSignMenu
 
 var players : Array
 const max_players := 4

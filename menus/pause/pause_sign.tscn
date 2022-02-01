@@ -1,11 +1,14 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://menus/chain/chain5.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Art/GUI/Signs/Pause/ContinueSelected.png" type="Texture" id=2]
 [ext_resource path="res://Art/GUI/Signs/Pause/TitleSign.png" type="Texture" id=3]
 [ext_resource path="res://Art/GUI/Signs/Pause/Continue.png" type="Texture" id=4]
 [ext_resource path="res://Art/GUI/Signs/Pause/Exit.png" type="Texture" id=5]
 [ext_resource path="res://menus/pause/pause_menu.gd" type="Script" id=6]
 [ext_resource path="res://menus/chain/chain2.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Art/GUI/Signs/Pause/ExitSelected.png" type="Texture" id=8]
+[ext_resource path="res://menus/Button.tscn" type="PackedScene" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 114, 8 )
@@ -13,14 +16,11 @@ extents = Vector2( 114, 8 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 136, 32 )
 
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 76, 24 )
-
 [node name="PauseSign" type="Node2D"]
 pause_mode = 2
 use_parent_material = true
 script = ExtResource( 6 )
-buttons = [ NodePath("Play/Sprite/Continue"), NodePath("Exit/Sprite/ExitPaused") ]
+button_paths = [ NodePath("Play"), NodePath("Exit") ]
 drop_time = 1.0
 raise_time = 0.5
 
@@ -87,79 +87,18 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Play" type="RigidBody2D" parent="."]
-use_parent_material = true
-position = Vector2( 0, -244 )
-z_index = 15
-z_as_relative = false
-collision_layer = 128
-collision_mask = 128
+[node name="Play" parent="." instance=ExtResource( 9 )]
+normal_texture = ExtResource( 4 )
+focused_texture = ExtResource( 2 )
+neighbour_bottom = NodePath("../Exit")
 
-[node name="Sprite" type="Sprite" parent="Play"]
-use_parent_material = true
-texture = ExtResource( 4 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Continue" type="TextureButton" parent="Play/Sprite"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -77.5
-margin_top = -26.5
-margin_right = -77.5
-margin_bottom = -26.5
-focus_neighbour_bottom = NodePath("../../../Exit/Sprite/ExitPaused")
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Play"]
-shape = SubResource( 3 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Exit" type="RigidBody2D" parent="."]
-pause_mode = 2
-use_parent_material = true
+[node name="Exit" parent="." instance=ExtResource( 9 )]
 position = Vector2( 0, -183 )
-z_index = 15
-z_as_relative = false
-collision_layer = 128
-collision_mask = 128
-gravity_scale = 2.0
-
-[node name="Sprite" type="Sprite" parent="Exit"]
-use_parent_material = true
-texture = ExtResource( 5 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="ExitPaused" type="TextureButton" parent="Exit/Sprite"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -78.0
-margin_top = -27.5
-margin_right = -78.0
-margin_bottom = -27.5
-focus_neighbour_top = NodePath("../../../Play/Sprite/Continue")
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Exit"]
-shape = SubResource( 3 )
-__meta__ = {
-"_edit_lock_": true
-}
+normal_texture = ExtResource( 5 )
+focused_texture = ExtResource( 8 )
+neighbour_top = NodePath("../Play")
 
 [node name="Tween" type="Tween" parent="."]
 
-[connection signal="focus_entered" from="Play/Sprite/Continue" to="." method="_on_focus_entered" binds= [ 0 ]]
-[connection signal="focus_exited" from="Play/Sprite/Continue" to="." method="_on_focus_exited" binds= [ 0 ]]
-[connection signal="pressed" from="Play/Sprite/Continue" to="." method="_on_Play_pressed"]
-[connection signal="focus_entered" from="Exit/Sprite/ExitPaused" to="." method="_on_focus_entered" binds= [ 1 ]]
-[connection signal="focus_exited" from="Exit/Sprite/ExitPaused" to="." method="_on_focus_exited" binds= [ 1 ]]
-[connection signal="pressed" from="Exit/Sprite/ExitPaused" to="." method="_on_Exit_pressed"]
+[connection signal="pressed" from="Play" to="." method="_on_Play_pressed"]
+[connection signal="pressed" from="Exit" to="." method="_on_Exit_pressed"]

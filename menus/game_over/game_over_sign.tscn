@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://menus/game_over/game_over_sign.gd" type="Script" id=1]
 [ext_resource path="res://menus/chain/chain5.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Art/GUI/Signs/GameOver.png" type="Texture" id=3]
+[ext_resource path="res://menus/chain/chain2.tscn" type="PackedScene" id=4]
 [ext_resource path="res://menus/game_over/PlayerScore.tscn" type="PackedScene" id=5]
-[ext_resource path="res://menus/chain/chain3.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Art/GUI/Signs/Pause/Continue.png" type="Texture" id=6]
 [ext_resource path="res://resources/shadow_imune.tres" type="Material" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -12,6 +13,9 @@ extents = Vector2( 208, 10 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 224, 32 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 72, 24 )
 
 [node name="GameOverSign" type="Node2D"]
 material = ExtResource( 7 )
@@ -42,6 +46,26 @@ position = Vector2( 200, -437 )
 first_mount_path = NodePath("../../Mount")
 last_mount_path = NodePath("../../Title")
 
+[node name="ContinueChain" parent="Chains" instance=ExtResource( 4 )]
+position = Vector2( -152, -211 )
+first_mount_path = NodePath("../../Player1/PlayerScore")
+last_mount_path = NodePath("../../Play")
+
+[node name="ContinueChain2" parent="Chains" instance=ExtResource( 4 )]
+position = Vector2( -24, -211 )
+first_mount_path = NodePath("../../Player2/PlayerScore")
+last_mount_path = NodePath("../../Play")
+
+[node name="ExitChain" parent="Chains" instance=ExtResource( 4 )]
+position = Vector2( 24, -211 )
+first_mount_path = NodePath("../../Player3/PlayerScore")
+last_mount_path = NodePath("../../Exit")
+
+[node name="ExitChain2" parent="Chains" instance=ExtResource( 4 )]
+position = Vector2( 152, -211 )
+first_mount_path = NodePath("../../Player4/PlayerScore")
+last_mount_path = NodePath("../../Exit")
+
 [node name="Title" type="RigidBody2D" parent="."]
 use_parent_material = true
 position = Vector2( 0, -360 )
@@ -62,72 +86,141 @@ shape = SubResource( 2 )
 use_parent_material = true
 position = Vector2( -168, 0 )
 
-[node name="Chain" parent="Player1" instance=ExtResource( 6 )]
+[node name="Chain" parent="Player1" instance=ExtResource( 4 )]
 position = Vector2( -26, -334 )
 first_mount_path = NodePath("../../Title")
 last_mount_path = NodePath("../PlayerScore")
 
-[node name="Chain2" parent="Player1" instance=ExtResource( 6 )]
+[node name="Chain2" parent="Player1" instance=ExtResource( 4 )]
 position = Vector2( 26, -334 )
 first_mount_path = NodePath("../../Title")
 last_mount_path = NodePath("../PlayerScore")
 
 [node name="PlayerScore" parent="Player1" instance=ExtResource( 5 )]
-position = Vector2( 2, -237 )
+position = Vector2( 0, -262 )
 player_id = 1
 
 [node name="Player2" type="Node2D" parent="."]
 use_parent_material = true
 position = Vector2( -56, 0 )
 
-[node name="Chain" parent="Player2" instance=ExtResource( 6 )]
+[node name="Chain" parent="Player2" instance=ExtResource( 4 )]
 position = Vector2( -26, -334 )
 first_mount_path = NodePath("../../Title")
 last_mount_path = NodePath("../PlayerScore")
 
-[node name="Chain2" parent="Player2" instance=ExtResource( 6 )]
+[node name="Chain2" parent="Player2" instance=ExtResource( 4 )]
 position = Vector2( 26, -334 )
 first_mount_path = NodePath("../../Title")
 last_mount_path = NodePath("../PlayerScore")
 
 [node name="PlayerScore" parent="Player2" instance=ExtResource( 5 )]
-position = Vector2( 2, -237 )
+position = Vector2( 0, -262 )
 player_id = 2
 
 [node name="Player3" type="Node2D" parent="."]
 use_parent_material = true
 position = Vector2( 56, 0 )
 
-[node name="Chain" parent="Player3" instance=ExtResource( 6 )]
+[node name="Chain" parent="Player3" instance=ExtResource( 4 )]
 position = Vector2( -26, -334 )
 first_mount_path = NodePath("../../Title")
 last_mount_path = NodePath("../PlayerScore")
 
-[node name="Chain2" parent="Player3" instance=ExtResource( 6 )]
+[node name="Chain2" parent="Player3" instance=ExtResource( 4 )]
 position = Vector2( 26, -334 )
 first_mount_path = NodePath("../../Title")
 last_mount_path = NodePath("../PlayerScore")
 
 [node name="PlayerScore" parent="Player3" instance=ExtResource( 5 )]
-position = Vector2( 2, -237 )
+position = Vector2( 0, -262 )
 player_id = 3
 
 [node name="Player4" type="Node2D" parent="."]
 use_parent_material = true
 position = Vector2( 168, 0 )
 
-[node name="Chain" parent="Player4" instance=ExtResource( 6 )]
+[node name="Chain" parent="Player4" instance=ExtResource( 4 )]
 position = Vector2( -26, -334 )
 first_mount_path = NodePath("../../Title")
 last_mount_path = NodePath("../PlayerScore")
 
-[node name="Chain2" parent="Player4" instance=ExtResource( 6 )]
+[node name="Chain2" parent="Player4" instance=ExtResource( 4 )]
 position = Vector2( 26, -334 )
 first_mount_path = NodePath("../../Title")
 last_mount_path = NodePath("../PlayerScore")
 
 [node name="PlayerScore" parent="Player4" instance=ExtResource( 5 )]
-position = Vector2( 2, -237 )
+position = Vector2( 0, -262 )
 player_id = 4
 
+[node name="Play" type="RigidBody2D" parent="."]
+use_parent_material = true
+position = Vector2( -88, -168 )
+z_index = 15
+z_as_relative = false
+collision_layer = 256
+collision_mask = 256
+
+[node name="Sprite" type="Sprite" parent="Play"]
+use_parent_material = true
+texture = ExtResource( 6 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Continue" type="TextureButton" parent="Play/Sprite"]
+use_parent_material = true
+margin_left = -72.0
+margin_top = -24.0
+margin_right = 72.0
+margin_bottom = 24.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Play"]
+use_parent_material = true
+shape = SubResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Exit" type="RigidBody2D" parent="."]
+use_parent_material = true
+position = Vector2( 88, -168 )
+z_index = 15
+z_as_relative = false
+collision_layer = 256
+collision_mask = 256
+
+[node name="Sprite" type="Sprite" parent="Exit"]
+use_parent_material = true
+texture = ExtResource( 6 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Exit" type="TextureButton" parent="Exit/Sprite"]
+use_parent_material = true
+margin_left = -72.0
+margin_top = -24.0
+margin_right = 72.0
+margin_bottom = 24.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Exit"]
+use_parent_material = true
+shape = SubResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
+
 [node name="Tween" type="Tween" parent="."]
+
+[connection signal="pressed" from="Play/Sprite/Continue" to="." method="_on_Continue_pressed"]
+[connection signal="pressed" from="Exit/Sprite/Exit" to="." method="_on_Exit_pressed"]
