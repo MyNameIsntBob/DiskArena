@@ -48,32 +48,32 @@ position = Vector2( 112, -437 )
 first_mount_path = NodePath("../../Mount")
 last_mount_path = NodePath("../../Title")
 
-[node name="Chain3" parent="Chains" instance=ExtResource( 8 )]
+[node name="Chain3" parent="Chains" instance=ExtResource( 2 )]
 position = Vector2( -64, -333 )
 first_mount_path = NodePath("../../Title")
 last_mount_path = NodePath("../../Play")
 
-[node name="Chain4" parent="Chains" instance=ExtResource( 8 )]
+[node name="Chain4" parent="Chains" instance=ExtResource( 2 )]
 position = Vector2( 64, -333 )
 first_mount_path = NodePath("../../Title")
 last_mount_path = NodePath("../../Play")
 
-[node name="Chain5" parent="Chains" instance=ExtResource( 8 )]
+[node name="Chain5" parent="Chains" instance=ExtResource( 2 )]
 position = Vector2( -64, -273 )
 first_mount_path = NodePath("../../Play")
 last_mount_path = NodePath("../../Options")
 
-[node name="Chain6" parent="Chains" instance=ExtResource( 8 )]
+[node name="Chain6" parent="Chains" instance=ExtResource( 2 )]
 position = Vector2( 64, -273 )
 first_mount_path = NodePath("../../Play")
 last_mount_path = NodePath("../../Options")
 
-[node name="Chain7" parent="Chains" instance=ExtResource( 8 )]
+[node name="Chain7" parent="Chains" instance=ExtResource( 2 )]
 position = Vector2( -64, -214 )
 first_mount_path = NodePath("../../Options")
 last_mount_path = NodePath("../../Exit")
 
-[node name="Chain8" parent="Chains" instance=ExtResource( 8 )]
+[node name="Chain8" parent="Chains" instance=ExtResource( 2 )]
 position = Vector2( 64, -214 )
 first_mount_path = NodePath("../../Options")
 last_mount_path = NodePath("../../Exit")
@@ -88,7 +88,7 @@ collision_mask = 32
 
 [node name="Sprite" type="Sprite" parent="Title"]
 use_parent_material = true
-texture = ExtResource( 4 )
+texture = ExtResource( 6 )
 __meta__ = {
 "_edit_lock_": true
 }

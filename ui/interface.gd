@@ -2,11 +2,11 @@ extends Control
 
 var player_stats : Dictionary
 
-#export var hp_bars : Array(NodePath)
 export var hp_bar_4 : NodePath
 export var hp_bar_3 : NodePath
 export var hp_bar_2 : NodePath
 export var hp_bar_1 : NodePath
+
 
 func _ready():
 	player_stats = {
@@ -16,8 +16,8 @@ func _ready():
 		'4': get_node(hp_bar_4)
 	}
 	set_hp_bars()
-	
-	
+
+
 func set_hp_bars():
 	for i in range(1, 5):
 		var stat = player_stats[str(i)]
@@ -29,3 +29,4 @@ func set_hp_bars():
 			stat.hide()
 		else:
 			stat.show()
+			stat.setup()

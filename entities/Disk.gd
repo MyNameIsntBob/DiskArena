@@ -13,8 +13,6 @@ var sendBack := false
 
 var isPaused := false
 
-#func _ready():
-#	speed = defaultSpeed
 
 func _process(delta):
 	if (!sender):
@@ -22,7 +20,8 @@ func _process(delta):
 		
 	if sender.isDead or Global.game_over:
 		sendBack = true
-	
+
+
 func _physics_process(delta):
 	
 	if Global.paused:
@@ -60,30 +59,17 @@ func _physics_process(delta):
 	
 	$Bullet.frame_coords.y = direction
 
+
 #If you can figure it out, move all of this to the move_and_collide to simplify
 func _on_ObjectChecker_body_entered(body):
 	if body == self:
 		return
-
+	
 	if body == sender:
 		sender.remove_disk(self)
 		self.queue_free()
 		return
-
-#	if body is KinematicBody2D and body.get("player_id"):
+	
 	if body.get_collision_layer_bit(3):
 		if body.kill(velocity):
 			ScoreKeeper.add_kill(sender.player_id)
-
-
-func _on_ObjectChecker_area_entered(area):
-	return 
-#	Originally sent it back to the player, now we don't do that
-	
-	if (area.name == 'area' + str(sender.player_id)):
-		if b:
-			sendBack = true
-		else:
-			b = true
-			
-		

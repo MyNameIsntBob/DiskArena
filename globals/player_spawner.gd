@@ -18,9 +18,6 @@ func spawnPoints(num_of_players = null):
 
 
 func spawnPlayers():
-	print("\nSpawn Players: ", spawnPoints())
-	print("Player Stats: ", ScoreKeeper.player_stats)
-	print("Number Of Players: ", ScoreKeeper.num_of_players, '\n')
 	for i in range(len(spawnPoints())):
 		if i < ScoreKeeper.num_of_players:
 			spawnPlayer(i + 1)

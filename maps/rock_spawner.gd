@@ -8,10 +8,11 @@ var wait_period = 2.0
 
 var veriation = 2.0
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
 	rng.randomize()
 	setNewTimer()
+
 
 func _process(delta):
 	if Global.paused:
@@ -21,7 +22,7 @@ func _process(delta):
 	if wait_timer <= 0:
 		setNewTimer()
 		spawnRock()
-	
+
 # TODO
 # FIX THIS
 func spawnRock():
@@ -32,7 +33,7 @@ func spawnRock():
 	rock.position = Spawners.random_spawn_position()
 	
 	Global.add_child(rock)
-	
+
+
 func setNewTimer():
 	wait_timer = rng.randf_range(wait_period - veriation, wait_period + veriation)
-

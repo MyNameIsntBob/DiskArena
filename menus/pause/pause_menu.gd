@@ -1,16 +1,9 @@
 extends BaseSignMenu
 
-var dropped := false
-
-func _process(delta):
-	if Global.paused and !dropped:
-		drop()
-		dropped = true
 
 func _on_Play_pressed():
 	raise()
 	yield(self, 'finished')
-	dropped = false
 	Global.continue_game()
 
 
@@ -19,9 +12,9 @@ func _on_Exit_pressed():
 	yield(self, 'finished')
 	Global.continue_game()
 	SceneManager.load_main_menu()
-	
+
+
 func _unhandled_input(event):
-#	If the input wasn't from my player
 	if !focused:
 		return
 
@@ -35,5 +28,5 @@ func _unhandled_input(event):
 	
 	Functions.control_to_UI(event)
 	
-	if event.is_action_pressed("pause") and dropped:
+	if event.is_action_pressed("pause") and Global.paused:
 		_on_Play_pressed()
