@@ -1,6 +1,7 @@
 extends RigidBody2D
 
 export var player_id : int
+var character_id : int
 
 export (NodePath) var character_texture_path
 var character_texture : TextureRect
@@ -17,11 +18,18 @@ func _ready():
 	scores_text = get_node(scores_text_path)
 
 func set_score():
-	set_character()
-	if ScoreKeeper.get_score(player_id) == null:
-		break_chain()
+	if !character_valid():
 		return
 	
+	set_character()
+	update_score()
+
+
+func set_character():
+	character_texture.texture = Icons.get_gui_character(character_id)
+
+
+func update_score():
 	var place = place_to_text[int(ScoreKeeper.get_score(player_id))]
 	place_text.text = place
 	var deaths = str(ScoreKeeper.get_deaths(player_id)) + '\n'
@@ -30,18 +38,15 @@ func set_score():
 	scores_text.margin_top = 0
 
 
-func set_character():
+func character_valid():
 	var character_id = ScoreKeeper.get_character_id(player_id)
+	var image = $Image/VBoxContainer
 	if character_id == null:
-		return
+		return false
+		if is_instance_valid(image):
+			image.hide()
 	
-	character_texture.texture = Icons.get_gui_character(character_id)
-	
+	if is_instance_valid(image):
+		image.show()
+	return true
 
-func break_chain():
-	if is_instance_valid($Image/VBoxContainer):
-		$Image/VBoxContainer.queue_free()
-#	for node in get_parent().get_children():
-#		if node.has_method('break_chain') and node != self:
-#			node.break_chain()
-#	queue_free()
