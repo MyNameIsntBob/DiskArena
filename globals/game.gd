@@ -10,7 +10,7 @@ var can_shoot := false
 
 
 func pause_game(player_id):
-	if paused:
+	if paused or game_over:
 		return
 	
 	paused = true
