@@ -17,8 +17,12 @@ func set_scores():
 
 
 func _on_Continue_pressed():
-	print("Continue Pressed")
+	raise()
+	yield(self, 'finished')
+	Global.restart()
 
 
 func _on_Exit_pressed():
-	SceneManager.load_main_menu()
+	raise()
+	yield(self, 'finished')
+	Global.exit()

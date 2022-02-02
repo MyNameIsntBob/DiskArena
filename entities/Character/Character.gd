@@ -156,13 +156,17 @@ func kill(direction = Vector2.ZERO) -> bool:
 	
 	charImage.frame_coords.y = int(charImage.frame_coords.y / 2) * 2
 	velocity = direction.normalized() * 10
-	respawn()
+	wait_respawn()
 	return true
 
 
-func respawn():
+# Call respawn after the current animation is finished
+func wait_respawn():
 	yield(animationPlayer, "animation_finished")
-	
+	respawn()
+
+
+func respawn():
 	if SceneManager.isMenuScreen || ScoreKeeper.get_hp(player_id) > 0:
 		animationPlayer.play("Revive")
 		yield(animationPlayer, "animation_finished")

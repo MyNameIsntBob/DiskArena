@@ -31,6 +31,13 @@ func _number_of_dead_players():
 	return sum
 
 
+func reset_game():
+	reset_scores()
+	for player in players:
+		if is_instance_valid(player) and player.isDead:
+			player.respawn()
+	
+
 func reset_scores():
 	for player_id in player_stats:
 		var player = player_stats[player_id]

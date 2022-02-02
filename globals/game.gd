@@ -31,6 +31,17 @@ func game_over():
 	yield($GameOverSign, 'finished')
 
 
+func restart():
+	game_over = false
+	ScoreKeeper.reset_game()
+
+
+func exit():
+	game_over = false
+	SceneManager.load_main_menu()
+
+
+
 # Overwrite add child to add child to children holder
 func add_child(node, legible_unique_name: bool = false):
 	$ChildrenHolder.add_child(node, legible_unique_name)
@@ -39,6 +50,10 @@ func add_child(node, legible_unique_name: bool = false):
 func remove_children():
 	for node in $ChildrenHolder.get_children():
 		node.queue_free()
+
+
+func get_children():
+	$ChildrenHolder.get_children()
 
 
 func focus_camera():
