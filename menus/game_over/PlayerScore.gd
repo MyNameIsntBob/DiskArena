@@ -1,7 +1,7 @@
 extends RigidBody2D
 
 export var player_id : int
-var character_id : int
+var character_id
 
 export (NodePath) var character_texture_path
 var character_texture : TextureRect
@@ -22,6 +22,7 @@ func set_score():
 		return
 	
 	set_character()
+	set_place()
 	update_score()
 
 
@@ -29,22 +30,24 @@ func set_character():
 	character_texture.texture = Icons.get_gui_character(character_id)
 
 
-func update_score():
+func set_place():
 	var place = place_to_text[int(ScoreKeeper.get_score(player_id))]
 	place_text.text = place
+
+
+func update_score():
 	var deaths = str(ScoreKeeper.get_deaths(player_id)) + '\n'
 	var kills = str(ScoreKeeper.get_kills(player_id)) + '\n'
 	scores_text.text = kills + deaths
-	scores_text.margin_top = 0
 
 
 func character_valid():
-	var character_id = ScoreKeeper.get_character_id(player_id)
+	character_id = ScoreKeeper.get_character_id(player_id)
 	var image = $Image/VBoxContainer
 	if character_id == null:
-		return false
 		if is_instance_valid(image):
 			image.hide()
+		return false
 	
 	if is_instance_valid(image):
 		image.show()
