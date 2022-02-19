@@ -67,7 +67,7 @@ func _process(delta):
 # TODO 
 # Split this up into mulitiple functions
 func _physics_process(delta):
-	if Global.paused:
+	if Global.paused || Global.game_over:
 		return
 	
 	if isDead:

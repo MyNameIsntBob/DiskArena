@@ -26,3 +26,7 @@ func _on_Exit_pressed():
 	raise()
 	yield(self, 'finished')
 	Global.exit()
+
+func _unhandled_input(event):
+	Functions.control_to_UI(event)
+
