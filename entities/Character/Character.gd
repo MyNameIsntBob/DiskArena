@@ -64,20 +64,31 @@ func _process(delta):
 		set_collision_layer(default_layer)
 
 
-# TODO 
-# Split this up into mulitiple functions
 func _physics_process(delta):
-	if Global.paused || Global.game_over:
+	if Global.paused:
 		return
 	
 	if isDead:
-		velocity = velocity.linear_interpolate(Vector2.ZERO, 0.05)
-		var collision_info = move_and_collide(velocity)
-		if collision_info:
-			velocity = velocity.bounce(collision_info.normal)
-			velocity *= 0.9
+		_process_nockback(delta)
 		
 		return
+	
+	_process_movement(delta)
+	
+	_process_aim(delta)
+
+
+func _process_nockback(detla):
+	velocity = velocity.linear_interpolate(Vector2.ZERO, 0.05)
+	var collision_info = move_and_collide(velocity)
+	if collision_info:
+		velocity = velocity.bounce(collision_info.normal)
+		velocity *= 0.9
+
+
+func _process_movement(delta):
+	if Global.game_over:
+		input_vector = Vector2.ZERO
 	
 	if input_vector != Vector2(0, 0):
 		velocity += input_vector * acceleration * delta
@@ -95,8 +106,10 @@ func _physics_process(delta):
 		if animationPlayer.get_current_animation() != 'Idle':
 			animationPlayer.stop()
 			animationPlayer.play('Idle')
-			
-	# Get the direction the character is heading and make the character look that direction
+
+
+# Get the direction the character is heading and make the character look that direction
+func _process_aim(delta):
 	var direction = -int(input_vector.normalized().angle() * (4 / PI)) + 2
 	
 	if direction > 7:
@@ -112,6 +125,7 @@ func _physics_process(delta):
 	if abs(look_vector.x) + abs(look_vector.y) >= 0.5:
 		$Aim.look_at(self.position + look_vector.normalized())
 
+
 func add_disk(disk):
 	disks.append(disk)
 	
@@ -119,8 +133,6 @@ func remove_disk(disk):
 	disks.erase(disk)
 
 func shoot():
-	# TODO
-	# Change this to use !Global.can_shoot 
 	if Global.game_over:
 		return
 	
@@ -173,6 +185,7 @@ func respawn():
 		
 		isDead = false
 		self.invincible = true
+
 
 func set_invincible(new_value : bool):
 	if new_value == true:
