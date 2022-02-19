@@ -30,4 +30,4 @@ collision_layer = 993
 collision_mask = 993
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
-polygon = PoolVector2Array( -240, -104, -240, 144, 240, 144, 240, -112, 256, -152, 256, -152, 256, 160, -256, 160, -256, -144 )
+polygon = PoolVector2Array( -240, -104, -240, 144, 240, 144, 240, -104, 256, -152, 256, -152, 256, 160, -256, 160, -256, -152 )

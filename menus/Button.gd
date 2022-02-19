@@ -19,23 +19,23 @@ func _ready():
 	_setup_neighbours()
 
 
-func button():
-	return get_node(button)
+func button() -> TextureButton:
+	return get_node(button) as TextureButton
 
 
-func sprite():
-	return get_node(sprite)
+func sprite() -> Sprite:
+	return get_node(sprite) as Sprite
 
 
 func _setup_neighbours() -> void:
 	if neighbour_left:
-		button().focus_neighbour_left = get_node(neighbour_left).button
+		button().focus_neighbour_left = get_node(neighbour_left).button().get_path()
 	if neighbour_top:
-		button().focus_neighbour_top = get_node(neighbour_top).button
+		button().focus_neighbour_top = get_node(neighbour_top).button().get_path()
 	if neighbour_right:
-		button().focus_neighbour_right = get_node(neighbour_right).button
+		button().focus_neighbour_right = get_node(neighbour_right).button().get_path()
 	if neighbour_bottom:
-		button().focus_neighbour_bottom = get_node(neighbour_bottom).button
+		button().focus_neighbour_bottom = get_node(neighbour_bottom).button().get_path()
 
 
 func _on_focus_entered():
