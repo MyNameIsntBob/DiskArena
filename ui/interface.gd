@@ -18,6 +18,10 @@ func _ready():
 	set_hp_bars()
 
 
+func _process(delta):
+	$CanvasLayer/MarginContainer.visible = !Global.game_over
+
+
 func set_hp_bars():
 	for i in range(1, 5):
 		var stat = player_stats[str(i)]

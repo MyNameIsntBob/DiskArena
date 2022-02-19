@@ -66,5 +66,3 @@ func set_hp_bars():
 
 func set_scores():
 	$GameOverSign.set_scores()
-
-
