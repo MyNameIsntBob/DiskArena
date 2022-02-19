@@ -62,5 +62,4 @@ hframes = 15
 vframes = 8
 frame = 35
 
-[connection signal="area_entered" from="ObjectChecker" to="." method="_on_ObjectChecker_area_entered"]
 [connection signal="body_entered" from="ObjectChecker" to="." method="_on_ObjectChecker_body_entered"]
