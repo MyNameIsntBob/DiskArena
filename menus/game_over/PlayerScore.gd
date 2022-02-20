@@ -10,7 +10,7 @@ var place_text : Label
 export (NodePath) var scores_text_path
 var scores_text : Label
 
-var place_to_text := ['1st\n', '2nd\n', '3rd\n', '4th\n']
+var place_to_text := ['\n1st', '\n2nd', '\n3rd', '\n4th']
 
 func _ready():
 	character_texture = get_node(character_texture_path)
@@ -39,6 +39,7 @@ func update_score():
 	var deaths = str(ScoreKeeper.get_deaths(player_id)) + '\n'
 	var kills = str(ScoreKeeper.get_kills(player_id)) + '\n'
 	scores_text.text = kills + deaths
+	scores_text.margin_top = 7
 
 
 func character_valid():
