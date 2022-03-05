@@ -1,6 +1,6 @@
 extends Node2D
 
-onready var rock_path = load("res://entities/Rocks.gd")
+onready var rock_path = load("res://entities/rocks.tscn")
 var rng = RandomNumberGenerator.new()
 
 var wait_timer = 1.0
@@ -23,10 +23,10 @@ func _process(delta):
 		setNewTimer()
 		spawnRock()
 
-# TODO
-# FIX THIS
+
 func spawnRock():
-	return
+	if Global.game_over:
+		return
 	
 	var rock = rock_path.instance()
 	
