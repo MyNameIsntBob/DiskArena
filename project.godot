@@ -18,10 +18,16 @@ _global_script_classes=[ {
 "class": "Character",
 "language": "GDScript",
 "path": "res://entities/Character/Character.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Disk",
+"language": "GDScript",
+"path": "res://entities/Disk.gd"
 } ]
 _global_script_class_icons={
 "BaseSignMenu": "",
-"Character": ""
+"Character": "",
+"Disk": ""
 }
 
 [application]

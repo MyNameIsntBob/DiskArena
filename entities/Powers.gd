@@ -1,5 +1,9 @@
 extends Node2D
 
+# TODO 
+# It's bad practice to have this be all three types, 
+# separate this into the different powers
+
 enum powers {
 	SPLIT,
 	SPEED,
@@ -31,10 +35,10 @@ func _process(delta):
 		self.visible = true
 
 
-func target(body):
+func target(body: Disk):
 	var target = null
 	var otherPlayers = get_tree().get_nodes_in_group("Characters")
-	otherPlayers.erase(body)
+	otherPlayers.erase(body.sender)
 	if len(otherPlayers) == 0:
 		return
 	otherPlayers.shuffle()
@@ -46,12 +50,6 @@ func target(body):
 		return
 	
 	body.velocity = target.global_position - body.global_position
-
-
-# TODO 
-# This isn't used, I assume it's supposed to tell it if it's the same player, but it doesn't work
-func is_the_same(body):
-	return body.player_id == 1
 
 
 func speed(body):
@@ -82,7 +80,7 @@ func _rotate_vel(velocity, angle):
 	return new_velocity
 
 
-func _on_Area2D_body_entered(body):
+func _on_Area2D_body_entered(body: Disk):
 	body.sendBack = false
 	
 	if power == powers.SPLIT:

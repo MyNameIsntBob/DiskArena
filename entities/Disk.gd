@@ -1,4 +1,5 @@
 extends KinematicBody2D
+class_name Disk
 
 var velocity = Vector2(0, 0)
 export var defaultSpeed = 300
